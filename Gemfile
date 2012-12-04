@@ -22,3 +22,4 @@ end
 gem 'jquery-rails'
 
 gem 'haml-rails', '~> 0.3.5'
+gem 'simple_form', '~> 2.0.4'
