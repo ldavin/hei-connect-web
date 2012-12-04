@@ -26,10 +26,16 @@
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
     %h3 Connexion
   .modal-body
-    = simple_form_for(User.new, :html => { :class => 'form-inline' }) do |f|
-      = f.input :ecampus_id, :input_html => { :class => "span6" }
-      = f.input :password, :input_html => { :class => "span6" }
+    = form_tag sessions_path, {:id => 'login_form', :class => 'form-horizontal'} do |f|
+      .control-group
+        = label_tag :ecampus_id, 'Identifiant', :class => 'control-label'
+        .controls
+          = text_field_tag :ecampus_id, nil, :class => 'input-block-level'
+      .control-group
+        = label_tag :password, 'Mot de passe', :class => 'control-label'
+        .controls
+          = password_field_tag :password, nil, :class => 'input-block-level'
 
   .modal-footer
     %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Fermer
-    %button.btn.btn-primary Se connecter
+    %button.btn.btn-primary{:id => 'login_button'} Se connecter
