@@ -15,6 +15,10 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+group :development do
+  gem 'quiet_assets'
+end
+
 gem 'jquery-rails'
 
 gem 'haml-rails', '~> 0.3.5'
