@@ -1,3 +1,4 @@
+/ Index page
 .jumbotron
   %h1 Un ecampus enfin simple et rapide
   %p.lead HEI Connect utilise vos identifiants e-campus pour récupérer discrètement vos données (planning, notes, absences) et vous les restituer rapidement.
@@ -18,3 +19,17 @@
       %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
       %h4 Subheading
       %p Maecenas sed diam eget risus varius blandit sit amet non magna.
+
+/ Login modal
+#loginModal.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3 Connexion
+  .modal-body
+    = simple_form_for(User.new, :html => { :class => 'form-inline' }) do |f|
+      = f.input :ecampus_id, :input_html => { :class => "span6" }
+      = f.input :password, :input_html => { :class => "span6" }
+
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Fermer
+    %button.btn.btn-primary Se connecter

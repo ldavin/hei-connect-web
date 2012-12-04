@@ -39,19 +39,6 @@
           .footer
             %p HEI Connect, initié par Louis Davin. Son code source est disponible sur GitHub ici (API) et là (web)
 
-    / Login modal
-    #loginModal.modal.hide.fade
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3 Connexion
-      .modal-body
-        = simple_form_for(User.new, :html => { :class => 'form-inline' }) do |f|
-          = f.input :ecampus_id, :input_html => { :class => "span6" }
-          = f.input :password, :input_html => { :class => "span6" }
-
-      .modal-footer
-        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Fermer
-        %button.btn.btn-primary Se connecter
 
     /
       Javascripts
