@@ -1,0 +1,17 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    .alert.alert-error
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %fieldset
+    %legend Inscription à HEI-Connect
+    .control-group
+      = f.label :ecampus_id, :class => "control-label"
+      .controls
+        = f.text_field :ecampus_id, :class => 'input-block-level'
+    .control-group
+      = f.label :password, :class => "control-label"
+      .controls
+        = f.password_field :password, :class => 'input-block-level'
+    = f.submit :class => "btn btn-primary"

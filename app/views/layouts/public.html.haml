@@ -25,11 +25,11 @@
       .masthead
         %ul.nav.nav-pills.pull-right
           %li.active
-            %a{:href => "#"} Home
+            = link_to 'Home', root_path
           %li
-            %a{:href => "#"} A propos
+            = link_to 'Connexion', new_sessions_path
           %li
-            %a{:href => "#"} Contact
+            = link_to 'Inscription', new_users_path
         %h3.muted HEI Connect
       %hr
 
