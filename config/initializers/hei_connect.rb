@@ -1,0 +1,1 @@
+HEI_CONNECT = YAML.load_file(Rails.root.join('config', 'hei_connect.yml'))

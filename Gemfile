@@ -24,3 +24,4 @@ gem 'jquery-rails'
 
 gem 'haml-rails', '~> 0.3.5'
 gem 'attr_encrypted', '~> 1.2.1'
+gem 'rest-client', '~> 1.6.7'
