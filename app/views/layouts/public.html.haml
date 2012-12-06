@@ -24,15 +24,13 @@
     .container-narrow
       .masthead
         %ul.nav.nav-pills.pull-right
-          %li.active
-            = link_to 'Home', root_path
-          %li
-            = link_to 'Connexion', new_sessions_path
-          %li
-            = link_to 'Inscription', new_users_path
+          =public_nav_link("Home", root_path)
+          =public_nav_link("Connexion", new_sessions_path)
+          =public_nav_link("Inscription", new_users_path)
         %h3.muted HEI Connect
       %hr
 
+        = bootstrap_flash
         = yield
 
         %hr

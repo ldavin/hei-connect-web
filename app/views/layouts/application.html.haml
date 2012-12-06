@@ -25,12 +25,10 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") Myapp
+          = link_to "HEI-Connect", dashboard_path, class: 'brand'
           .container.nav-collapse
-            %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+            %ul.nav.pull-right
+              %li= link_to "Déconnexion", sessions_path, method: :delete
 
     .container-fluid
 
@@ -38,15 +36,15 @@
         .span3
           .well.sidebar-nav
             %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              %li.nav-header Dashboard
+              = app_nav_link "Home", "home", dashboard_path
+              = app_nav_link "Cours", "calendar", dashboard_courses_path
         .span9
+          = bootstrap_flash
           = yield
     
       %footer
-        %p &copy; Company 2012
+        %p HEI Connect, initié par Louis Davin. Son code source est disponible sur GitHub ici (API) et là (web)
     /
       Javascripts
       \==================================================
