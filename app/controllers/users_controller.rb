@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
       if data['valid'] == true
         current_user.update_attribute(:login_checked, true)
-        redirect_to root_url, notice: "HEI-Connect a réussit à se connecter à e-campus avec vos identifiants."
+        redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
       else
         current_user.delete
         session[:user_id] = nil
