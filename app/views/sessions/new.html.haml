@@ -1,4 +1,4 @@
-= form_tag sessions_path, id: 'public_form' do |f|
+= form_tag sessions_path do |f|
   %fieldset
     %legend Connexion à HEI-Connect
     .control-group
@@ -11,6 +11,3 @@
         = password_field_tag :password, nil, :class => 'input-block-level'
 
     = submit_tag "Connexion", :class => 'btn btn-primary'
-
-#public_bar.progress.progress-striped.active{:style => 'display: none;'}
-  .bar{:style => "width: 100%;"}
