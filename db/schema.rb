@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210091342) do
+ActiveRecord::Schema.define(:version => 20121210142008) do
 
   create_table "courses", :force => true do |t|
     t.datetime "date"
@@ -30,13 +30,12 @@ ActiveRecord::Schema.define(:version => 20121210091342) do
   add_index "courses", ["week_id"], :name => "index_courses_on_week_id"
 
   create_table "users", :force => true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
     t.string   "ecampus_id"
     t.string   "encrypted_password"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.string   "state",              :default => "unverified"
+    t.string   "schedule_state",     :default => "unknown"
   end
 
   create_table "weeks", :force => true do |t|
