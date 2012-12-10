@@ -10,12 +10,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    if @user.save
-      session[:user_id] = @user.id
-      CheckCredentialsWorker.perform_async @user.id
-      redirect_to validate_users_url
+    if User.where(:ecampus_id => @user.ecampus_id).any?
+      authed_user = User.authenticate @user.ecampus_id, @user.password
+      if authed_user
+        session[:user_id] = authed_user.id
+        redirect_to root_url
+      else
+        flash.now[:alert] = 'Identifiants erronés'
+        render action: :new
+      end
     else
-      render action: :new
+      if @user.save
+        session[:user_id] = @user.id
+        CheckCredentialsWorker.perform_async @user.id
+        redirect_to validate_users_url
+      else
+        render action: :new
+      end
     end
   end
 
