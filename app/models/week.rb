@@ -9,6 +9,6 @@ class Week < ActiveRecord::Base
   private
 
   def set_default_rev
-    self.rev = 1 if self.rev.nil?
+    self.rev = 0 if self.rev.nil?
   end
 end
