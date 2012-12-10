@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
-  STATES = %w{ unverified active }
+  STATE_UNVERIFIED = 'unverified'
+  STATE_ACTIVE = 'active'
+  STATE_INVALID = 'invalid'
+  STATES = [STATE_UNVERIFIED, STATE_ACTIVE, STATE_INVALID]
 
   has_many :weeks
   has_many :courses
@@ -13,6 +16,7 @@ class User < ActiveRecord::Base
   before_validation :set_default_state
 
   attr_accessible :ecampus_id, :firstname, :lastname, :password
+  attr_protected :state
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
 
   def self.authenticate(id, password)

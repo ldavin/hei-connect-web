@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+      CheckCredentialsWorker.perform_async @user.id
       redirect_to validate_users_url
     else
       render action: :new
@@ -19,26 +20,14 @@ class UsersController < ApplicationController
   end
 
   def validate
-    # This is a dirty implementation yet:
-    # The API call will have to be moved in a background job
-    response = HeiConnect.validate_credentials 'v1', current_user
-
-    if response.code == 200
-      data = JSON.parse response
-
-      if data['valid'] == true
-        current_user.active!
+    case current_user.state
+      when User::STATE_ACTIVE
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
-      else
+      when User::STATE_INVALID
         current_user.delete
         session[:user_id] = nil
         redirect_to root_url, alert: "Les identifiants que vous avez entré ne permettent pas de vous connecter" +
-            " à e-campus. Le compte a été supprimé, merci de vous ré-inscrire."
-      end
-    else
-      session[:user_id] = nil
-      redirect_to root_url, alert: "L'API n'a pas répondu correctement. E-campus est peut être hors-ligne ou a" +
-          " été mis à jour. Vous avez été déconnecté. Veuillez re-essayer plus tard."
+            " à e-campus, ou bien e-campus ne répond pas. Le compte a été supprimé, merci de ré-essayer."
     end
   end
 end
