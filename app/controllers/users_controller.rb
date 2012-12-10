@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       data = JSON.parse response
 
       if data['valid'] == true
-        current_user.update_attribute(:login_checked, true)
+        current_user.active!
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
       else
         current_user.delete

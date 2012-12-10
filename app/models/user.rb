@@ -1,12 +1,18 @@
 class User < ActiveRecord::Base
+
+  STATES = %w{ unverified active }
+
   has_many :weeks
   has_many :courses
 
   validates :ecampus_id, :encrypted_password, presence: true
   validates :ecampus_id, length: {is: 6}
   validates :ecampus_id, uniqueness: true
+  validates :state, :inclusion => {in: STATES}
 
-  attr_accessible :ecampus_id, :firstname, :lastname, :login_checked, :password
+  before_validation :set_default_state
+
+  attr_accessible :ecampus_id, :firstname, :lastname, :password
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
 
   def self.authenticate(id, password)
@@ -16,5 +22,21 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  STATES.each do |state|
+    define_method("#{state}?") do
+      self.state == state
+    end
+
+    define_method("#{state}!") do
+      self.update_attribute(:state, state)
+    end
+  end
+
+  private
+
+  def set_default_state
+    self.state = STATES.first
   end
 end

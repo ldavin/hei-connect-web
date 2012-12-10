@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     if user_logged_in
-      if current_user.login_checked
+      if current_user.active?
         redirect_to dashboard_url
       else
         redirect_to validate_users_url
