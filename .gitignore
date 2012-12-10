@@ -25,3 +25,5 @@
 
 # Ignore critical files
 config/database.yml
+
+*.rdb
