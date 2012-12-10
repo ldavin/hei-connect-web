@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205093937) do
+ActiveRecord::Schema.define(:version => 20121206172121) do
+
+  create_table "courses", :force => true do |t|
+    t.datetime "date"
+    t.integer  "length"
+    t.string   "type"
+    t.string   "group"
+    t.string   "code"
+    t.string   "name"
+    t.string   "room"
+    t.string   "teacher"
+    t.integer  "week_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "courses", ["week_id"], :name => "index_courses_on_week_id"
 
   create_table "users", :force => true do |t|
     t.string   "firstname"
@@ -22,5 +38,14 @@ ActiveRecord::Schema.define(:version => 20121205093937) do
     t.datetime "updated_at",                            :null => false
     t.boolean  "login_checked",      :default => false
   end
+
+  create_table "weeks", :force => true do |t|
+    t.integer  "number"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "weeks", ["user_id"], :name => "index_weeks_on_user_id"
 
 end

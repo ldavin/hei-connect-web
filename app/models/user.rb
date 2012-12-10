@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :weeks
+  has_many :courses
+
   validates :ecampus_id, :encrypted_password, presence: true
   validates :ecampus_id, length: {is: 6}
   validates :ecampus_id, uniqueness: true
