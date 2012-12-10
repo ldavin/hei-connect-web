@@ -28,6 +28,8 @@
           = link_to "HEI-Connect", dashboard_path, class: 'brand'
           .container.nav-collapse
             %ul.nav.pull-right
+              %li
+                %p.navbar-text.text-info= current_user.ecampus_id
               %li= link_to "Déconnexion", sessions_path, method: :delete
 
     .container-fluid
