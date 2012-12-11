@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   SCHEDULE_STATES = [STATE_UNKNOWN, STATE_PLANNED, STATE_OK]
 
   has_many :weeks, dependent: :destroy
-  has_many :courses, dependent: :destroy
+  has_many :courses, through: :weeks, dependent: :destroy
 
   validates :ecampus_id, :encrypted_password, presence: true
   validates :ecampus_id, length: {is: 6}
