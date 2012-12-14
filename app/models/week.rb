@@ -1,6 +1,6 @@
 class Week < ActiveRecord::Base
   belongs_to :user
-  has_many :courses
+  has_many :courses, conditions: proc { "week_rev = #{self.rev}" }
 
   before_save :set_default_rev
 
