@@ -35,6 +35,31 @@ ActiveAdmin.register User do
       row :updated_at
     end
 
+    panel "This user's weeks" do
+      table_for(user.weeks) do
+        column "ID" do |w|
+          link_to w.id, admin_week_path(w)
+        end
+        column :number
+        column :rev
+      end
+    end
+
+=begin
+    Todo: Find a way to collect all the courses and display them
+    panel "This user's courses" do
+      table_for(user.weeks.collect { |week| week.courses }) do
+        column "ID" do |c|
+          link_to c.id, admin_course_path(a)
+        end
+        column :name
+        column :date
+        column :length
+        column :kind
+      end
+    end
+=end
+
     active_admin_comments
   end
 end
