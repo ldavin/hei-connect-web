@@ -1,2 +1,8 @@
-%h1 Dashboard#index
-%p Find me in app/views/dashboard/index.html.haml
+%h2 Etat de mon compte
+
+%h2 News HEI Connect
+- @notes.each do |note|
+  %h3= note.title
+  %p= simple_format note.body
+  %p
+    %small= note.updated_at.strftime "Le %d/%m à %Hh%M"

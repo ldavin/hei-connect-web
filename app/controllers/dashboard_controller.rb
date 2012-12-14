@@ -7,6 +7,8 @@ class DashboardController < ApplicationController
       current_user.schedule_planned!
       FetchScheduleWorker.perform_async current_user.id
     end
+
+    @notes = Note.order('updated_at DESC').limit 5
   end
 
   def courses
