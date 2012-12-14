@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   attr_protected :state, :schedule_state
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
 
+  def to_s
+    self.ecampus_id
+  end
+
   def self.authenticate(id, password)
     user = User.find_or_initialize_by_ecampus_id id
     if user.password == password
