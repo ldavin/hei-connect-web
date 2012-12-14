@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   validates :state, :inclusion => {in: STATES}
   validates :schedule_state, :inclusion => {in: SCHEDULE_STATES}
 
-  before_validation :set_default_states
+  before_create :set_default_states
+  after_create :set_ics_key
 
   attr_accessible :ecampus_id, :password
   attr_protected :state, :schedule_state
@@ -59,5 +60,9 @@ class User < ActiveRecord::Base
   def set_default_states
     self.state = STATES.first
     self.schedule_state = SCHEDULE_STATES.first
+  end
+
+  def set_ics_key
+    self.update_attribute(:ics_key, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}"))
   end
 end
