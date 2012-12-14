@@ -1,2 +1,38 @@
-%h1 Dashboard#courses
-%p Find me in app/views/dashboard/courses.html.haml
+- if @weeks.any?
+  - url = ics_url key: current_user.ics_key, format: :ics, protocol: "webcal"
+
+  %h2 Les cours sur l'agenda
+  %p
+    Grâce à HEI-Connect, tu peux récupérer ton planning sur ton gestionnaire d'agenda (Google Agenda, iCal, Outlook...).
+    %br
+    Abonne-toi en cliquant sur ce lien:
+  .well
+    = link_to url, url
+
+  %h2 Liste des cours
+  - days = [{name: 'Lundi', lag: 0.day}, {name: 'Mardi', lag: 1.day}, {name: 'Mercredi', lag: 2.day}, {name: 'Jeudi', lag: 3.day}, {name: 'Vendredi', lag: 4.day}]
+  - @weeks.each do |week|
+    - monday = Date.commercial(Time.now.year, week.number).monday
+    %h3= "Semaine n° #{week.number}"
+    .row-fluid
+      - days.each do |day|
+        .span2
+          %h4= day[:name]
+          - if week.courses.given_on(monday + day[:lag]).any?
+            - week.courses.given_on(monday + day[:lag]).each do |course|
+              %p
+                %small= "#{course.kind || "?"} - #{course.name} (#{course.date.strftime '%Hh%M'}-#{(course.date + course.length.minutes).strftime '%Hh%M'})"
+          - else
+            %p Aucun cours!
+      .span2
+
+- else
+  :javascript
+    setTimeout((function() {
+      return window.location.reload(1);
+    }), 10000);
+
+  %h2 Ca arrive!
+  %p HEI-Connect est en train de récupérer les données depuis e-campus, un petit peu de patience ;)
+  .progress.progress-striped.active
+    .bar{:style => "width: 100%;"}
