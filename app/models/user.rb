@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
     define_method("#{state}!") do
       self.update_attribute(:state, state)
     end
+
+    scope state.to_sym, where(state: state)
   end
 
   SCHEDULE_STATES.each do |state|
@@ -53,6 +55,8 @@ class User < ActiveRecord::Base
     define_method("schedule_#{state}!") do
       self.update_attribute(:schedule_state, state)
     end
+
+    scope ('schedule_' + state).to_sym, where(schedule_state: state)
   end
 
   private
