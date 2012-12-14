@@ -17,9 +17,9 @@ class FetchScheduleWorker
 
         week['courses'].each do |course|
           course_db = Course.where(date: Time.zone.parse(course['date']), length: course['length'],
-                                   kind: unescape(course['type']), group: unescape(course['group']),
-                                   code: unescape(course['code']), name: unescape(course['name']),
-                                   room: unescape(course['room']), teacher: unescape(course['teacher']),
+                                   kind: course['type'], group: course['group'],
+                                   code: course['code'], name: course['name'],
+                                   room: course['room'], teacher: course['teacher'],
                                    week_id: week_db.id).first_or_create
           course_db.update_attribute :week_rev, week_db.rev
         end
@@ -27,11 +27,5 @@ class FetchScheduleWorker
 
       user.schedule_ok!
     end
-  end
-
-  private
-
-  def unescape(val)
-    val.nil? ? nil : URI.unescape(val)
   end
 end
