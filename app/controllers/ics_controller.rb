@@ -7,6 +7,8 @@ class IcsController < ApplicationController
       return
     end
 
+    user.update_schedule! if user.expired_schedule?
+
     respond_to do |format|
       format.ics do
         calendar = Icalendar::Calendar.new
