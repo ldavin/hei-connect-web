@@ -2,7 +2,7 @@
 .jumbotron
   %h1 Un ecampus enfin simple et rapide
   %p.lead HEI Connect utilise vos identifiants e-campus pour récupérer discrètement vos données (planning, notes, absences) et vous les restituer rapidement.
-  %a.btn.btn-large.btn-success{'data-toggle' => 'modal', :href => '#login_modal'} Se connecter
+  = link_to 'Se connecter', new_users_path, class: 'btn btn-large btn-success'
 %hr
   .row-fluid.marketing
     .span6
@@ -19,23 +19,3 @@
       %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
       %h4 Subheading
       %p Maecenas sed diam eget risus varius blandit sit amet non magna.
-
-/ Login modal
-#login_modal.modal.hide.fade
-  .modal-header
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3 Connexion
-  .modal-body
-    = form_for User.new, html: {:id => 'login_form', :class => 'form-horizontal'} do |f|
-      .control-group
-        = f.label :ecampus_id, :class => "control-label"
-        .controls
-          = f.text_field :ecampus_id, :class => 'input-block-level'
-      .control-group
-        = f.label :password, :class => "control-label"
-        .controls
-          = f.password_field :password, :class => 'input-block-level'
-
-  .modal-footer
-    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Fermer
-    %button.btn.btn-primary{:id => 'login_button'} Se connecter
