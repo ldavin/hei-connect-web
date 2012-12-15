@@ -99,6 +99,8 @@ GEM
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (0.2.1)
+      rails (>= 3.1.0)
     json (1.7.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
@@ -188,6 +190,8 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (0.6.1)
+      coffee-rails
     twitter-bootstrap-rails (2.1.9)
       actionpack (>= 3.1)
       execjs
@@ -211,6 +215,7 @@ DEPENDENCIES
   haml-rails
   icalendar (~> 1.2.1)
   jquery-rails
+  jquery-turbolinks
   less-rails
   mysql2
   pg
@@ -222,5 +227,6 @@ DEPENDENCIES
   sqlite3
   therubyracer
   thin
+  turbolinks
   twitter-bootstrap-rails
   uglifier
