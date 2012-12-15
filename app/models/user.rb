@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   SCHEDULE_STATES = [STATE_UNKNOWN, STATE_PLANNED, STATE_OK]
 
   has_many :weeks, dependent: :destroy
-  has_many :courses, through: :weeks, dependent: :destroy
 
   validates :ecampus_id, :encrypted_password, presence: true
   validates :ecampus_id, length: {is: 6}
@@ -25,6 +24,15 @@ class User < ActiveRecord::Base
   attr_accessible :ecampus_id, :password
   attr_protected :state, :schedule_state
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
+
+  def expired_schedule?
+    true if self.weeks.any? and self.weeks.first.updated_at + 2.hours < Time.now and not self.schedule_planned?
+  end
+
+  def update_schedule!
+    self.schedule_planned!
+    FetchScheduleWorker.perform_async self.id
+  end
 
   def to_s
     self.ecampus_id
