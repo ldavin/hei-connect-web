@@ -1,8 +1,20 @@
-%h2 Etat de mon compte
+%h2 Prochains cours
+%p Vue en construction.
+%table
 
-%h2 News HEI Connect
-- @notes.each do |note|
-  %h3= note.title
-  %p= simple_format note.body
-  %p
-    %small= note.updated_at.strftime "Le %d/%m à %Hh%M"
+%h2 Dernières notes
+%p Non implémenté
+%table
+
+%h2 Dernières absences
+%p Non implémenté
+%table
+
+%h3{style: 'margin-bottom: 0px'} News HEI-Connect
+.row-fluid
+  - @notes.each do |note|
+    .span4
+      %h4= note.title
+      = simple_format note.body
+      %p.text-info
+        %small= note.updated_at.strftime "Le %d/%m à %Hh%M"

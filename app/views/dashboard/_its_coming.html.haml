@@ -1,0 +1,9 @@
+%h2 Ca arrive!
+%p HEI-Connect est en train de récupérer les données depuis e-campus, un petit peu de patience ;)
+.progress.progress-striped.active
+  .bar{:style => "width: 100%;"}
+
+:javascript
+  setTimeout((function() {
+    return window.location.reload(1);
+  }), 10000);
