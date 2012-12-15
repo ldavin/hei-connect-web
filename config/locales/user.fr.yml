@@ -1,0 +1,9 @@
+fr:
+  activerecord:
+    models:
+      user: "Utilisateur"
+    attributes:
+      user:
+        ecampus_id: "Identifiant e-campus"
+        password: "Mot de passe e-campus"
+        encrypted_password: "Mot de passe e-campus encrypté"

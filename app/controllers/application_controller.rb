@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  # Fixme: Hack to use the default_locale (caused by active_admin)
+  before_filter :set_locale
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
   def current_user
     @current_user ||=
         begin

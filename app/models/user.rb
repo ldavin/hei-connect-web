@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :weeks, dependent: :destroy
 
   validates :ecampus_id, :encrypted_password, presence: true
+  validates :password, presence: true, on: :create
   validates :ecampus_id, length: {is: 6}
   validates :ecampus_id, uniqueness: true
   validates :state, :inclusion => {in: STATES}
