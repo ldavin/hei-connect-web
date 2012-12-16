@@ -46,7 +46,7 @@ GEM
     attr_encrypted (1.2.1)
       encryptor (>= 1.1.1)
     bcrypt-ruby (3.0.1)
-    better_errors (0.2.0)
+    better_errors (0.3.0)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
     binding_of_caller (0.6.8)
