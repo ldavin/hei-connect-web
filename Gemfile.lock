@@ -154,6 +154,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    redis (3.0.2)
     ref (1.0.2)
     responders (0.9.3)
       railties (~> 3.1)
@@ -205,6 +206,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails
+  connection_pool
   girl_friday
   haml-rails
   icalendar (~> 1.2.1)
@@ -216,6 +218,7 @@ DEPENDENCIES
   pg
   quiet_assets
   rails (= 3.2.5)
+  redis
   rest-client (~> 1.6.7)
   sass-rails
   sqlite3
