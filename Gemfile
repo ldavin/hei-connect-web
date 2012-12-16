@@ -1,11 +1,11 @@
 #source 'https://rubygems.org'
 source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
 
-# This version needs to be hardcoded for OpenShift compatability
+# Openshift gems
 gem 'thor', '= 0.14.6'
-# This needs to be installed so we can run Rails console on OpenShift directly
 gem 'minitest'
 
+# Regular gems
 gem 'rails', '3.2.6'
 gem 'mysql2'
 gem 'pg'
