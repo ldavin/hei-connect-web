@@ -23,10 +23,5 @@
 # Ignore rvmrc
 .rvmrc
 
-# Ignore critical files
-config/database.yml
-config/newrelic.yml
-config/initializers/secret_token.rb
-
 # Ignore redis dumps
 *.rdb
