@@ -1,7 +1,5 @@
 class FetchScheduleWorker
-  include Sidekiq::Worker
-
-  def perform(user_id)
+  def self.perform(user_id)
     user = User.find(user_id)
 
     if user.schedule_planned?

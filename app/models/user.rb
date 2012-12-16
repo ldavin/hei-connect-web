@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   def update_schedule!
     self.schedule_planned!
-    FetchScheduleWorker.perform_async self.id
+    FETCH_SCHEDULE_QUEUE << {user_id: self.id}
   end
 
   def to_s

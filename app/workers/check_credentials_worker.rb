@@ -1,7 +1,5 @@
 class CheckCredentialsWorker
-  include Sidekiq::Worker
-
-  def perform(user_id)
+  def self.perform(user_id)
     user = User.find_or_initialize_by_id user_id
 
     if user.unverified?
