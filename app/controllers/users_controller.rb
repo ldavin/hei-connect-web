@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         session[:user_id] = @user.id
-        CHECK_CREDENTIALS_QUEUE << {user_id: @user.id}
+        CheckCredentialsWorker.new.perform @user.id
         redirect_to validate_users_url
       else
         render action: :new

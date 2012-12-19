@@ -1,5 +1,5 @@
 class CheckCredentialsWorker
-  def self.perform(user_id)
+  def perform(user_id)
     user = User.find_or_initialize_by_id user_id
 
     if user.unverified?
@@ -19,4 +19,6 @@ class CheckCredentialsWorker
       end
     end
   end
+
+  handle_asynchronously :perform, :queue => 'check_credentials'
 end

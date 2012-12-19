@@ -1,5 +1,5 @@
-#source 'https://rubygems.org'
-source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
+source 'https://rubygems.org'
+#source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
 
 # Openshift gems
 gem 'thor', '= 0.14.6'
@@ -39,6 +39,5 @@ gem 'activeadmin'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'newrelic_rpm'
-gem 'girl_friday'
-gem 'redis'
-gem 'connection_pool'
+gem 'delayed_job_active_record'
+gem 'daemons'

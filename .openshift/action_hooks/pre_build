@@ -4,3 +4,6 @@
 # before the build step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+RAILS_ENV=production script/delayed_job stop
+popd > /dev/null

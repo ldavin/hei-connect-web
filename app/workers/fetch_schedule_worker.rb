@@ -1,5 +1,5 @@
 class FetchScheduleWorker
-  def self.perform(user_id)
+  def perform(user_id)
     user = User.find(user_id)
 
     if user.schedule_planned?
@@ -26,4 +26,6 @@ class FetchScheduleWorker
       user.schedule_ok!
     end
   end
+
+  handle_asynchronously :perform, :queue => 'fetch_schedules'
 end
