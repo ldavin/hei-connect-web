@@ -2,14 +2,11 @@ source 'https://rubygems.org'
 #source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
 
 # Openshift gems
-gem 'thor', '= 0.14.6'
+gem 'thor'
 gem 'minitest'
 
 # Regular gems
-gem 'rails', '3.2.6'
-gem 'mysql2'
-gem 'pg'
-gem 'sqlite3'
+gem 'rails', '3.2.11'
 gem 'thin'
 
 group :assets do
@@ -17,24 +14,29 @@ group :assets do
   gem 'sass-rails'
   gem 'uglifier'
 
-  gem 'libv8', '~> 3.11.8'
+  gem 'libv8'
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
 
+group :production do
+  gem 'mysql2'
+end
+
 gem 'jquery-rails'
 
 gem 'haml-rails'
-gem 'attr_encrypted', '~> 1.2.1'
-gem 'rest-client', '~> 1.6.7'
-gem 'icalendar', '~> 1.2.1'
+gem 'attr_encrypted'
+gem 'rest-client'
+gem 'icalendar'
 gem 'activeadmin'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
