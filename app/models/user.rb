@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
 
   def expired_schedule?
-    true if self.weeks.any? and self.weeks.first.updated_at + 2.hours < Time.now and not self.schedule_planned?
+    true if self.weeks.any? and self.weeks.last.updated_at + 2.hours < Time.now and not self.schedule_planned?
   end
 
   def update_schedule!
