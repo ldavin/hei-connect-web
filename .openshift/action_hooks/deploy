@@ -41,6 +41,8 @@ then
 fi
 
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+echo "Migrating database..."
 bundle exec rake db:migrate RAILS_ENV="production"
+echo "Precompiling the assets (openshift automatic precompilation doesn\'t work)"
 bundle exec rake assets:precompile:all RAILS_ENV=production RAILS_GROUPS=assets
 popd > /dev/null
