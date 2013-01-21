@@ -2,8 +2,3 @@
 # This is a simple post deploy hook executed after your application
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
-
-pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-echo "Starting delayed_job"
-RAILS_ENV=production script/delayed_job start
-popd > /dev/null
