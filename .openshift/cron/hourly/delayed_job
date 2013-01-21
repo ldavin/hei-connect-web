@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+RAILS_ENV=production script/delayed_job restart
+popd > /dev/null
