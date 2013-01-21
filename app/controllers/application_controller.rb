@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless user_logged_in
   end
 
-  def refesh_user_data
+  def refresh_user_data
     current_user.update_schedule! if current_user.schedule_unknown?
     current_user.update_schedule! if current_user.expired_schedule?
   end
