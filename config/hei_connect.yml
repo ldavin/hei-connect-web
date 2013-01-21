@@ -1,1 +1,2 @@
-base: https://hei-connect.herokuapp.com/
+base: http://api.hei-connect.eu/
+staging: http://api-staging.hei-connect.eu/
