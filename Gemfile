@@ -35,7 +35,6 @@ gem 'jquery-rails'
 
 gem 'haml-rails'
 gem 'attr_encrypted'
-gem 'rest-client'
 gem 'icalendar'
 gem 'activeadmin'
 gem 'turbolinks'
