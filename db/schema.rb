@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124165455) do
+ActiveRecord::Schema.define(:version => 20130124165540) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,18 +50,16 @@ ActiveRecord::Schema.define(:version => 20130124165455) do
     t.datetime "date"
     t.integer  "length"
     t.string   "kind"
-    t.string   "group"
-    t.string   "code"
-    t.string   "name"
-    t.string   "room"
-    t.string   "teacher"
-    t.integer  "week_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "week_rev"
+    t.integer  "ecampus_id"
+    t.integer  "section_id"
+    t.integer  "group_id"
   end
 
-  add_index "courses", ["week_id"], :name => "index_courses_on_week_id"
+  add_index "courses", ["ecampus_id"], :name => "index_courses_on_ecampus_id"
+  add_index "courses", ["group_id"], :name => "index_courses_on_group_id"
+  add_index "courses", ["section_id"], :name => "index_courses_on_section_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
