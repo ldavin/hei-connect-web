@@ -49,11 +49,7 @@ class Client < RocketPants::Client
   end
 
   version 1
-  if Rails.env.development?
-    base_uri HEI_CONNECT['staging']
-  else
-    base_uri HEI_CONNECT['base']
-  end
+  base_uri HEI_CONNECT['base']
 
   def fetch(action, options, transformer)
     if options.is_a? User
