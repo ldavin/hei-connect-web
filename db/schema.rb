@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124165540) do
+ActiveRecord::Schema.define(:version => 20130201011322) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,6 +45,33 @@ ActiveRecord::Schema.define(:version => 20130124165540) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "course_rooms", :force => true do |t|
+    t.integer "course_id"
+    t.integer "room_id"
+  end
+
+  add_index "course_rooms", ["course_id"], :name => "index_course_rooms_on_course_id"
+  add_index "course_rooms", ["room_id"], :name => "index_course_rooms_on_room_id"
+
+  create_table "course_teachers", :force => true do |t|
+    t.integer "course_id"
+    t.integer "teacher_id"
+  end
+
+  add_index "course_teachers", ["course_id"], :name => "index_course_teachers_on_course_id"
+  add_index "course_teachers", ["teacher_id"], :name => "index_course_teachers_on_teacher_id"
+
+  create_table "course_users", :force => true do |t|
+    t.integer  "update_number"
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "course_users", ["course_id"], :name => "index_course_users_on_course_id"
+  add_index "course_users", ["user_id"], :name => "index_course_users_on_user_id"
 
   create_table "courses", :force => true do |t|
     t.datetime "date"
@@ -109,14 +136,27 @@ ActiveRecord::Schema.define(:version => 20130124165540) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "updates", :force => true do |t|
+    t.string   "object"
+    t.string   "state"
+    t.integer  "rev",        :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "updates", ["user_id"], :name => "index_updates_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "ecampus_id"
     t.string   "encrypted_password"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.string   "state",              :default => "unverified"
-    t.string   "schedule_state",     :default => "unknown"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "ics_key"
+    t.integer  "ecampus_user_id"
+    t.integer  "ecampus_student_id"
   end
+
+  add_index "users", ["ecampus_id"], :name => "index_users_on_ecampus_id"
 
 end

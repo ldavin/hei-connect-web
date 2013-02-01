@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         session[:user_id] = @user.id
-        CheckCredentialsWorker.new.perform @user.id
+        CheckUserWorker.new.perform @user.id
         redirect_to validate_users_url
       else
         render action: :new
@@ -31,10 +31,10 @@ class UsersController < ApplicationController
   end
 
   def validate
-    case current_user.state
-      when User::STATE_ACTIVE
+    case current_user.user_state
+      when Update::STATE_OK
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
-      when User::STATE_INVALID
+      when Update::STATE_FAILED
         current_user.delete
         session[:user_id] = nil
         redirect_to root_url, alert: "Les identifiants que vous avez entré ne permettent pas de vous connecter" +

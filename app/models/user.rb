@@ -1,38 +1,26 @@
 class User < ActiveRecord::Base
 
-  STATE_UNVERIFIED = 'unverified'
-  STATE_ACTIVE = 'active'
-  STATE_INVALID = 'invalid'
-  STATES = [STATE_UNVERIFIED, STATE_ACTIVE, STATE_INVALID]
+  has_many :course_users, dependent: :delete_all
+  has_many :courses, through: :course_users
+  has_many :updates
 
-  STATE_UNKNOWN = 'unknown'
-  STATE_PLANNED = 'planned'
-  STATE_OK = 'ok'
-  SCHEDULE_STATES = [STATE_UNKNOWN, STATE_PLANNED, STATE_OK]
-
-  has_many :weeks, dependent: :destroy
-
-  validates :ecampus_id, :encrypted_password, presence: true
-  validates :password, presence: true, on: :create
+  validates :ecampus_id, presence: true
+  validates :password, :encrypted_password, presence: true, on: :create
   validates :ecampus_id, length: {is: 6}
   validates :ecampus_id, uniqueness: true
-  validates :state, :inclusion => {in: STATES}
-  validates :schedule_state, :inclusion => {in: SCHEDULE_STATES}
 
-  before_create :set_default_states
   after_create :set_ics_key
 
-  attr_accessible :ecampus_id, :password
-  attr_protected :state, :schedule_state
+  attr_accessible :ecampus_id, :ecampus_student_id, :ecampus_user_id, :password
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
 
   def expired_schedule?
-    true if self.weeks.any? and self.weeks.last.updated_at + 2.hours < Time.now and not self.schedule_planned?
+    true if not self.schedule_updating? and self.schedule_last_update + 4.hours < Time.now
   end
 
   def update_schedule!
-    self.schedule_planned!
-    FetchScheduleWorker.new.perform self.id
+    self.schedule_updating!
+    #FetchScheduleWorker.new.perform self.id
   end
 
   def to_s
@@ -48,38 +36,42 @@ class User < ActiveRecord::Base
     end
   end
 
-  STATES.each do |state|
-    define_method("#{state}?") do
-      self.state == state
+  Update::OBJECTS.each do |object|
+    Update::STATES.each do |state|
+      define_method "#{object}_rev" do
+        self.updates.where(object: object).first_or_create.rev
+      end
+
+      define_method "#{object}_rev_increment!" do
+        update = self.updates.where(object: object).first_or_create
+        update.rev += 1
+        update.save!
+      end
+
+      define_method "#{object}_#{state}?" do
+        self.updates.where(object: object).first_or_create.state == state.to_s
+      end
+
+      define_method "#{object}_state" do
+        self.updates.where(object: object).first_or_create.state
+      end
+
+      define_method "#{object}_#{state}!" do
+        update = self.updates.where(object: object).first_or_create
+        update.state = state
+        update.save!
+      end
+
+      define_method "#{object}_last_update" do
+        self.updates.where(object: object).first_or_create.updated_at
+      end
     end
-
-    define_method("#{state}!") do
-      self.update_attribute(:state, state)
-    end
-
-    scope state.to_sym, where(state: state)
-  end
-
-  SCHEDULE_STATES.each do |state|
-    define_method("schedule_#{state}?") do
-      self.schedule_state == state
-    end
-
-    define_method("schedule_#{state}!") do
-      self.update_attribute(:schedule_state, state)
-    end
-
-    scope ('schedule_' + state).to_sym, where(schedule_state: state)
   end
 
   private
 
-  def set_default_states
-    self.state = STATES.first
-    self.schedule_state = SCHEDULE_STATES.first
-  end
-
   def set_ics_key
     self.update_attribute(:ics_key, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}"))
   end
+
 end
