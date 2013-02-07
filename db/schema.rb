@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201011322) do
+ActiveRecord::Schema.define(:version => 20130207054001) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,11 +77,12 @@ ActiveRecord::Schema.define(:version => 20130201011322) do
     t.datetime "date"
     t.integer  "length"
     t.string   "kind"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "ecampus_id"
     t.integer  "section_id"
     t.integer  "group_id"
+    t.string   "broken_name"
   end
 
   add_index "courses", ["ecampus_id"], :name => "index_courses_on_ecampus_id"

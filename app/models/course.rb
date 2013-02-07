@@ -2,15 +2,16 @@
 #
 # Table name: courses
 #
-#  id         :integer          not null, primary key
-#  date       :datetime
-#  length     :integer
-#  kind       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  ecampus_id :integer
-#  section_id :integer
-#  group_id   :integer
+#  id          :integer          not null, primary key
+#  date        :datetime
+#  length      :integer
+#  kind        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  ecampus_id  :integer
+#  section_id  :integer
+#  group_id    :integer
+#  broken_name :string(255)
 #
 
 class Course < ActiveRecord::Base
@@ -23,7 +24,7 @@ class Course < ActiveRecord::Base
   belongs_to :section
   belongs_to :group
 
-  attr_accessible :ecampus_id, :date, :length, :kind
+  attr_accessible :ecampus_id, :date, :length, :kind, :broken_name
 
   #def to_ics
   #  event = Icalendar::Event.new
