@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: updates
+#
+#  id         :integer          not null, primary key
+#  object     :string(255)
+#  state      :string(255)
+#  rev        :integer          default(0)
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Update < ActiveRecord::Base
   OBJECT_USER = :user
   OBJECT_SCHEDULE = :schedule

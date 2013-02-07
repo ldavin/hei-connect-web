@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer          not null, primary key
+#  ecampus_id         :string(255)
+#  encrypted_password :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  ics_key            :string(255)
+#  ecampus_user_id    :integer
+#  ecampus_student_id :integer
+#
+
 class User < ActiveRecord::Base
 
   has_many :course_users, dependent: :delete_all
