@@ -13,8 +13,8 @@ class Course < ActiveRecord::Base
     event.description = [self.kind, self.group, self.teacher].join ', '
     event.location = self.room
     event.klass = "PUBLIC"
-    event.created = self.created_at
-    event.last_modified = self.updated_at
+    event.created = self.created_at.to_datetime
+    event.last_modified = self.updated_at.to_datetime
     event
   end
 end
