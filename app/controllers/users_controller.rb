@@ -22,7 +22,6 @@ class UsersController < ApplicationController
     else
       if @user.save
         session[:user_id] = @user.id
-        CheckUserWorker.new.perform @user.id
         redirect_to validate_users_url
       else
         render action: :new
@@ -32,6 +31,8 @@ class UsersController < ApplicationController
 
   def validate
     case current_user.user_state
+      when Update::STATE_UNKNOWN
+        CheckUserWorker.new.perform current_user.id
       when Update::STATE_OK
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
       when Update::STATE_FAILED

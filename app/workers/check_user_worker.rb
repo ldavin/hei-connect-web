@@ -3,6 +3,7 @@ class CheckUserWorker
     checked_user = User.find_or_initialize_by_id user_id
 
     if not checked_user.new_record? and checked_user.user_unknown?
+      checked_user.user_updating!
       begin
         client = Client.new
         details = client.fetch 'user', checked_user, Client::ApiUser
