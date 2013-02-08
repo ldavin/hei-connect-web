@@ -13,4 +13,8 @@ class Teacher < ActiveRecord::Base
   has_many :courses, through: :course_teachers
 
   attr_accessible :name
+
+  def to_s
+    self.name
+  end
 end

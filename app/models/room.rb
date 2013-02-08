@@ -13,4 +13,8 @@ class Room < ActiveRecord::Base
   has_many :courses, through: :course_rooms
 
   attr_accessible :name
+
+  def to_s
+    self.name
+  end
 end
