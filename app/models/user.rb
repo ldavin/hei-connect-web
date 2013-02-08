@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def update_schedule!
     self.schedule_updating!
-    #FetchScheduleWorker.new.perform self.id
+    FetchScheduleWorker.new.perform self.id
   end
 
   def to_s
