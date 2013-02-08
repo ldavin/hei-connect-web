@@ -12,10 +12,8 @@ class IcsController < ApplicationController
     respond_to do |format|
       format.ics do
         calendar = Icalendar::Calendar.new
-        user.weeks.each do |week|
-          week.courses.each do |course|
-            calendar.add_event course.to_ics
-          end
+        user.courses.current_weeks.each do |course|
+          calendar.add_event course.to_ics
         end
         calendar.publish
         render :text => calendar.to_ical, :content_type => 'text/calendar'

@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: notes
+# Table name: sections
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)
-#  body       :text
+#  name       :string(255)
+#  code       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Note < ActiveRecord::Base
-  attr_accessible :body, :title
+class Section < ActiveRecord::Base
+  attr_accessible :code, :name
 end
