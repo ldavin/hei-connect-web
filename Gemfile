@@ -32,7 +32,6 @@ group :production do
 end
 
 gem 'jquery-rails'
-
 gem 'haml-rails'
 gem 'attr_encrypted'
 gem 'icalendar'
