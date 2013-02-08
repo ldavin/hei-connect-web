@@ -12,7 +12,7 @@ class Client < RocketPants::Client
 
   class ApiCourse < APISmith::Smash
     property :id
-    property :date, transformer: lambda { |d| DateTime.parse d }
+    property :date, transformer: lambda { |d| Time.zone.parse d }
     property :length
     property :type
     property :group
@@ -41,7 +41,7 @@ class Client < RocketPants::Client
   end
 
   class ApiAbsence < APISmith::Smash
-    property :date, transformer: lambda { |d| DateTime.parse d }
+    property :date, transformer: lambda { |d| Time.zone.parse d }
     property :length
     property :course
     property :excused
@@ -56,8 +56,8 @@ class Client < RocketPants::Client
       options = {
           username: options.ecampus_id,
           password: options.password,
-          student_id: nil,
-          user_id: nil
+          student_id: options.ecampus_student_id,
+          user_id: options.ecampus_user_id
       }
     end
     get action, extra_query: options, transformer: transformer
