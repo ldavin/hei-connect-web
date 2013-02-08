@@ -6,6 +6,6 @@ class DashboardController < ApplicationController
   end
 
   def courses
-    @weeks = current_user.weeks
+    @courses = current_user.courses.current_weeks
   end
 end

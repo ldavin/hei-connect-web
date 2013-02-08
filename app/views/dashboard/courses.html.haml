@@ -1,48 +1,29 @@
-- if @weeks.any?
-  - url = ics_url key: current_user.ics_key, format: :ics, protocol: "webcal"
+- url = ics_url key: current_user.ics_key, format: :ics, protocol: "webcal"
 
-  .hero-unit
-    %h2
-      Flux ical
-      %small
-        Pour récupérer tout ça sur le smartphone
+.hero-unit
+  %h2
+    Flux ical
+    %small
+      Pour récupérer tout ça sur le smartphone
 
-    %p
-      Grâce à HEI-Connect, tu peux récupérer ton planning sur ton gestionnaire d'agenda (Google Agenda, iCal, Outlook...).
-      %br
-      Abonne-toi en cliquant sur le lien:
-    %pre
-      = link_to url, url
+  %p
+    Grâce à HEI-Connect, tu peux récupérer ton planning sur ton gestionnaire d'agenda (Google Agenda, iCal, Outlook...).
+    %br
+    Abonne-toi en cliquant sur le lien:
+  %pre
+    = link_to url, url
 
-  %h2 Liste des cours
+%h2 Liste des cours
 
-  - if current_user.schedule_planned?
-    %hr
-    %p Mise à jour en cours
-    .progress.progress-striped.active
-      .bar{:style => "width: 100%;"}
-    :javascript
-      setTimeout((function() {
-        return window.location.reload(1);
-      }), 10000);
-    %hr
+- if current_user.schedule_updating?
+  %hr
+  %p Mise à jour en cours
+  .progress.progress-striped.active
+    .bar{:style => "width: 100%;"}
+  :javascript
+    setTimeout((function() {
+      return window.location.reload(1);
+    }), 10000);
+  %hr
 
-  %p Elle n'est pas belle, mais c'est temporaire :)
-  - days = [{name: 'Lundi', lag: 0.day}, {name: 'Mardi', lag: 1.day}, {name: 'Mercredi', lag: 2.day}, {name: 'Jeudi', lag: 3.day}, {name: 'Vendredi', lag: 4.day}]
-  - @weeks.each do |week|
-    - monday = Date.commercial(Time.now.year, week.number).monday
-    %h3= "Semaine n° #{week.number}"
-    .row-fluid
-      - days.each do |day|
-        .span2
-          %h4= day[:name]
-          - if week.courses.given_on(monday + day[:lag]).any?
-            - week.courses.given_on(monday + day[:lag]).each do |course|
-              %p
-                %small= "#{course.kind || "?"} - #{course.name} (#{course.date.strftime '%Hh%M'}-#{(course.date + course.length.minutes).strftime '%Hh%M'})"
-          - else
-            %p Aucun cours!
-      .span2
-
-- else
-  = render partial: 'its_coming'
+%p Liste des cours en travaux
