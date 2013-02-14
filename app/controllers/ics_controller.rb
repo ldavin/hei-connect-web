@@ -12,7 +12,7 @@ class IcsController < ApplicationController
     respond_to do |format|
       format.ics do
         calendar = Icalendar::Calendar.new
-        user.courses.current_weeks.each do |course|
+        user.courses.current_weeks.includes(:section, :teachers, :rooms).each do |course|
           calendar.add_event course.to_ics
         end
         calendar.publish
