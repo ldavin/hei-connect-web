@@ -6,7 +6,7 @@ gem 'thor'
 gem 'minitest'
 
 # Regular gems
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'thin'
 
 group :assets do
