@@ -35,7 +35,7 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'attr_encrypted'
-gem 'icalendar'
+gem 'ri_cal'
 gem 'activeadmin'
 gem 'turbolinks'
 gem 'jquery-turbolinks'

@@ -11,12 +11,21 @@ class IcsController < ApplicationController
 
     respond_to do |format|
       format.ics do
-        calendar = Icalendar::Calendar.new
-        user.courses.current_weeks.includes(:section, :teachers, :rooms).each do |course|
-          calendar.add_event course.to_ics
+        calendar = RiCal.Calendar do |cal|
+          user.courses.current_weeks.includes(:section, :teachers, :rooms).each do |course|
+            cal.event do |event|
+              event.dtstart = course.date
+              event.dtend = course.date + course.length.minutes
+              event.summary = course.name
+              event.description = course.description
+              event.location = course.place
+              event.created = course.created_at.to_datetime
+              event.last_modified = course.updated_at.to_datetime
+            end
+          end
         end
-        calendar.publish
-        render :text => calendar.to_ical, :content_type => 'text/calendar'
+
+        render :text => calendar.to_s.gsub!(/\n/, "\r\n"), :content_type => 'text/calendar'
       end
     end
   end

@@ -29,40 +29,32 @@ class Course < ActiveRecord::Base
 
   scope :current_weeks, lambda { where("date >= ?", Time.zone.now.beginning_of_week).order("date ASC") }
 
-  def to_ics
-    event_name = if self.broken_name.present?
-                   self.broken_name
-                 else
-                   "#{self.kind} - #{self.section.name}"
-                 end
+  def name
+    if self.broken_name.present?
+      self.broken_name
+    else
+      "#{self.kind} - #{self.section.name}"
+    end
+  end
 
-    event_desc = if self.broken_name.present?
-                   "E-Campus ne donne pas plus d'informations."
-                 else
-                   desc = "#{self.kind} de #{self.section.code} (#{self.section.name})"
-                   if self.teachers.any?
-                     desc += "\r\nPar #{self.teachers.join ', '}."
-                   end
+  def description
+    if self.broken_name.present?
+      "E-Campus ne donne pas plus d'informations."
+    else
+      desc = "#{self.kind} de #{self.section.code} (#{self.section.name})"
+      if self.teachers.any?
+        desc += "\r\nPar #{self.teachers.join ', '}."
+      end
 
-                   desc
-                 end
+      desc
+    end
+  end
 
-    event_place = if self.rooms.any?
-                    self.rooms.join ', '
-                  else
-                    "Lieu inconnu"
-                  end
-
-    event = Icalendar::Event.new
-
-    event.start = self.date.to_datetime
-    event.end = (self.date + self.length.minutes).to_datetime
-    event.summary = event_name
-    event.description = event_desc
-    event.location = event_place
-    event.klass = "PUBLIC"
-    event.created = self.created_at.to_datetime
-    event.last_modified = self.updated_at.to_datetime
-    event
+  def place
+    if self.rooms.any?
+      self.rooms.join ', '
+    else
+      "Lieu inconnu"
+    end
   end
 end
