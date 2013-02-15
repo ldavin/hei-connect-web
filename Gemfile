@@ -1,12 +1,8 @@
 source 'https://rubygems.org'
-#source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
-
-# Openshift gems
-gem 'thor'
-gem 'minitest'
 
 # Regular gems
 gem 'rails', '3.2.12'
+gem 'rack'
 gem 'thin'
 
 group :assets do
@@ -18,6 +14,8 @@ group :assets do
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
+
+  gem 'turbo-sprockets-rails3'
 end
 
 group :development do
@@ -43,3 +41,7 @@ gem 'newrelic_rpm'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'rocket_pants'
+
+# Openshift
+gem 'thor', '= 0.14.6'
+gem 'minitest'
