@@ -51,33 +51,36 @@ class User < ActiveRecord::Base
   end
 
   Update::OBJECTS.each do |object|
+    object = object.to_s
+
     Update::STATES.each do |state|
-      define_method "#{object}_rev" do
-        self.updates.where(object: object).first_or_create.rev
+      define_method "#{object}_rev" do |details = nil|
+        self.updates.where(object: object + details.to_s).first_or_create.rev
       end
 
-      define_method "#{object}_rev_increment!" do
-        update = self.updates.where(object: object).first_or_create
+      define_method "#{object}_rev_increment!" do |details = nil|
+        update = self.updates.where(object: object + details.to_s).first_or_create
         update.rev += 1
         update.save!
+        update.rev
       end
 
-      define_method "#{object}_#{state}?" do
-        self.updates.where(object: object).first_or_create.state == state.to_s
+      define_method "#{object}_#{state}?" do |details = nil|
+        self.updates.where(object: object + details.to_s).first_or_create.state == state.to_s
       end
 
-      define_method "#{object}_state" do
-        self.updates.where(object: object).first_or_create.state
+      define_method "#{object}_state" do |details = nil|
+        self.updates.where(object: object + details.to_s).first_or_create.state
       end
 
-      define_method "#{object}_#{state}!" do
-        update = self.updates.where(object: object).first_or_create
+      define_method "#{object}_#{state}!" do |details = nil|
+        update = self.updates.where(object: object + details.to_s).first_or_create
         update.state = state
         update.save!
       end
 
-      define_method "#{object}_last_update" do
-        self.updates.where(object: object).first_or_create.updated_at
+      define_method "#{object}_last_update" do |details = nil|
+        self.updates.where(object: object + details.to_s).first_or_create.updated_at
       end
     end
   end
