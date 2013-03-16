@@ -17,13 +17,22 @@
                   HEI-Connect
 
             %ul.nav.pull-right.primary
-              %li.dropdown.profile
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = image_tag 'profile-thumb.png', :class => "menu-avatar"
-                  = current_user.ecampus_id
-                  %b.caret
-                %ul.dropdown-menu.secondary
-                  %li
-                    = link_to sessions_path, method: :delete do
-                      %i.icon-off
-                      Déconnexion
+              - if user_logged_in
+
+                // Application menu
+                %li.dropdown.profile
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                    = image_tag 'profile-thumb.png', :class => "menu-avatar"
+                    = current_user.ecampus_id
+                    %b.caret
+                  %ul.dropdown-menu.secondary
+                    %li
+                      = link_to sessions_path, method: :delete do
+                        %i.icon-off
+                        Déconnexion
+
+              - else
+
+                // Public menu
+                %li= link_to "Home", root_path
+                %li= link_to "Connexion", new_users_path

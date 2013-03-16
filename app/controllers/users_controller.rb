@@ -1,6 +1,5 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  layout 'public'
   before_filter :require_login, only: :validate
 
   def new
