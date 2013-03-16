@@ -1,4 +1,3 @@
-//= require jquery
 //= require bootstrap
 //= require jquery.piety
 //= require jquery.uniform
