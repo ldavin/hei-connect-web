@@ -8,13 +8,10 @@ gem 'thin'
 group :assets do
   gem 'coffee-rails'
   gem 'sass-rails'
+  gem 'compass-rails'
   gem 'uglifier'
-
   gem 'libv8'
   gem 'therubyracer'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
-
   gem 'turbo-sprockets-rails3'
 end
 
@@ -35,8 +32,6 @@ gem 'haml-rails'
 gem 'attr_encrypted'
 gem 'ri_cal'
 gem 'activeadmin'
-gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'newrelic_rpm'
 gem 'delayed_job_active_record'
 gem 'daemons'
