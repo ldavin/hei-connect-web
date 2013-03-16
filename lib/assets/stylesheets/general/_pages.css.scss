@@ -1,0 +1,454 @@
+@import "compass";
+
+.error-container {
+  width: 100%;
+  margin-top: 100px;
+
+  .transparent {
+    line-height: 1em;
+    font-size: 18em;
+    font-weight: normal;
+    color: rgba(144, 95, 28, .5);
+    @include text-shadow(0px 1px 0px rgba(255, 255, 255, .8));
+  }
+
+  .error-details {
+    font-size: 1.3em;
+    padding: 5px;
+    color: rgba(144, 95, 28, .8);
+    @include text-shadow(0px 1px 0px rgba(255, 255, 255, .6));
+  }
+
+  .error-actions {
+    padding: 20px 10px;
+  }
+}
+
+/* FAQ page */
+.faq-questions {
+  list-style-type: none;
+  .faq-number {
+    min-width: 25px;
+    display: inline-block;
+  }
+  li {
+    line-height: 20px;
+  }
+}
+
+.faq-list {
+  list-style-type: none;
+  .faq-number {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: .9em;
+    line-height: 28px;
+
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    color: #fff;
+    border: 3px solid $border-gray;
+    @include border-radius(50px);
+    @include text-shadow(0px 1px 0px rgba(0, 0, 0, 0.5));
+    @include box-shadow(0px 1px 0px rgba(0, 0, 0, 0.5));
+    background-color: $sun-green;
+    @include background-image(linear-gradient(darken($sun-green, 5%), darken($sun-green, 9%)));
+  }
+}
+
+/* Login page */
+.login-container {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  padding: 20px;
+  background-color: $bg-gray;
+  border: 5px solid $border-gray;
+  @include border-radius(5px);
+  @include text-shadow(0px 1px 0px rgba(255, 255, 255, .6));
+  @include box-shadow(0px 0px 1px 1px rgba(0, 0, 0, 0.2));
+
+  .title {
+    margin-bottom: 20px;
+    font: normal small-caps 120%/120% sans-serif;
+    font-size: 2em;
+    color: #777;
+    @include text-shadow(0px 1px 0px rgba(255, 255, 255, .8));
+  }
+
+  .login-form {
+    width: 100%;
+
+    .actions {
+      width: 100%;
+      padding: 20px 0;
+      line-height: 40px;
+      .login-btn {
+        width: 100%;
+      }
+    }
+
+    .social-actions {
+      @include clearfix();
+      width: 100%;
+    }
+
+    .fields-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      @include border-radius(4px 4px);
+      background: $bg-gray;
+      overflow: hidden;
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1) inset);
+
+      li {
+        position: relative;
+        @include text-shadow(0 1px 0 rgba(255, 255, 255, .6));
+        font-size: 14px;
+        padding: 5px;
+        line-height: 18px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        &:last-child {
+          border-bottom: 0px;
+        }
+
+        i {
+          position: absolute;
+          top: 12px;
+          color: #777;
+        }
+
+        input {
+          width: 100%;
+          margin: 0;
+          padding-left: 25px;
+          font-size: 14px;
+          background: transparent;
+          border: none;
+          @include box-shadow(none);
+
+          &:focus {
+            i {
+              color: #444;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Transparent inputs */
+input[type="datetime"].input-transparent,
+input[type="datetime-local"].input-transparent,
+input[type="date"].input-transparent,
+input[type="month"].input-transparent,
+input[type="time"].input-transparent,
+input[type="week"].input-transparent,
+input[type="number"].input-transparent,
+input[type="url"].input-transparent,
+input[type="search"].input-transparent,
+input[type="tel"].input-transparent,
+input[type="color"].input-transparent,
+.uneditable-input.input-transparent,
+textarea.input-transparent,
+input[type="text"].input-transparent,
+input[type="password"].input-transparent,
+input[type="email"].input-transparent {
+  background: rgba(111, 67, 28, .2);
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0 2px 2px inset, rgba(255, 255, 255, 0.4) 0 1px 0);
+  border: 1px solid rgba(144, 95, 28, .3);
+
+  &:focus {
+    border: 1px solid $sun-green;
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0 2px 2px inset, rgba(255, 255, 255, 0.4) 0 1px 0);
+  }
+}
+
+/* Dashboard overview fications */
+.notification-box {
+  width: 210px;
+  margin: 5px;
+  display: inline-block;
+
+  height: 90px;
+  min-height: 60px;
+  min-width: 100px;
+
+  background-color: $bg-gray;
+  border: 1px solid $border-gray;
+  @include border-radius(5px);
+
+  display: inline-block;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  color: #888;
+  @include text-shadow(0px 1px 0px rgba(255, 255, 255, .6));
+
+  .stat-count {
+    font-size: 2.5em;
+    line-height: 2em;
+    display: block;
+  }
+  .stat-name {
+    display: block;
+    line-height: 1em;
+    margin-top: -15px;
+  }
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+/* Draggable events */
+#draggable-events {
+  .event {
+    width: 100%;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: #fff;
+    @include text-shadow(0px 1px 0px rgba(0, 0, 0, .4));
+    border: 3px solid $border-gray;
+    @include border-radius(10px);
+    cursor: pointer;
+  }
+}
+
+/* Dashboard stats */
+.visits-stat-list {
+  list-style: none;
+  overflow: auto;
+
+  li {
+    overflow: inherit;
+    width: 100%;
+    line-height: 54px;
+    font-weight: bold;
+    font-size: 1em;
+    border-bottom: 1px dotted lighten($sun-green, 15%);
+
+    .stat-name {
+      margin-left: 10px;
+    }
+
+    .value {
+      float: left;
+      color: #555;
+      font-size: 1.8em;
+      width: 28%;
+    }
+
+    .indicator {
+      float: left;
+      width: 70%;
+    }
+  }
+}
+
+/* Circle stats */
+.percent-stat {
+  padding: 5px;
+  display: inline-block;
+  margin: 0 auto;
+  margin-left: -20px;
+  .indicator {
+    display: block;
+    margin-left: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #777;
+    @include text-shadow(inset 0px 1px 0px rgba(255, 255, 255, .4));
+  }
+
+  .percent {
+    position: relative;
+    top: -50px;
+    left: 88px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .circle-stat {
+    display: inline-block;
+    @include box-shadow(none);
+    box-shadow: none;
+  }
+}
+
+/* skillset list */
+.skillset {
+  width: 100%;
+  list-style: none;
+  overflow: auto;
+  li {
+    overflow: inherit;
+    .skill {
+      float: left;
+      width: 20%;
+    }
+    .value {
+      float: left;
+      width: 70%;
+    }
+  }
+}
+
+/* sliders - re */
+
+.slider {
+  @include border-radius(4px);
+  @include box-shadow(0 1px 0 rgba(255, 255, 255, .9));
+  position: relative;
+
+  &.slider-green {
+    .ui-slider-range.ui-widget-header {
+      background: $sun-green;
+      @include simple-hgrad($sun-green, darken($sun-green, 10%));
+    }
+  }
+  &.slider-red {
+    .ui-slider-range.ui-widget-header {
+      background: $sun-red;
+      @include simple-hgrad($sun-red, darken($sun-red, 10%));
+    }
+  }
+  &.slider-orange {
+    .ui-slider-range.ui-widget-header {
+      background: $sun-orange;
+      @include simple-hgrad($sun-orange, darken($sun-orange, 5%));
+    }
+  }
+  &.slider-yellow {
+    .ui-slider-range.ui-widget-header {
+      background: $sun-yellow;
+      @include simple-hgrad($sun-yellow, darken($sun-yellow, 5%));
+    }
+  }
+  &.slider-blue {
+    .ui-slider-range.ui-widget-header {
+      background: $sun-blue;
+      @include simple-vgrad($sun-blue, darken($sun-blue, 10%));
+    }
+  }
+}
+
+/* Account settings */
+.profile {
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+    min-height: 50px;
+    min-width: 50px;
+
+    @include box-shadow(0px 0px 1px 1px rgba(0, 0, 0, 0.2));
+    border: 3px solid $bg-gray;
+    @include border-radius(5px);
+
+    padding: 4px;
+    margin: 10px;
+    background-size: 100%;
+    background-image: image-url("profile-thumb.png");
+  }
+
+  .tip {
+    font-size: 9px;
+    line-height: 10px;
+    color: #777;
+    margin-bottom: 3px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+  .control-group {
+    margin-bottom: 6px;
+  }
+  .chzn-container {
+    margin-top: 0px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Pricing plans */
+.plan-container {
+  width: 100%;
+  margin: 10px auto;
+
+  .plan-box.featured {
+    .plan-price {
+      @include background-image(linear-gradient(darken($sun-green, 7%), darken($sun-green, 1%)));
+    }
+  }
+  .plan-box {
+    @include border-radius(5px);
+    background: #fff;
+    @include box-shadow(0px 0px 1px 1px rgba(0, 0, 0, 0.2));
+    text-align: center;
+    padding-bottom: 10px;
+    overflow: hidden;
+
+    .plan-title {
+      @include background-image(linear-gradient(lighten(#333, 5%), #333));
+      @include text-shadow(1px 1px 1px rgba(0, 0, 0, .6));
+      border: 1px solid #333;
+      height: 80px;
+      line-height: 80px;
+      color: #fff;
+      font-size: 2em;
+    }
+
+    .plan-price {
+      font-size: 1.6em;
+      height: 35px;
+      line-height: 35px;
+      margin-left: -5px;
+      color: #fff;
+
+      @include text-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+      @include background-image(linear-gradient(lighten(#555, 5%), #555));
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+      span.permonth {
+        padding-left: 5px;
+        font-size: 0.6em;
+      }
+      span.dollar {
+        position: relative;
+        top: -5px;
+        left: -2px;
+        display: inline;
+        font-size: 0.6em;
+        line-height: 0.6em;
+      }
+    }
+
+    .plan-features {
+      ul {
+        li {
+          padding: 0.8em 0;
+          margin: 0 2em;
+          text-align: center;
+          border-bottom: 1px dotted rgba(0, 0, 0, .3);
+        }
+
+        padding-bottom: 20px;
+        margin: 0;
+        list-style: none;
+      }
+    }
+
+    .plan-actions {
+      .purchase-btn {
+        width: 60%;
+      }
+    }
+  }
+}

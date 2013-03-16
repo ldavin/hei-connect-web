@@ -1,0 +1,151 @@
+@import "compass";
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border: 1px solid lighten($sun-green, 10%);
+  @include box-shadow(none);
+  outline: 0;
+  outline: thin dotted  \9;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  height: 30px;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+label {
+  font-size: 12px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.btn-group {
+  display: inline-block;
+}
+
+.btn.dropdown-toggle [class^="icon-"],
+.btn.dropdown-toggle [class*=" icon-"] {
+  line-height: 1em;
+}
+
+.form-vertical,
+.form-horizontal,
+.form-default {
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  .uneditable-input {
+    width: 100%;
+  }
+}
+
+.input-append, .input-prepend {
+  width: 100%;
+  input {
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .add-on {
+    height: 100%;
+  }
+}
+
+.input {
+  position: relative;
+
+  .input-error {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 16px;
+    color: $sun-red;
+  }
+
+  .input-warning {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 16px;
+    color: $sun-orange;
+  }
+
+  .input-success {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 16px;
+    color: $sun-green;
+  }
+
+  input {
+    &.warning, &.warning:focus {
+      border-color: $sun-orange;
+      @include box-shadow(none);
+    }
+    &.error, &.error:focus {
+      border-color: $sun-red;
+      @include box-shadow(none);
+    }
+    &.success, &.success:focus {
+      border-color: $sun-green;
+      @include box-shadow(none);
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+  input, textarea {
+    width: 100%;
+  }
+}

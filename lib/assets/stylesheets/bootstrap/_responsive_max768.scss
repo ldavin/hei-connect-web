@@ -1,0 +1,52 @@
+@import "compass";
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    #main { padding-top: 0; margin-top: 0;}
+  }
+
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  ul.nav > li ul.dropdown-menu {
+    display: block;
+    li a { padding: 10px 5px; text-align: center; }
+  }
+
+  .top-nav .navbar-inner {
+    text-align: center;
+
+    ul.primary li ul.secondary {
+      &::before,
+      &::after {
+        border: none;
+        content: none;
+      }
+      background: #888;
+      li:hover, li:active, li.active {
+        @include border-top-left-radius(5px);
+        @include border-bottom-left-radius(none);
+        @include border-top-right-radius(5px);
+        @include border-bottom-right-radius(none);
+
+        color: #EEE;
+      }
+    }
+  }
+
+  .notification-box {
+    width: 180px;
+    margin: 6px;
+  }
+
+  #draggable-events { display: none; }
+  #calendar-title { display: none; }
+  #small-calendar { max-width: 350px; margin: 0px auto;}
+}

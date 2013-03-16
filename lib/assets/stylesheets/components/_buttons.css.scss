@@ -1,0 +1,325 @@
+@import "compass";
+
+//bs2.2.1. fix
+.btn [class^="icon-"], .btn [class*=" icon-"] {
+  vertical-align: bottom;
+}
+
+/* 1 */
+.btn-yellow {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $sun-yellow;
+  @include background-image(linear-gradient(lighten($sun-yellow, 10%), $sun-yellow));
+}
+
+.btn-yellow:hover,
+.btn-yellow:active,
+.btn-yellow.active,
+.btn-yellow.disabled,
+.btn-yellow[disabled] {
+  color: #ffffff;
+  background-color: $sun-yellow;
+}
+
+.btn-yellow:active,
+.btn-yellow.active {
+  background-color: $sun-yellow;
+}
+
+/* 2 */
+.btn-orange {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $sun-orange;
+  @include background-image(linear-gradient(lighten($sun-orange, 10%), $sun-orange));
+}
+
+.btn-orange:hover,
+.btn-orange:active,
+.btn-orange.active,
+.btn-orange.disabled,
+.btn-orange[disabled] {
+  color: #ffffff;
+  background-color: $sun-orange;
+}
+
+.btn-orange:active,
+.btn-orange.active {
+  background-color: $sun-orange;
+}
+
+/* 3 */
+.btn-red {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $sun-red;
+  @include background-image(linear-gradient(lighten($sun-red, 10%), $sun-red));
+}
+
+.btn-red:hover,
+.btn-red:active,
+.btn-red.active,
+.btn-red.disabled,
+.btn-red[disabled] {
+  color: #ffffff;
+  background-color: $sun-red;
+}
+
+.btn-red:active,
+.btn-red.active {
+  background-color: $sun-red;
+}
+
+/* 4 */
+.btn-green {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $sun-green;
+  @include background-image(linear-gradient(lighten($sun-green, 10%), $sun-green));
+}
+
+.btn-green:hover,
+.btn-green:active,
+.btn-green.active,
+.btn-green.disabled,
+.btn-green[disabled] {
+  color: #ffffff;
+  background-color: $sun-green;
+}
+
+.btn-green:active,
+.btn-green.active {
+  background-color: $sun-green;
+}
+
+/* 5 */
+.btn-blue {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $sun-blue;
+  @include background-image(linear-gradient(lighten($sun-blue, 10%), $sun-blue));
+}
+
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue.active,
+.btn-blue.disabled,
+.btn-blue[disabled] {
+  color: #ffffff;
+  background-color: $sun-blue;
+}
+
+.btn-blue:active,
+.btn-blue.active {
+  background-color: $sun-blue;
+}
+
+/* button dropdowns */
+.btn-group.open .btn-yellow.dropdown-toggle {
+  background-color: $sun-yellow
+}
+
+.btn-group.open .btn-orange.dropdown-toggle {
+  background-color: $sun-orange;
+}
+
+.btn-group.open .btn-red.dropdown-toggle {
+  background-color: $sun-red;
+}
+
+.btn-group.open .btn-green.dropdown-toggle {
+  background-color: $sun-green;
+}
+
+.btn-group.open .btn-blue.dropdown-toggle {
+  background-color: $sun-blue;
+}
+
+/**** Dropdown menus *****/
+.dropdown-menu a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 20px;
+  color: #333333;
+  white-space: nowrap;
+}
+
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: $sun-green;
+  background-color: lighten($sun-green, 5%);
+  background-image: -moz-linear-gradient(top, $sun-green, lighten($sun-green, 5%));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($sun-green), to(lighten($sun-green, 5%)));
+  background-image: -webkit-linear-gradient(top, $sun-green, lighten($sun-green, 5%));
+  background-image: -o-linear-gradient(top, $sun-green, lighten($sun-green, 5%));
+  background-image: linear-gradient(to bottom, $sun-green, lighten($sun-green, 5%));
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffeb6841', endColorstr='#ffeb6841', GradientType=0);
+}
+
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: $sun-green;
+  background-color: lighten($sun-green, 5%);
+  background-image: linear-gradient(to bottom, $sun-green, lighten($sun-green, 5%));
+  background-image: -moz-linear-gradient(top, $sun-green, lighten($sun-green, 5%));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($sun-green), to(lighten($sun-green, 5%)));
+  background-image: -webkit-linear-gradient(top, $sun-green, lighten($sun-green, 5%));
+  background-image: -o-linear-gradient(top, $sun-green, lighten($sun-green, 5%));
+  background-repeat: repeat-x;
+  outline: 0;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffeb6841', endColorstr='#ffeb6841', GradientType=0);
+}
+
+/* large square buttons with icons */
+.button.square {
+  min-width: 100px;
+  min-height: 95px;
+  padding: 10px 15px;
+  margin: 5px;
+  color: lighten(#5B5B5B, 15%);
+  .button-text {
+    font: {
+      size: 12px;
+    }
+  }
+
+  border: 1px solid darken(#f7f7f7, 28%);
+  background-color: #f7f7f7;
+  @include box-shadow(inset 0px 1px 0px 0px #fff);
+  @include text-shadow(#fff 1px 1px 0px);
+  @include border-radius(5px);
+  @include background-image(linear-gradient(#f7f7f7, darken(#f7f7f7, 5%)));
+}
+
+.button.square:hover {
+  @include background-image(linear-gradient(lighten(#F9F9F9, 5%), darken(#F9F9F9, 2%)));
+}
+
+.button.square i {
+  text-align: center;
+  line-height: 32px;
+  font-size: 24px;
+  display: block;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+
+.button.square:hover,
+.button.square:active,
+.button.square.active,
+.button.square.disabled {
+  @include background-image(linear-gradient(darken(#f7f7f7, 5%), darken(#f7f7f7, 4%)));
+  //color: #5B5B5B;
+  color: $sun-green;
+}
+
+.button.square:active,
+.button.square.active {
+  @include background-image(linear-gradient(darken(#f7f7f7, 8%), darken(#f7f7f7, 10%)));
+  box-shadow: none;
+}
+
+/* large rectangular buttons with icons */
+.button.rectangular {
+  min-width: 100px;
+  min-height: 50px;
+  padding: 7px 15px;
+  margin: 5px;
+  color: lighten(#5B5B5B, 15%);
+  .button-text {
+    font: {
+      size: 12px;
+    }
+  }
+
+  border: 1px solid darken(#f7f7f7, 28%);
+  background-color: #f7f7f7;
+
+  @include box-shadow(inset 0px 1px 0px 0px #fff);
+  @include text-shadow(#fff 1px 1px 0px);
+  @include border-radius(5px);
+  @include background-image(linear-gradient(#f7f7f7, darken(#f7f7f7, 5%)));
+}
+
+.button.rectangular:hover {
+  @include background-image(linear-gradient(lighten(#F9F9F9, 5%), darken(#F9F9F9, 2%)));
+}
+
+.button.rectangular i {
+  margin-right: 5px;
+  line-height: 32px;
+  font-size: 24px;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+
+.button.rectangular:hover,
+.button.rectangular:active,
+.button.rectangular.active,
+.button.rectangular.disabled {
+  @include background-image(linear-gradient(darken(#f7f7f7, 5%), darken(#f7f7f7, 4%)));
+  color: $sun-green;
+}
+
+.button.rectangular:active,
+.button.rectangular.active {
+  @include background-image(linear-gradient(darken(#f7f7f7, 8%), darken(#f7f7f7, 10%)));
+  box-shadow: none;
+}
+
+/**Facebook and Twitter buttons */
+/* Facebook */
+.btn-facebook {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $facebook-blue;
+  @include background-image(linear-gradient(lighten($facebook-blue, 10%), $facebook-blue));
+}
+
+.btn-facebook:hover,
+.btn-facebook:active,
+.btn-facebook.active,
+.btn-facebook.disabled,
+.btn-facebook[disabled] {
+  color: #ffffff;
+  background-color: $facebook-blue;
+}
+
+.btn-facebook:active,
+.btn-facebook.active {
+  background-color: $facebook-blue;
+}
+
+/* Twitter */
+.btn-twitter {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $twitter-blue;
+  @include background-image(linear-gradient(lighten($twitter-blue, 10%), $twitter-blue));
+}
+
+.btn-twitter:hover,
+.btn-twitter:active,
+.btn-twitter.active,
+.btn-twitter.disabled,
+.btn-twitter[disabled] {
+  color: #ffffff;
+  background-color: $twitter-blue;
+}
+
+.btn-twitter:active,
+.btn-twitter.active {
+  background-color: $twitter-blue;
+}
