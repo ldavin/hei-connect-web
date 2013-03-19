@@ -8,9 +8,11 @@ HeiConnectWeb::Application.routes.draw do
   get "ics/:key" => 'ics#show', as: :ics
 
   resource :sessions, only: [:destroy]
-  resource :users, only: [:new, :create] do
+  resource :users, only: [:create] do
     get 'validate'
   end
+
+  get 'about' => 'welcome#about'
 
   root :to => 'welcome#index'
 end

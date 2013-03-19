@@ -1,21 +1,24 @@
-/ Index page
-.jumbotron
-  %h1 Un ecampus enfin simple et rapide
-  %p.lead HEI Connect utilise vos identifiants e-campus pour récupérer discrètement vos données (planning, notes, absences) et vous les restituer rapidement.
-  = link_to 'Se connecter', new_users_path, class: 'btn btn-large btn-success'
-%hr
-  .row-fluid.marketing
-    .span6
-      %h4 Subheading
-      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-      %h4 Subheading
-      %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-      %h4 Subheading
-      %p Maecenas sed diam eget risus varius blandit sit amet non magna.
-    .span6
-      %h4 Subheading
-      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-      %h4 Subheading
-      %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-      %h4 Subheading
-      %p Maecenas sed diam eget risus varius blandit sit amet non magna.
+%h2.transparent-text.center Un ecampus enfin simple et rapide
+
+.login-container.center
+  .title Login
+  = form_for @user, html: {class: 'login-form'}  do |f|
+    - if @user.errors.any?
+      .alert.alert-error
+        - @user.errors.full_messages.each do |msg|
+          %p
+            %small= msg
+
+    %ul.fields-list
+      %li
+        %i.icon-user
+        = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
+      %li
+        %i.icon-key
+        = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
+    .actions
+      = f.submit 'Connexion', class: 'btn btn-green btn-large login-btn'
+      = link_to 'A propos', about_path, class: 'btn btn-blue btn-large login-btn'
+    .details
+      %p
+        %small Pas encore inscrit? Il suffit de remplir le formulaire de connexion avec tes identifiants ecampus.

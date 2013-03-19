@@ -14,14 +14,12 @@
 
   %body#body
 
-    = render partial: 'layouts/navigation'
+    - if user_logged_in
+      // Application layout
+      = render partial: 'layouts/navigation'
 
-    %section#main
-      .container
-
-        - if user_logged_in
-
-          // Application layout
+      %section#main
+        .container
           .row-fluid
             .span3
               .well.sidebar-nav
@@ -33,15 +31,17 @@
               = bootstrap_flash
               = yield
 
-        - else
-
-          // Public layout
+    - else
+      // Public layout
+      %section
+        .container
           .row-fluid
             .span12
               = bootstrap_flash
               = yield
 
-      = render partial: 'layouts/footer'
+    = render partial: 'layouts/footer'
+
     /
       Javascripts
       \==================================================

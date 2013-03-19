@@ -171,6 +171,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12.1)
       json (~> 1.4)
+    redcarpet (2.2.2)
     ref (1.0.2)
     responders (0.9.3)
       railties (~> 3.1)
@@ -239,6 +240,7 @@ DEPENDENCIES
   quiet_assets
   rack
   rails (= 3.2.12)
+  redcarpet
   ri_cal
   rocket_pants
   sass-rails

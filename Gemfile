@@ -36,6 +36,7 @@ gem 'newrelic_rpm'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'rocket_pants'
+gem 'redcarpet'
 
 # Openshift
 gem 'thor', '= 0.14.6'
