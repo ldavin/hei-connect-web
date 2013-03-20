@@ -1,0 +1,102 @@
+@import "compass";
+
+.tags {
+  a:before, a:after {
+    display: none;
+  }
+}
+.badge.top {
+  position: static;
+}
+
+body {
+  min-width: 1024px;
+}
+
+.normal-check, .normal-radio {
+  display: inline;
+  width: auto !important;
+
+  &:checked + label:before {
+    background-position: 0 0;
+  }
+
+  &:checked + label:hover:before {
+    background-position: 0 0;
+  }
+
+  & + label {
+    padding-left: 0px;
+    display: inline-block;
+
+    &:before {
+      content: "";
+      background: none;
+      background-position: 0 0;
+      height: 0;
+      width: 0;
+      position: static;
+      margin-left: 0;
+    }
+
+    &:hover:before {
+      background-position: 0 0;
+    }
+
+    &:active:before {
+      background-position: 0 0;
+    }
+  }
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  &.input-transparent {
+    background: transparent;
+    border: 1px solid #000;
+  }
+}
+
+input[type="checkbox"].checky {
+  display: inline;
+  width: auto !important;
+
+  &:checked + label.checky span {
+    margin-left: 0px;
+  }
+}
+
+label.checky {
+  width: auto;
+  height: auto;
+  overflow: visible;
+  display: inline-block;
+  margin-bottom: auto;
+
+  span {
+    background: none;
+    display: inline;
+    height: auto;
+    margin-left: auto;
+  }
+
+  &.green span {
+    background: none;
+  }
+}
+
+.top-nav.navbar-inner {
+  > ul {
+    > li {
+      > a {
+          background: #222;
+        &:hover {
+          background: #222;
+        }
+      }
+
+      &.active > a {
+        background: #333;
+      }
+    }
+  }
+}
