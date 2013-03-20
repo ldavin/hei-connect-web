@@ -1,5 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
+  layout 'public'
   before_filter :require_login, only: :validate
 
   def create
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
         redirect_to root_url
       else
         flash.now[:alert] = 'Identifiants erronés'
-        render action: :new
+        render 'welcome/index'
       end
     else
       if @user.save
