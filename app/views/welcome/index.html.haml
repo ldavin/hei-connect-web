@@ -1,5 +1,3 @@
-%h2.transparent-text.center Un ecampus enfin simple et rapide
-
 .login-container.center
   .title Login
   = form_for @user, html: {class: 'login-form'}  do |f|
@@ -11,10 +9,10 @@
 
     %ul.fields-list
       %li
-        %i.icon-user
+        %i.icon-user{style: 'style="float: left;"'}
         = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
       %li
-        %i.icon-key
+        %i.icon-key{style: 'style="float: left;"'}
         = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
     .actions
       = f.submit 'Connexion', class: 'btn btn-green btn-large login-btn'

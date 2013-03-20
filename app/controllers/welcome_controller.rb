@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  layout 'public'
 
   def index
     if user_logged_in
