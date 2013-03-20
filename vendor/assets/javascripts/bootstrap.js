@@ -5,7 +5,7 @@
 //= require bootstrap/bootstrap-alert
 // -- bootstrap/bootstrap-button
 // -- bootstrap/bootstrap-carousel
-// -- bootstrap/bootstrap-collapse
+//= require bootstrap/bootstrap-collapse
 //= require bootstrap/bootstrap-dropdown
 // -- bootstrap/bootstrap-modal
 // -- bootstrap/bootstrap-scrollspy
