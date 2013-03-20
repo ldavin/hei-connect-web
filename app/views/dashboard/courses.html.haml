@@ -1,29 +1,37 @@
 - url = ics_url key: current_user.ics_key, format: :ics, protocol: "webcal"
 
-.hero-unit
-  %h2
-    Flux ical
-    %small
-      Pour récupérer tout ça sur le smartphone
-
-  %p
-    Grâce à HEI-Connect, tu peux récupérer ton planning sur ton gestionnaire d'agenda (Google Agenda, iCal, Outlook...).
-    %br
-    Abonne-toi en cliquant sur le lien:
-  %pre
-    = link_to url, url
-
-%h2 Liste des cours
-
 - if current_user.schedule_updating?
-  %hr
-  %p Mise à jour en cours
-  .progress.progress-striped.active
-    .bar{:style => "width: 100%;"}
-  :javascript
-    setTimeout((function() {
-      return window.location.reload(1);
-    }), 10000);
-  %hr
+  .row-fluid
+    .span6.offset3
+      .content-box
+        .content-box-header
+          %i.icon-refresh
+          Mise à jour en cours
+        .padded
+          .progress.progress-striped.active
+            .bar{:style => "width: 100%;"}
+          :javascript
+            setTimeout((function() {
+              return window.location.reload(1);
+            }), 10000);
 
-%p Liste des cours en travaux
+
+.content-box
+  .content-box-header
+    %i.icon-cloud
+    Flux iCalendar
+  .padded
+    :markdown
+      Grâce à HEI-Connect, tu peux récupérer ton planning sur ton gestionnaire d'agenda (Google Agenda, iCal, Outlook...).
+
+      Si rien de magique ne se passe en cliquant sur le lien, [un tutoriel est disponible](https://github.com/ldavin/hei-connect-web/wiki/%5BTutoriel%5D-Connecter-votre-agenda-%C3%A0-votre-mobile).
+    %pre
+      = link_to url, url
+
+.content-box
+  .content-box-header
+    %i.icon-calendar
+    Emploi du temps
+  .padded
+    :markdown
+      Prochainement, un beau widget ici pour retrouver le détail de l'emploi du temps.

@@ -17,31 +17,15 @@
 
   %body#body
 
-    - if user_logged_in
-      // Application layout
-      = render partial: 'layouts/navigation'
+    = render partial: 'layouts/navigation'
 
-      %section#main
-        .container
-          .row-fluid
-            .span3
-              .well.sidebar-nav
-                %ul.nav.nav-list
-                  %li.nav-header Dashboard
-                  = app_nav_link "Home", "home", dashboard_path
-                  = app_nav_link "Cours", "calendar", dashboard_courses_path
-            .span9
-              = bootstrap_flash
-              = yield
+    %section#main
+      .container
+        .row-fluid
+          .span12
+            = bootstrap_flash
+            = yield
 
-    - else
-      // Public layout
-      %section
-        .container
-          .row-fluid
-            .span12
-              = bootstrap_flash
-              = yield
 
     = render partial: 'layouts/footer'
 

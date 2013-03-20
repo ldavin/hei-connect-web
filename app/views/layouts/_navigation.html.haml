@@ -15,6 +15,14 @@
                 %span.title
                   %i.icon-cogs
                   HEI-Connect
+              %li
+                = link_to dashboard_path do
+                  %i.icon-dashboard
+                  Dashboard
+              %li
+                = link_to dashboard_courses_path do
+                  %i.icon-calendar
+                  Cours
 
             %ul.nav.pull-right.primary
               - if user_logged_in
