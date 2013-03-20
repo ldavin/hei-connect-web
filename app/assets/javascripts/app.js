@@ -1,3 +1,5 @@
+//= require jquery.browser
+
 //= require bootstrap
 //= require jquery.piety
 //= require jquery.uniform
