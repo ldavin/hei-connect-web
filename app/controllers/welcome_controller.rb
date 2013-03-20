@@ -8,6 +8,12 @@ class WelcomeController < ApplicationController
       else
         redirect_to validate_users_url
       end
+    else
+      @user = User.new
     end
+  end
+
+  def about
+
   end
 end

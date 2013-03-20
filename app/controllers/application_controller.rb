@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :current_user, :user_logged_in
+
   # Fixme: Hack to use the default_locale (caused by active_admin)
   before_filter :set_locale
   def set_locale
@@ -15,8 +17,6 @@ class ApplicationController < ActionController::Base
           session[:user_id] = nil
         end
   end
-
-  helper_method :current_user
 
   def user_logged_in
     @user_loggin_in ||= !current_user.nil?

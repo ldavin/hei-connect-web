@@ -1,0 +1,29 @@
+@import "compass";
+
+.badge-yellow, .label-yellow {
+  background-color: $sun-yellow;
+}
+
+.badge-red, .label-red {
+  background-color: $sun-red;
+}
+
+.badge-orange, .label-orange {
+  background-color: $sun-orange;
+}
+
+.badge-green, .label-green {
+  background-color: $sun-green;
+}
+
+.badge-blue, .label-blue {
+  background-color: $sun-blue;
+}
+
+.badge-yellow.notification,
+.badge-red.notification,
+.badge-orange.notification,
+.badge-green.notification,
+.badge-blue.notification {
+
+}

@@ -1,0 +1,262 @@
+@import "compass";
+
+.block {
+  width: 100%;
+  margin: 5px auto;
+}
+
+.table {
+  margin-bottom: 0px;
+
+  th.sect {
+    text-align: Left;
+    background-color: lighten(#ddd, 6%);
+  }
+
+  th, td {
+    border-left: 1px solid #ddd;
+  }
+}
+
+form {
+  margin: 0px;
+}
+
+.btn {
+  margin-bottom: 5px;
+}
+
+.chart {
+  margin: 10px auto;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: -2px 0 0 0;
+  cursor: pointer;
+}
+
+.form-search input,
+.form-search textarea,
+.form-search select,
+.form-search .help-inline,
+.form-search .uneditable-input,
+.form-search .input-prepend,
+.form-search .input-append,
+.form-inline input,
+.form-inline textarea,
+.form-inline select,
+.form-inline .help-inline,
+.form-inline .uneditable-input,
+.form-inline .input-prepend,
+.form-inline .input-append,
+.form-horizontal input,
+.form-horizontal textarea,
+.form-horizontal select,
+.form-horizontal .help-inline,
+.form-horizontal .uneditable-input,
+.form-horizontal .input-prepend,
+.form-horizontal .input-append {
+  margin-bottom: 5px;
+}
+
+.input-append .add-on, .input-append .btn, .input-prepend .add-on, .input-prepend .btn {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Tabbable overrides */
+.tabbable {
+  @include clearfix();
+  margin-top: 15px;
+  .nav {
+    a {
+      color: #555555;
+      text-decoration: none;
+    }
+  }
+  .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+    color: darken($sun-green, 10%);
+  }
+  .nav-tabs {
+    margin: 0;
+    padding: 0 0 0 15px;
+  }
+
+  .tab-content {
+    background-color: #fff;
+    @include border-radius(5px);
+  }
+}
+
+/* Pagination overrides */
+.pagination .disabled span, .pagination .disabled a, .pagination .disabled a:hover {
+  color: #999;
+  background-color: whiteSmoke;
+  cursor: default;
+}
+
+.pagination a:hover, .pagination .active a, .pagination .active span {
+  background-color: lighten($sun-yellow, 35%);
+}
+
+.pagination a {
+  color: $sun-green;
+}
+
+/* Alerts overrides */
+.alert {
+  background-color: lighten($sun-yellow, 30%);
+  border-color: lighten($sun-yellow, 25%);
+  color: darken($sun-yellow, 15%);
+}
+
+.alert-success {
+  background-color: lighten($sun-green, 40%);
+  border-color: lighten($sun-green, 32%);
+  color: darken($sun-green, 10%);
+}
+
+.alert-danger,
+.alert-error {
+  background-color: lighten($sun-red, 30%);
+  border-color: lighten($sun-red, 25%);
+  color: darken($sun-red, 14%);
+}
+
+.alert-info {
+  background-color: lighten($sun-blue, 40%);
+  border-color: lighten($sun-blue, 32%);
+  color: darken($sun-blue, 15%);
+}
+
+/* Progress overrides */
+// Danger (red)
+.progress-danger .bar, .progress .bar-danger {
+  @include gradient-vertical(lighten($sun-red, 10%), darken($sun-red, 5%));
+}
+
+.progress-danger.progress-striped .bar, .progress-striped .bar-danger {
+  @include gradient-striped(lighten($sun-red, 10%));
+}
+
+// Success (green)
+.progress-success .bar, .progress .bar-success {
+  @include gradient-vertical(lighten($sun-green, 10%), darken($sun-green, 5%));
+}
+
+.progress-success.progress-striped .bar, .progress-striped .bar-success {
+  @include gradient-striped(lighten($sun-green, 10%));
+}
+
+// Info (teal)
+.progress-info .bar, .progress .bar-info {
+  @include gradient-vertical(lighten($sun-blue, 10%), darken($sun-blue, 5%));
+}
+
+.progress-info.progress-striped .bar, .progress-striped .bar-info {
+  @include gradient-striped(lighten($sun-blue, 10%));
+}
+
+// Warning (orange)
+.progress-warning .bar, .progress .bar-warning {
+  @include gradient-vertical($sun-yellow, darken($sun-yellow, 15%));
+}
+
+.progress-warning.progress-striped .bar, .progress-striped .bar-warning {
+  @include gradient-striped($sun-yellow);
+}
+
+/* tooltip overrides */
+// Wrapper for the tooltip content
+.tooltip-inner {
+  color: lighten($sun-green, 50%);
+  background-color: darken($sun-green, 15%);
+}
+
+// Arrows
+.tooltip {
+  &.top .tooltip-arrow {
+    border-top-color: darken($sun-green, 15%);
+  }
+  &.right .tooltip-arrow {
+    border-right-color: darken($sun-green, 15%);
+  }
+  &.left .tooltip-arrow {
+    border-left-color: darken($sun-green, 15%);
+  }
+  &.bottom .tooltip-arrow {
+    border-bottom-color: darken($sun-green, 15%);
+  }
+}
+
+/* popover overrides */
+.popover-title {
+  background-color: lighten($sun-green, 25%);
+  color: darken($sun-green, 35%);
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/*add on*/
+.add-on {
+  background-color: lighten($sun-green, 20%);
+}
+
+/* JQuery UI Overrides - Datepicker */
+.ui-datepicker {
+  width: 100%;
+  margin: 5px auto;
+}
+
+/* Icons list overrides */
+.icons-list {
+  color: #454545;
+  @include text-shadow(0px 1px 0px rgba(255, 255, 255, .5));
+  ul {
+    list-style-type: none;
+    li:hover {
+      color: darken($sun-green, 5%);
+    }
+  }
+}
+
+/* Modal dialog overrides */
+.modal {
+  border: 5px solid #e8e8e8;
+}
+
+.modal-footer .btn + .btn {
+  margin-bottom: 5px;
+}
+
+/*sliders*/
+#eq span {
+  height: 120px;
+  float: left;
+  margin: 15px
+}
+
+//fix for uniformjs/bootstrap radios
+.radio, .checkbox {
+  padding-left: 0;
+}
+
+label.radio {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.radio input[type="radio"],
+.checkbox input[type="checkbox"] {
+  float: left;
+  margin-left: 0px;
+}
+
+/* Gauges */
+.gauge {
+  width: 200px;
+  height: 160px;
+  display: inline-block;
+}
+

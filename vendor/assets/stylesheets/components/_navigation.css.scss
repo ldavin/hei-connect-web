@@ -1,0 +1,154 @@
+@import "compass";
+
+$experimental-support-for-svg: true;
+
+/* Bootstrap Overrides - fixes search box placeholder and text position */
+.navbar-search .search-query {
+  background-color: #444;
+  margin-top: 4px;
+  border-color: #1f1f1f;
+  padding-top: 5px;
+  &:focus {
+    background-color: #fff;
+    border-color: #1f1f1f;
+  }
+}
+
+.navbar-inverse .navbar-search .search-query,
+.navbar-inverse .navbar-search .search-query:focus,
+.navbar-inverse .navbar-search .search-query.focused {
+  margin-top: 4px;
+  width: 75%;
+}
+
+.nav-search {
+  padding-left: 10px;
+}
+
+.navbar .nav .dropdown-toggle .caret {
+  margin-top: 12px;
+}
+
+/* caret position fix -  due to the font-size and line height */
+.navbar .nav li.dropdown.open > .dropdown-toggle {
+  background-color: #111111;
+  color: #fff;
+}
+
+.navbar .btn-navbar {
+  background-color: #313131;
+  @include background-image(linear-gradient(#313131, #212121));
+  border-color: #222;
+}
+
+.navbar .btn-navbar:hover, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled, .navbar .btn-navbar[disabled] {
+  color: white;
+  background-color: #232323;
+  @include background-image(none);
+  filter: none;
+}
+
+/* Top-navigation */
+.top-nav {
+  font-size: 12px;
+  @include box-shadow(0px 0px 1px rgba(49, 49, 49, 1));
+
+  .navbar-inner {
+    background-color: #383838;
+    @include background-image(linear-gradient(top, #313131, #212121));
+
+    ul.primary {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li ul:last-child {
+        border-right: 0px;
+      }
+      outline: none;
+
+      .menu-avatar {
+        margin-right: 2px;
+        border: 3px solid #666;
+        @include border-radius(5px);
+        background-color: #ddd;
+        width: 30px;
+        height: 30px;
+      }
+
+      li {
+        &.brand {
+          border: none;
+          .title {
+            i {
+              font-size: 20px;
+              line-height: 24px;
+            }
+            font-weight: bold;
+            line-height: 24px;
+            display: inline-block;
+            color: rgba(255, 255, 255, .6);
+            @include text-shadow(0px 1px 0px #000);
+          }
+        }
+
+        a {
+          i {
+            font-size: 18px;
+            display: inline-block;
+            text-align: center;
+          }
+
+          line-height: 26px;
+          color: #ccc;
+          padding: 10px;
+          @include text-shadow(0px 1px 0px #000);
+          filter: dropshadow(color=#000000, offx=0, offy=0);
+
+          &:link, &:visited, &:hover {
+            text-decoration: none;
+          }
+          &:hover {
+            background-color: #222;
+            @include text-shadow(0px 1px 0px rgba(0, 0, 0, 0.5));
+            color: #E8E2CE;
+          }
+        }
+        /* Secondary navigation */
+        ul.secondary {
+          list-style-type: none;
+          background-color: #fff;
+          border-left: none;
+          border-right: none;
+
+          @include border-radius(5px);
+          @include text-shadow(none);
+
+          li {
+            font-size: 1em;
+            border: none;
+            padding: 0;
+            &.active {
+              background-color: darken($sun-green, 2%);
+              @include background-image(linear-gradient(darken($sun-green, 2%), darken($sun-green, 4%)));
+            }
+
+            a {
+              color: #333;
+              @include text-shadow(none);
+              padding: 5px 15px;
+              &:hover {
+                background-color: darken($sun-green, 2%);
+                @include background-image(linear-gradient(darken($sun-green, 2%), darken($sun-green, 4%)));
+                color: #fff;
+              }
+              &.active {
+                background-color: darken($sun-green, 2%);
+                @include background-image(linear-gradient(darken($sun-green, 2%), darken($sun-green, 4%)));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

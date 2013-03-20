@@ -3,12 +3,13 @@
     return window.location.reload(1);
   }), 5000);
 
+.login-container.center
+  .title Premier login
+  .details
+    %p HEI Connect est en train d'essayer de se connecter à e-campus avec tes identifiants pour vérifier la validité de ton compte.
 
-%p.lead HEI Connect est en train d'essayer de se connecter à e-campus avec vos identifiants pour vérifier la validité de votre compte
+    .progress.progress-striped.active
+      .bar{:style => "width: 100%;"}
 
-#public_bar.progress.progress-striped.active
-  .bar{:style => "width: 100%;"}
-
-%p Cette page n'apparaît que lors de la première connexion, ou lors de mises à jour importantes.
-
-= link_to "Annuler", sessions_path, {method: :delete, class: 'btn btn-info'}
+  .actions
+    = link_to 'Annuler', sessions_path, method: :delete, class: 'btn btn-blue btn-large login-btn'

@@ -1,0 +1,163 @@
+@charset "utf-8";
+@import "compass";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-size: 12px;
+  * {
+    @include box-sizing(border-box);
+    &:active, &:focus, &:visited, &:hover {
+      outline: 0 none !important;
+    }
+    family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  a {
+    color: darken($sun-green, 10%);
+    text-decoration: none;
+    &:hover, &:active {
+      text-decoration: none;
+      color: $sun-green;
+    }
+  }
+}
+
+#body {
+  background-color: #e0e0e0;
+  @include background-image(image-url("patterns/wood.png"));
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+#main {
+  overflow: inherit;
+  padding: 20px;
+  margin-top: 47px;
+}
+
+.content-box {
+  background-color: #fff;
+  margin: 10px auto 5px auto;
+  padding: 0;
+
+  @include border-radius(5px);
+  @include box-shadow(0px 0px 1px 1px rgba(0, 0, 0, 0.2));
+  border: 5px solid $border-gray;
+
+  .padded {
+    padding: 20px;
+  }
+  .padded10 {
+    padding: 10px;
+  }
+  .padded5 {
+    padding: 5px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+  .content-box-header {
+    text-align: left;
+    margin-top: 0px;
+    padding-left: 10px;
+    height: 35px;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 35px;
+
+    color: #444;
+    background-color: $bg-gray;
+    @include text-shadow(0px 1px 1px rgba(255, 255, 255, 0.5));
+
+    border-bottom: 1px solid $border-gray;
+    i {
+      padding-right: 5px;
+    }
+  }
+}
+
+.doc-box {
+  display: none;
+  background-color: #fff;
+  border: 5px solid lighten($sun-green, 30%);
+  margin: 10px auto 5px auto;
+  padding: 20px;
+
+  @include border-radius(5px);
+  @include box-shadow(0px 0px 1px 1px rgba(0, 0, 0, 0.2));
+
+  .prettyprint {
+    margin-top: 10px;
+    background-color: #f5f5f5;
+    border-color: #e6e6e6;
+  }
+}
+
+.content-box.transparent {
+  background: rgba(111, 67, 28, .2);
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0 2px 2px inset, rgba(255, 255, 255, 0.4) 0 1px 0);
+  border: 1px solid rgba(144, 95, 28, .3);
+
+  .content-box-header {
+    background: transparent;
+    border-bottom: none;
+  }
+  @include text-shadow(0px 1px 0px rgba(255, 255, 255, 0.5));
+}
+
+header {
+  padding: 30px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.header {
+  position: relative;
+  display: block;
+  margin-top: 45px;
+  background-color: $light-gray;
+  @include text-shadow(0px 1px 0px rgba(255, 255, 255, 0.5));
+  @include box-shadow(0px 1px 1px rgba(49, 49, 49, .5));
+}
+
+.glass {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  @include border-radius(0px 0px 2px 2px);
+  background: rgba(111, 67, 28, .2);
+
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(111, 67, 28, 0.3));
+}
+
+.inline {
+  display: inline;
+}
+
+/* Transparent text */
+.transparent-text {
+  color: rgba(144, 95, 28, .5);
+  @include text-shadow(0px 1px 0px rgba(255, 255, 255, .8));
+}
+
+/* Footer positioning */
+.footer {
+  max-width: 280px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 5px 0px;
+  border: 2px solid rgba(144, 95, 28, .2);
+  @include border-radius(5px);
+  @include box-shadow(rgba(255, 255, 255, 0.2) 0 2px 2px inset, rgba(255, 255, 255, 0.4) 0 1px 0);
+}

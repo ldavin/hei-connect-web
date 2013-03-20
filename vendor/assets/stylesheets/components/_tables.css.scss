@@ -1,0 +1,16 @@
+table thead {
+  color: #666;
+}
+
+/* Dashboard projects table */
+.table.center {
+  th, tr, td {
+    text-align: center;
+  }
+}
+
+.table.noborder {
+  tr, td, th {
+    border: none;
+  }
+}

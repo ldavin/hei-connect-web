@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   layout 'public'
   before_filter :require_login, only: :validate
 
-  def new
-    @user = User.new
-  end
-
   def create
     @user = User.new(params[:user])
 
@@ -17,14 +13,14 @@ class UsersController < ApplicationController
         redirect_to root_url
       else
         flash.now[:alert] = 'Identifiants erronés'
-        render action: :new
+        render 'welcome/index'
       end
     else
       if @user.save
         session[:user_id] = @user.id
         redirect_to validate_users_url
       else
-        render action: :new
+        render 'welcome/index'
       end
     end
   end

@@ -1,0 +1,40 @@
+.padded
+  .content-box.center.transparent
+    .row-fluid
+      .span12.padded
+        = link_to 'Retour à l\'accueil', root_path, class: 'btn btn-large btn-green'
+
+.content-box
+  .content-box-header
+    %i.icon-info-sign
+    Pour faire vite
+  .padded
+    :markdown
+      HEI Connect s'adresse aux étudiants de l'école d'ingénieurs [HEI (Hautes études d'ingénieur)](http://www.hei.fr/).
+
+      C'est un projet indépendant, réalisé par des étudiants de l'école, dans le but fournir aux élèves un intranet étudiant de meilleur qualité que l'outil officiel [e-campus](http://e-campus.hei.fr/).
+
+      HEI Connect utilise les identifiants e-campus d'un étudiant pour récupérer discrètement ses données (planning, notes, absences) et les lui restituer rapidement et efficacement.
+
+.row-fluid
+  .span4
+    .content-box
+      .content-box-header
+        %i.icon-calendar
+        Flux iCalendar
+      .padded
+        :markdown
+          HEI Connect permet à chaque étudiant de synchroniser son emploi du temps avec tous les logiciels supportant le protocole [iCalendar](http://fr.wikipedia.org/wiki/ICalendar) (Google Agenda, Outlook, iCal...).
+
+          L'agenda synchronisé sur smartphone: c'est possible!
+  .span8
+    .content-box
+      .content-box-header
+        %i.icon-barcode
+        Open Source
+      .padded
+        :markdown
+          HEI Connect est un ensemble de projets open-source. Le code source des applications est donc consultable sur internet, et il est possible de participer au développement des projets.
+
+          + [HEI-Connect](https://github.com/ldavin/hei-connect) est l'API de base permettant de récupérer dans un format générique des données depuis e-campus.
+          + [HEI-Connect-Web](https://github.com/ldavin/hei-connect-web) est une application web (celle-ci!), communiquant avec HEI-Connect pour créer un e-campus "parallèle".
