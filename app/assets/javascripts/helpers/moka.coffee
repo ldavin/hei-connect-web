@@ -1,5 +1,5 @@
 # Moka is responsible for launching the scripts for each controller/action.
-namespace 'HEIConnect.Helpers'
+(namespace 'HEIConnect').Helpers =
   Moka:
     exec: (controller, action = 'init') ->
       ns = (namespace 'HEIConnect.Pages')

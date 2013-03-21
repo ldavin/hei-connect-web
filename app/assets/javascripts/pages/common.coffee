@@ -1,4 +1,4 @@
 # Common script is executed on each page load
-namespace 'HEIConnect.Pages'
+(namespace 'HEIConnect').Pages =
   common:
     init: ->
