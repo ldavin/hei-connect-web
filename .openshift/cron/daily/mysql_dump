@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+RAILS_ENV=production rake db:dump
+popd > /dev/null
