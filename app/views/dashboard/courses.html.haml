@@ -28,10 +28,4 @@
     %pre
       = link_to url, url
 
-.content-box
-  .content-box-header
-    %i.icon-calendar
-    Emploi du temps
-  .padded
-    :markdown
-      Prochainement, un beau widget ici pour retrouver le détail de l'emploi du temps.
+= render partial: 'shared/calendar_widget', locals: { courses: @courses }

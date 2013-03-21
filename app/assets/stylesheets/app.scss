@@ -8,15 +8,15 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
+// Theme definition
+@import "general/manifest";
+
 // Calendar drawing library
-// @import "jqueryui";
-// @import "fullcalendar/fullcalendar";
+@import "jqueryui";
+@import "fullcalendar/fullcalendar";
 
 // For radio, checkboxes, and file inputs styling (re-activate if used in views!)
 // @import "uniform.default";
-
-// Theme definition
-@import "general/manifest";
 
 // Fontawesome icons
 @import "fontawesome/manifest";

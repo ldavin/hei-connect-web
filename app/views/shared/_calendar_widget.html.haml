@@ -1,0 +1,15 @@
+- content_for :scripts do
+  :javascript
+    var HEIConnect = {
+      Data: {
+        events: #{(courses.collect {|c| c.to_fullcalendar_event}).to_json}
+      }
+    };
+
+.content-box
+  .content-box-header
+    %i.icon-calendar
+    %span#calendar-title Emploi du temps
+  .row-fluid
+    .span12
+      #full-calendar.calendar

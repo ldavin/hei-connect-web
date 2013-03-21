@@ -31,8 +31,8 @@
   -- require justgage/justgage
 
   Calendar drawing library
-  -- require jquery-ui
-  -- require fullcalendar
+  = require jquery-ui
+  = require fullcalendar
 
   Fix for placeholders on old (ie only?) browsers
   = require ie_placeholder_fix

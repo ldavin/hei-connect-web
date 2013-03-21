@@ -57,4 +57,14 @@ class Course < ActiveRecord::Base
       "Lieu inconnu"
     end
   end
+
+  def to_fullcalendar_event
+    {
+        id: self.id,
+        title: "#{name}, #{place}",
+        start: self.date,
+        end: self.date + self.length.minutes,
+        allDay: false
+    }
+  end
 end
