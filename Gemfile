@@ -11,7 +11,6 @@ group :assets do
   gem 'compass-rails'
   gem 'uglifier'
   gem 'libv8'
-  gem 'therubyracer'
   gem 'turbo-sprockets-rails3'
 end
 
