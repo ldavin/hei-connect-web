@@ -10,5 +10,7 @@
 #
 
 class Section < ActiveRecord::Base
+  has_many :courses, dependent: :destroy
+
   attr_accessible :code, :name
 end

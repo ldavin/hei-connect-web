@@ -9,6 +9,8 @@
 #
 
 class Group < ActiveRecord::Base
+  has_many :courses, dependent: :destroy
+
   attr_accessible :name
 
   def to_s
