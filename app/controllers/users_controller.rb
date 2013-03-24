@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       when Update::STATE_OK
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
       when Update::STATE_FAILED
-        current_user.delete
+        current_user.destroy
         session[:user_id] = nil
         redirect_to root_url, alert: "Les identifiants que vous avez entré ne permettent pas de vous connecter" +
             " à e-campus, ou bien e-campus ne répond pas. Le compte a été supprimé, merci de ré-essayer."

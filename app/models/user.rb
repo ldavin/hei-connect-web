@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   has_many :course_users, dependent: :delete_all
   has_many :courses, through: :course_users
-  has_many :updates
+  has_many :updates, dependent: :delete_all
 
   validates :ecampus_id, presence: true
   validates :password, :encrypted_password, presence: true, on: :create
