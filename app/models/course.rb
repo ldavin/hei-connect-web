@@ -56,8 +56,6 @@ class Course < ActiveRecord::Base
     end
   end
 
-  private
-
   def name
     if self.broken_name.present?
       self.broken_name
