@@ -9,6 +9,8 @@ class FetchScheduleWorker
       user.schedule_rev_increment!
       revision = user.schedule_rev
 
+      touch_user = false
+
       weeks.each do |week|
         week.courses.each do |course|
           # Only consider the courses having a date, length and name
@@ -28,6 +30,7 @@ class FetchScheduleWorker
             course_db = Course.where(search_options).first_or_create!
 
             # Link the course to the user, and increment the update_attribute
+            touch_user = true if CourseUser.where(course_id: course_db.id, user_id: user.id).count == 0
             course_user = CourseUser.where(course_id: course_db.id, user_id: user.id).first_or_create! update_number: revision
             course_user.update_attribute :update_number, revision
 
@@ -51,6 +54,11 @@ class FetchScheduleWorker
 
       # Tidy up the user's courses list, a cron task will take care of the rest
       CourseUser.where(user_id: user.id).where("update_number != ?", revision).delete_all
+
+      # Touch the user if classes were added for him
+      if touch_user
+        user.touch
+      end
 
       # Done updating!
       user.schedule_ok!

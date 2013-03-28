@@ -29,6 +29,35 @@ class Course < ActiveRecord::Base
 
   scope :current_weeks, lambda { where("date >= ?", Time.zone.now.beginning_of_week).order("date ASC") }
 
+  def to_ical_event
+    Rails.cache.fetch [self, 'ical_event'] do
+      event = RiCal.Event
+      event.dtstart = self.date
+      event.dtend = self.date + self.length.minutes
+      event.summary = self.name
+      event.description = self.description
+      event.location = self.place
+      event.created = self.created_at.to_datetime
+      event.last_modified = self.updated_at.to_datetime
+
+      event
+    end
+  end
+
+  def to_fullcalendar_event
+    Rails.cache.fetch [self, 'full_calendar_event'] do
+      {
+          id: self.id,
+          title: "#{name}, #{place}",
+          start: self.date,
+          end: self.date + self.length.minutes,
+          allDay: false
+      }
+    end
+  end
+
+  private
+
   def name
     if self.broken_name.present?
       self.broken_name
@@ -58,13 +87,4 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def to_fullcalendar_event
-    {
-        id: self.id,
-        title: "#{name}, #{place}",
-        start: self.date,
-        end: self.date + self.length.minutes,
-        allDay: false
-    }
-  end
 end

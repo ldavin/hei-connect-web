@@ -9,23 +9,22 @@ class IcsController < ApplicationController
 
     user.update_schedule! if user.expired_schedule?
 
-    respond_to do |format|
-      format.ics do
-        calendar = RiCal.Calendar do |cal|
-          user.courses.current_weeks.includes(:section, :teachers, :rooms).each do |course|
-            cal.event do |event|
-              event.dtstart = course.date
-              event.dtend = course.date + course.length.minutes
-              event.summary = course.name
-              event.description = course.description
-              event.location = course.place
-              event.created = course.created_at.to_datetime
-              event.last_modified = course.updated_at.to_datetime
-            end
-          end
-        end
+    if stale? user, public: false
+      respond_to do |format|
+        format.ics do
+          calendar =
+              Rails.cache.fetch [user, 'icalendar'] do
+                cal = RiCal.Calendar
 
-        render :text => calendar.to_s.gsub!(/\n/, "\r\n"), :content_type => 'text/calendar'
+                user.courses.current_weeks.each do |course|
+                  cal.add_subcomponent course.to_ical_event
+                end
+
+                cal.to_s.gsub!(/\n/, "\r\n")
+              end
+
+          render :text => calendar, :content_type => 'text/calendar'
+        end
       end
     end
   end

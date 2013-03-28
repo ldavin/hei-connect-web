@@ -36,6 +36,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'rocket_pants'
 gem 'redcarpet'
+gem 'redis-rails'
 
 # Openshift
 gem 'thor', '= 0.14.6'

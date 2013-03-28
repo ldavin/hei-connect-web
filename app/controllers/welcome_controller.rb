@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   layout 'public'
 
+  caches_page :about
+
   def index
     if user_logged_in
       if current_user.user_ok?

@@ -1,21 +1,5 @@
 - url = ics_url key: current_user.ics_key, format: :ics, protocol: "webcal"
 
-- if current_user.schedule_updating?
-  .row-fluid
-    .span6.offset3
-      .content-box
-        .content-box-header
-          %i.icon-refresh
-          Mise à jour en cours
-        .padded
-          .progress.progress-striped.active
-            .bar{:style => "width: 100%;"}
-          :javascript
-            setTimeout((function() {
-              return window.location.reload(1);
-            }), 10000);
-
-
 .content-box
   .content-box-header
     %i.icon-cloud

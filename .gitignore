@@ -25,3 +25,5 @@
 
 # Ignore redis dumps
 *.rdb
+
+public/about.html

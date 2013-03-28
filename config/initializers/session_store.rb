@@ -1,14 +1,6 @@
-require File.join(Rails.root, 'lib', 'openshift_secret_generator.rb')
-
-# Be sure to restart your server when you modify this file.
-
-# Set token based on intialize_secret function (defined in initializers/secret_generator.rb)
-HeiConnectWeb::Application.config.session_store :cookie_store, :key => initialize_secret(
-    :session_store,
-    '_heiconnectweb_session'
-)
-
-# Use the database for sessions instead of the cookie-based default,
-# which shouldn't be used to store highly confidential information
-# (create the session table with "rails generate session_migration")
-# HeiConnectWeb::Application.config.session_store :active_record_store
+# Use Redis for sessions instead of the cookie-based default
+if Rails.env.production?
+  HeiConnectWeb::Application.config.session_store :redis_store, servers: {path: ENV['OPENSHIFT_DATA_DIR'] + '/redis/socks/redis.sock', db: 1, :namespace => 'sessions'}
+else
+  HeiConnectWeb::Application.config.session_store :redis_store, servers: {:host => 'localhost', :port => 6379, :namespace => 'sessions'}
+end
