@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :check_maintenance_mode, :set_locale
   helper_method :current_user, :user_logged_in
 
-  # Fixme: Hack to use the default_locale (caused by active_admin)
-  before_filter :set_locale
+  def check_maintenance_mode
+    if ENV['HEICONNECT_MAINTENANCE']
+      session[:user_id] = nil if user_logged_in
+      render file: 'public/maintenance', layout: false, status: 503
+    end
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end

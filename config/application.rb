@@ -62,5 +62,9 @@ module HeiConnectWeb
     # Speed-up assets precompilation by partially initializing app
     config.assets.initialize_on_precompile = false
 
+    # Make Devise (Active admin) skip the maintenance mode
+    config.to_prepare do
+      Devise::SessionsController.skip_before_filter :check_maintenance_mode
+    end
   end
 end
