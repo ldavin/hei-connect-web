@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :user_logged_in
 
   def check_maintenance_mode
-    if ENV['HEICONNECT_MAINTENANCE']
+    if Rails.cache.read 'maintenance'
       session[:user_id] = nil if user_logged_in
       render file: 'public/maintenance', layout: false, status: 503
     end

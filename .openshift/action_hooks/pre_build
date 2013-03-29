@@ -4,7 +4,8 @@
 # before the build step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
-export HEICONNECT_MAINTENANCE="true"
+echo "Enabling maintenance mode"
+bundle exec rake maintenance:enable RAILS_ENV="production"
 
 STORED_ASSETS="${OPENSHIFT_DATA_DIR}/assets"
 LIVE_ASSETS="${OPENSHIFT_REPO_DIR}/public/assets"

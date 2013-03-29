@@ -3,4 +3,5 @@
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
 
-unset HEICONNECT_MAINTENANCE
+echo "Disabling maintenance mode"
+bundle exec rake maintenance:disable RAILS_ENV="production"
