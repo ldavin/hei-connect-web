@@ -4,11 +4,6 @@
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
-pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-echo "Enabling maintenance mode"
-bundle exec rake maintenance:enable RAILS_ENV="production"
-popd > /dev/null
-
 set -e
 
 if [ -z "$OPENSHIFT_MYSQL_DB_HOST" ]
