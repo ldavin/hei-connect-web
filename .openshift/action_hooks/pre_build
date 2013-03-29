@@ -4,11 +4,6 @@
 # before the build step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
-pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-echo "Enabling maintenance mode"
-bundle exec rake maintenance:enable RAILS_ENV="production"
-popd > /dev/null
-
 STORED_ASSETS="${OPENSHIFT_DATA_DIR}/assets"
 LIVE_ASSETS="${OPENSHIFT_REPO_DIR}/public/assets"
 
