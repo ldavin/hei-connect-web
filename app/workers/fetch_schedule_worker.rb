@@ -56,9 +56,7 @@ class FetchScheduleWorker
       CourseUser.where(user_id: user.id).where("update_number != ?", revision).delete_all
 
       # Touch the user if classes were added for him
-      if touch_user
-        user.touch
-      end
+      user.touch if touch_user
 
       # Done updating!
       user.schedule_ok!
