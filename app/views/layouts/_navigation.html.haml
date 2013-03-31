@@ -16,11 +16,11 @@
                   %i.icon-cogs
                   HEI-Connect
               %li
-                = link_to dashboard_path do
+                = link_to dashboard_path ecampus_id: current_user.ecampus_id do
                   %i.icon-dashboard
                   Dashboard
               %li
-                = link_to dashboard_courses_path do
+                = link_to dashboard_courses_path ecampus_id: current_user.ecampus_id do
                   %i.icon-calendar
                   Cours
 

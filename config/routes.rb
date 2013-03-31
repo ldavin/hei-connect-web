@@ -2,8 +2,8 @@ HeiConnectWeb::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  get 'dashboard' => 'dashboard#index'
-  get 'dashboard/courses' => 'dashboard#courses'
+  get 'dashboard/:ecampus_id' => 'dashboard#index', as: :dashboard
+  get 'dashboard/:ecampus_id/courses' => 'dashboard#courses', as: :dashboard_courses
 
   get "ics/:key" => 'ics#show', as: :ics
 
