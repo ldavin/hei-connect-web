@@ -1,5 +1,5 @@
 - if courses.any?
-  = cache ['calendar_widget', 'v2', current_user, courses] do
+  = cache ['calendar_widget', 'v2', current_user] do
     :javascript
       var HEIConnect = {
         Data: {
