@@ -28,15 +28,6 @@ class User < ActiveRecord::Base
   attr_accessible :ecampus_id, :ecampus_student_id, :ecampus_user_id, :password
   attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
 
-  def expired_schedule?
-    true if not self.schedule_updating? and self.schedule_last_update + 4.hours < Time.now
-  end
-
-  def update_schedule!
-    self.schedule_updating!
-    FetchScheduleWorker.new.perform self.id
-  end
-
   def to_s
     self.ecampus_id
   end
@@ -55,32 +46,32 @@ class User < ActiveRecord::Base
 
     Update::STATES.each do |state|
       define_method "#{object}_rev" do |details = nil|
-        self.updates.where(object: object + details.to_s).first_or_create.rev
+        fetch_update(object, details).rev
       end
 
       define_method "#{object}_rev_increment!" do |details = nil|
-        update = self.updates.where(object: object + details.to_s).first_or_create
+        update = fetch_update(object, details)
         update.rev += 1
         update.save!
         update.rev
       end
 
       define_method "#{object}_#{state}?" do |details = nil|
-        self.updates.where(object: object + details.to_s).first_or_create.state == state.to_s
+        fetch_update(object, details).state == state.to_s
       end
 
       define_method "#{object}_state" do |details = nil|
-        self.updates.where(object: object + details.to_s).first_or_create.state
+        fetch_update(object, details).state
       end
 
       define_method "#{object}_#{state}!" do |details = nil|
-        update = self.updates.where(object: object + details.to_s).first_or_create
+        update = fetch_update(object, details)
         update.state = state
         update.save!
       end
 
       define_method "#{object}_last_update" do |details = nil|
-        self.updates.where(object: object + details.to_s).first_or_create.updated_at
+        fetch_update(object, details).updated_at
       end
     end
   end
@@ -91,4 +82,10 @@ class User < ActiveRecord::Base
     self.update_attribute(:ics_key, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}"))
   end
 
+  def fetch_update(object, details)
+    # We try to find the update from the updates array, we create it if doesn't exist
+    # Allow to take in account the "includes" in the queries
+    self.updates.select { |u| u.object == object + details.to_s }.first ||
+        self.updates.where(object: object + details.to_s).first_or_create
+  end
 end

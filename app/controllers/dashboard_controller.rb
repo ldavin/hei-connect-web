@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :require_login, :refresh_user_data, :check_ecampus_suffix
+  before_filter :require_login, :check_ecampus_suffix
 
   def index
     @courses = current_user.courses.current_weeks

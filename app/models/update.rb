@@ -22,7 +22,7 @@ class Update < ActiveRecord::Base
   STATE_FAILED = 'failed'
   STATES = [STATE_UNKNOWN, STATE_UPDATING, STATE_OK, STATE_FAILED]
 
-  belongs_to :user
+  belongs_to :user, touch: true
   attr_accessible :rev, :state, :object, :user_id
 
   after_initialize :set_default_state

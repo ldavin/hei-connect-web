@@ -9,6 +9,9 @@ class CheckUserWorker
         details = client.fetch 'user', checked_user, Client::ApiUser
         checked_user.update_attributes! ecampus_id: details.id, ecampus_student_id: details.student_id, ecampus_user_id: details.user_id
         checked_user.user_ok!
+
+        # User valid, retrieve its info as soon as possible
+        FetchScheduleWorker.new.perform checked_user.id
       rescue RocketPants::Unauthenticated
         checked_user.user_failed!
       end

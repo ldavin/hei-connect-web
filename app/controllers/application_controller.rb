@@ -32,11 +32,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless user_logged_in
   end
 
-  def refresh_user_data
-    current_user.update_schedule! if current_user.schedule_unknown?
-    current_user.update_schedule! if current_user.expired_schedule?
-  end
-
   def check_ecampus_suffix
     if current_user.ecampus_id != params[:ecampus_id]
       redirect_to dashboard_url ecampus_id: current_user.ecampus_id
