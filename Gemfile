@@ -37,6 +37,7 @@ gem 'daemons'
 gem 'rocket_pants'
 gem 'redcarpet'
 gem 'redis-rails'
+gem 'newrelic-redis'
 
 # Openshift
 gem 'thor', '= 0.14.6'
