@@ -7,8 +7,6 @@ class IcsController < ApplicationController
       return
     end
 
-    user.update_schedule! if user.expired_schedule?
-
     if stale? user, public: false
       respond_to do |format|
         format.ics do
