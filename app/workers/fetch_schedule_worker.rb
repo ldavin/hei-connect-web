@@ -31,7 +31,6 @@ class FetchScheduleWorker
               course_db = Course.where(search_options).first_or_create!
 
               # Link the course to the user, and increment the update_attribute
-              touch_user = true if CourseUser.where(course_id: course_db.id, user_id: user.id).count == 0
               course_user = CourseUser.where(course_id: course_db.id, user_id: user.id).first_or_create! update_number: revision
               course_user.update_attribute :update_number, revision
 
@@ -49,6 +48,10 @@ class FetchScheduleWorker
                 end
                 course_db.teachers = teachers
               end
+
+              # Refresh the caches
+              course_db.to_ical_event
+              course_db.to_fullcalendar_event
             end
           end
         end
