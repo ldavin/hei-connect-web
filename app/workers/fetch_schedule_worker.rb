@@ -65,5 +65,5 @@ class FetchScheduleWorker
     end
   end
 
-  handle_asynchronously :perform, :queue => 'fetch_schedules'
+  handle_asynchronously :perform, :queue => 'updates'
 end
