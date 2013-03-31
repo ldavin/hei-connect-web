@@ -1,0 +1,35 @@
+.padded
+  .content-box.center.transparent
+    .row-fluid
+      .span12.padded
+        = link_to 'Retour à l\'accueil', root_path, class: 'btn btn-large btn-green'
+
+.content-box
+  .content-box-header
+    %i.icon-info-sign
+    Disponibilité
+  .padded.keep-width
+    %iframe{:frameborder => "no", :height => "318", :scrolling => "no", :src => "https://rpm.newrelic.com/public/charts/2cMMv4Fhj7j", :width => "890"}
+
+.content-box
+  .content-box-header
+    %i.icon-info-sign
+    Temps de réponse
+  .padded.keep-width
+    %iframe{:frameborder => "no", :height => "318", :scrolling => "no", :src => "https://rpm.newrelic.com/public/charts/oWTVJbIPbZ", :width => "890"}
+
+.row-fluid
+  .span6
+    .content-box
+      .content-box-header
+        %i.icon-info-sign
+        Requêtes et pages par minute
+      .padded.keep-width
+        %iframe{:frameborder => "no", :height => "312", :scrolling => "no", :src => "https://rpm.newrelic.com/public/charts/9ewcNVZp4ul", :width => "410"}
+  .span6
+    .content-box
+      .content-box-header
+        %i.icon-info-sign
+        Taux d'erreur
+      .padded.keep-width
+        %iframe{:frameborder => "no", :height => "312", :scrolling => "no", :src => "https://rpm.newrelic.com/public/charts/jZT8cpLu36H", :width => "410"}

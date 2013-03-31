@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   layout 'public'
 
-  caches_page :about
+  caches_page :about, :status
 
   def index
     if user_logged_in
@@ -16,6 +16,8 @@ class WelcomeController < ApplicationController
   end
 
   def about
+  end
 
+  def status
   end
 end

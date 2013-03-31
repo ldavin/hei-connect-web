@@ -26,4 +26,6 @@
 # Ignore redis dumps
 *.rdb
 
+# Page caches files
 public/about.html
+public/status.html

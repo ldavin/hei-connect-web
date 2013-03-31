@@ -15,7 +15,7 @@
     = stylesheet_link_tag 'public', :media => 'all'
 
 
-  %body#body
+  %body#body{'data-controller' => controller_name, 'data-action' => action_name}
 
     %section
       .container
