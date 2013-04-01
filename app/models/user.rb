@@ -8,37 +8,47 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  ics_key            :string(255)
-#  ecampus_user_id    :integer
-#  ecampus_student_id :integer
+#  password_digest    :string(255)
+#  token              :string(255)
 #
 
 class User < ActiveRecord::Base
+
+  require 'bcrypt'
 
   has_many :course_users, dependent: :delete_all
   has_many :courses, through: :course_users
   has_many :updates, dependent: :delete_all
 
   validates :ecampus_id, presence: true
-  validates :password, :encrypted_password, presence: true, on: :create
   validates :ecampus_id, length: {is: 6}
   validates :ecampus_id, uniqueness: true
+  #validates :password, presence: true, on: :create
+  validates_presence_of :password_digest
 
   after_create :set_ics_key
 
-  attr_accessible :ecampus_id, :ecampus_student_id, :ecampus_user_id, :password
-  attr_encrypted :password, key: ATTR_ENCRYPTED_KEY['user_password']
+  attr_reader :password
+  attr_accessible :ecampus_id, :password
+  attr_encrypted :plain_password, key: ATTR_ENCRYPTED_KEY['user_password']
+
+  def authenticate(unencrypted_password)
+    if BCrypt::Password.new(password_digest) == unencrypted_password
+      self
+    else
+      false
+    end
+  end
+
+  def password=(unencrypted_password)
+    @password = unencrypted_password
+    unless unencrypted_password.blank?
+      self.password_digest = BCrypt::Password.create(unencrypted_password)
+    end
+  end
 
   def to_s
     self.ecampus_id
-  end
-
-  def self.authenticate(id, password)
-    user = User.find_or_initialize_by_ecampus_id id
-    if user.password == password
-      user
-    else
-      nil
-    end
   end
 
   Update::OBJECTS.each do |object|

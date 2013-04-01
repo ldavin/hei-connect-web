@@ -1,18 +1,20 @@
 class CheckUserWorker
-  def perform(user_id)
-    checked_user = User.find_or_initialize_by_id user_id
+  def perform(id, username, password)
+    checked_user = User.find_or_initialize_by_id id
 
     if not checked_user.new_record? and checked_user.user_unknown?
       checked_user.user_updating!
       begin
         client = Client.new
-        details = client.fetch 'user', checked_user, Client::ApiUser
-        checked_user.update_attributes! ecampus_id: details.id, ecampus_student_id: details.student_id, ecampus_user_id: details.user_id
+        api_user = client.new_user username, password
+        checked_user.ecampus_id = api_user.username
+        checked_user.token = api_user.token
+        checked_user.save!
         checked_user.user_ok!
 
         # User valid, retrieve its info as soon as possible
         FetchScheduleWorker.new.perform checked_user.id
-      rescue RocketPants::Unauthenticated
+      rescue
         checked_user.user_failed!
       end
     end

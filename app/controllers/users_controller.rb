@@ -7,10 +7,10 @@ class UsersController < ApplicationController
     params[:user][:ecampus_id].downcase! if params[:user][:ecampus_id]
     @user = User.new(params[:user])
 
-    if User.where(:ecampus_id => @user.ecampus_id).any?
-      authed_user = User.authenticate @user.ecampus_id, @user.password
-      if authed_user
-        session[:user_id] = authed_user.id
+    if User.where(ecampus_id: @user.ecampus_id).any?
+      user_db = User.find_by_ecampus_id @user.ecampus_id
+      if user_db.authenticate @user.password
+        session[:user_id] = user_db.id
         redirect_to root_url
       else
         flash.now[:alert] = 'Identifiants erronés'
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         session[:user_id] = @user.id
+        CheckUserWorker.new.perform @user.id, @user.ecampus_id, @user.password
         redirect_to validate_users_url
       else
         render 'welcome/index'
@@ -28,8 +29,6 @@ class UsersController < ApplicationController
 
   def validate
     case current_user.user_state
-      when Update::STATE_UNKNOWN
-        CheckUserWorker.new.perform current_user.id
       when Update::STATE_OK
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
       when Update::STATE_FAILED

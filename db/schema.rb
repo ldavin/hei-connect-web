@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208175614) do
+ActiveRecord::Schema.define(:version => 20130401002203) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -150,12 +150,12 @@ ActiveRecord::Schema.define(:version => 20130208175614) do
 
   create_table "users", :force => true do |t|
     t.string   "ecampus_id"
-    t.string   "encrypted_password"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.string   "encrypted_plain_password"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "ics_key"
-    t.integer  "ecampus_user_id"
-    t.integer  "ecampus_student_id"
+    t.string   "password_digest"
+    t.string   "token"
   end
 
   add_index "users", ["ecampus_id"], :name => "index_users_on_ecampus_id"

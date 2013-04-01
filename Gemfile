@@ -38,6 +38,7 @@ gem 'rocket_pants'
 gem 'redcarpet'
 gem 'redis-rails'
 gem 'newrelic-redis'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Openshift
 gem 'thor', '= 0.14.6'

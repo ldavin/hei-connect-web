@@ -1,9 +1,8 @@
 class Client < RocketPants::Client
 
   class ApiUser < APISmith::Smash
-    property :id
-    property :user_id
-    property :student_id
+    property :username
+    property :token
   end
 
   class ApiTeacher < APISmith::Smash
@@ -40,6 +39,17 @@ class Client < RocketPants::Client
     property :mark
   end
 
+  class ApiGradeDetailed < APISmith::Smash
+    property :program
+    property :course
+    property :name
+    property :date
+    property :type
+    property :weight
+    property :mark
+    property :unknown
+  end
+
   class ApiAbsence < APISmith::Smash
     property :date, transformer: lambda { |d| Time.zone.parse d }
     property :length
@@ -48,18 +58,18 @@ class Client < RocketPants::Client
     property :justification
   end
 
-  version 1
+  version 2
   base_uri HEI_CONNECT['base']
 
-  def fetch(action, options, transformer)
-    if options.is_a? User
-      options = {
-          username: options.ecampus_id,
-          password: options.password,
-          student_id: options.ecampus_student_id,
-          user_id: options.ecampus_user_id
-      }
-    end
-    get action, extra_query: options, transformer: transformer
+  def user(username, password)
+    get 'users', extra_query: {user: {username: username, password: password}}, transformer: ApiUser
+  end
+
+  def new_user(username, password)
+    post 'users', extra_query: {user: {username: username, password: password}}, transformer: ApiUser
+  end
+
+  def schedule(user)
+    get "schedules/#{user.token}", transformer: ApiWeek
   end
 end

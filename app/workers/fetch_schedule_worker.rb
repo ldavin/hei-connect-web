@@ -7,7 +7,7 @@ class FetchScheduleWorker
 
       begin
         client = Client.new
-        weeks = client.fetch 'schedule', user, Client::ApiWeek
+        weeks = client.schedule user
 
         user.schedule_rev_increment!
         revision = user.schedule_rev
