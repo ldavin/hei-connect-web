@@ -23,14 +23,13 @@ class User < ActiveRecord::Base
   validates :ecampus_id, presence: true
   validates :ecampus_id, length: {is: 6}
   validates :ecampus_id, uniqueness: true
-  #validates :password, presence: true, on: :create
+  validates :password, presence: true, on: :create
   validates_presence_of :password_digest
 
   after_create :set_ics_key
 
   attr_reader :password
   attr_accessible :ecampus_id, :password
-  attr_encrypted :plain_password, key: ATTR_ENCRYPTED_KEY['user_password']
 
   def authenticate(unencrypted_password)
     if BCrypt::Password.new(password_digest) == unencrypted_password
