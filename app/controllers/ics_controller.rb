@@ -7,6 +7,8 @@ class IcsController < ApplicationController
       return
     end
 
+    update_user_activity user
+
     if stale? user, public: false
       respond_to do |format|
         format.ics do

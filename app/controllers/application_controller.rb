@@ -37,4 +37,9 @@ class ApplicationController < ActionController::Base
       redirect_to dashboard_url ecampus_id: current_user.ecampus_id
     end
   end
+
+  def update_user_activity(specific_user = nil)
+    user = specific_user || current_user
+    user.update_column :last_activity, Time.zone.now
+  end
 end
