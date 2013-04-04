@@ -2,14 +2,14 @@
 #
 # Table name: users
 #
-#  id                 :integer          not null, primary key
-#  ecampus_id         :string(255)
-#  encrypted_password :string(255)
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  ics_key            :string(255)
-#  password_digest    :string(255)
-#  token              :string(255)
+#  id              :integer          not null, primary key
+#  ecampus_id      :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  ics_key         :string(255)
+#  password_digest :string(255)
+#  token           :string(255)
+#  last_activity   :datetime
 #
 
 class User < ActiveRecord::Base
