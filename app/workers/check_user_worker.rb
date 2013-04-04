@@ -6,7 +6,16 @@ class CheckUserWorker
       checked_user.user_updating!
       begin
         client = Client.new
-        api_user = client.new_user username, password
+
+        begin
+          # Try to fetch an existing user with these credentials
+          api_user = client.user username, password
+        rescue RocketPants::NotFound
+          # We catch the user not found, but let a "bad credentials" error pop up
+          # We try to create the user
+          api_user = client.new_user username, password
+        end
+
         checked_user.ecampus_id = api_user.username
         checked_user.token = api_user.token
         checked_user.save!
