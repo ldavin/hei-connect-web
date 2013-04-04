@@ -8,3 +8,10 @@ then
     RAILS_ENV=production rake data:update_schedules
     popd > /dev/null
 fi
+
+if [ $TIME -ge 140000 ] && [ $TIME -le 145959 ]
+then
+    pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+    RAILS_ENV=production rake data:update_schedules
+    popd > /dev/null
+fi
