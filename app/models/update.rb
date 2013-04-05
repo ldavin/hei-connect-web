@@ -14,7 +14,8 @@
 class Update < ActiveRecord::Base
   OBJECT_USER = :user
   OBJECT_SCHEDULE = :schedule
-  OBJECTS = [OBJECT_USER, OBJECT_SCHEDULE]
+  OBJECT_SESSIONS = :sessions
+  OBJECTS = [OBJECT_USER, OBJECT_SCHEDULE, OBJECT_SESSIONS]
 
   STATE_UNKNOWN = 'unknown'
   STATE_UPDATING = 'updating'

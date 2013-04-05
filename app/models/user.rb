@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :course_users, dependent: :delete_all
   has_many :courses, through: :course_users
   has_many :updates, dependent: :delete_all
+  has_many :sessions, class_name: "UserSession", dependent: :destroy
 
   validates :ecampus_id, presence: true
   validates :ecampus_id, length: {is: 6}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404154957) do
+ActiveRecord::Schema.define(:version => 20130404204151) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -147,6 +147,16 @@ ActiveRecord::Schema.define(:version => 20130404154957) do
   end
 
   add_index "updates", ["user_id"], :name => "index_updates_on_user_id"
+
+  create_table "user_sessions", :force => true do |t|
+    t.integer  "year"
+    t.integer  "try",              :default => 1
+    t.integer  "absences_session"
+    t.integer  "grades_session"
+    t.integer  "user_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "ecampus_id"
