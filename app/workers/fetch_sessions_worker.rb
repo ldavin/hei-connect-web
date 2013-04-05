@@ -8,6 +8,9 @@ class FetchSessionsWorker
       begin
         client = Client.new
 
+        user.sessions_rev_increment!
+        revision = user.sessions_rev
+
         %w(grades absences).each do |type|
           # Fetch the sessions and sort them (1st year to last)
           sessions = client.send "#{type}_sessions", user
@@ -32,8 +35,14 @@ class FetchSessionsWorker
             # Update the session id and save entity
             user_session.send "#{type}_session=", session.id
             user_session.save
+
+            # Update the revision number without touching the updated_at
+            user_session.update_column :update_number, revision
           end
         end
+
+        # Tidy up the user's sessions
+        UserSession.where(user_id: user.id).where("update_number != ?", revision).delete_all
 
         user.sessions_ok!
       rescue
