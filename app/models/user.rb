@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :courses, through: :course_users
   has_many :updates, dependent: :delete_all
   has_many :sessions, class_name: "UserSession", dependent: :destroy
+  has_many :grades, through: :sessions
 
   validates :ecampus_id, presence: true
   validates :ecampus_id, length: {is: 6}
@@ -84,6 +85,10 @@ class User < ActiveRecord::Base
         fetch_update(object, details).updated_at
       end
     end
+  end
+
+  def main_session
+    self.sessions.order('year DESC, try DESC').limit(1).first
   end
 
   private
