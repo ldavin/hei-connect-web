@@ -68,5 +68,5 @@ class FetchScheduleWorker
     end
   end
 
-  handle_asynchronously :perform, :queue => 'updates'
+  handle_asynchronously :perform, :queue => 'updates', :priority => 75
 end

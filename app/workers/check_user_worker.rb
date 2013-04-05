@@ -29,5 +29,5 @@ class CheckUserWorker
     end
   end
 
-  handle_asynchronously :perform, :queue => 'registrations', :priority => 10
+  handle_asynchronously :perform, :queue => 'registrations', :priority => 100
 end

@@ -51,5 +51,5 @@ class FetchSessionsWorker
     end
   end
 
-  handle_asynchronously :perform, :queue => 'updates'
+  handle_asynchronously :perform, :queue => 'updates', :priority => 50
 end
