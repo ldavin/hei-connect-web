@@ -23,8 +23,8 @@ class FetchSessionsWorker
               year = i if session.name.include? "#{i}A"
             end
 
-            # Raise an exception if the year is still nil
-            raise Exception if year.nil?
+            # We don't know how to process this session!
+            next if year.nil?
 
             # Fetch the right corresponding user session
             user_session = UserSession.where(user_id: user.id, year: year).first_or_create!
