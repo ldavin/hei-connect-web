@@ -21,10 +21,10 @@ namespace :data do
     end
   end
 
-  desc 'Schedule an update of every valid user\'s grades.'
+  desc 'Schedule an update the grades for the the valid users\' main session.'
   task :update_grades => :environment do
     User.find_each(include: :updates) do |user|
-      FetchGradesWorker.new.perform user.id, user.main_session.id if user.user_ok?
+      FetchGradesWorker.new.perform user.id, user.main_session.id if user.user_ok? and user.main_session.grades_session.present?
     end
   end
 
