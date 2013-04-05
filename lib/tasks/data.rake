@@ -14,4 +14,11 @@ namespace :data do
     end
   end
 
+  desc 'Schedule an update of every valid user\'s sessions (grades and absences).'
+  task :update_sessions => :environment do
+    User.find_each(include: :updates, include: :sessions) do |user|
+      FetchSessionsWorker.new.perform user.id if user.user_ok?
+    end
+  end
+
 end

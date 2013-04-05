@@ -72,4 +72,12 @@ class Client < RocketPants::Client
   def schedule(user)
     get "schedules/#{user.token}", transformer: ApiWeek
   end
+
+  def absences_sessions(user)
+    get "sessions/#{user.token}/absences", transformer: ApiSession
+  end
+
+  def grades_sessions(user)
+    get "sessions/#{user.token}/grades", transformer: ApiSession
+  end
 end
