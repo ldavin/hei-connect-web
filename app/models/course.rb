@@ -68,7 +68,7 @@ class Course < ActiveRecord::Base
     if self.broken_name.present?
       "E-Campus ne donne pas plus d'informations."
     else
-      desc = "#{self.kind} de #{self.section.code} (#{self.section.name})"
+      desc = "#{self.kind} de #{self.section.name}"
       if self.teachers.any?
         desc += "\r\nPar #{self.teachers.join ', '}."
       end

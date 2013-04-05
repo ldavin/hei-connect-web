@@ -19,8 +19,8 @@ class FetchScheduleWorker
 
               # Parameters to find the course
               search_options = {date: course.date, length: course.length}
-              if course.id.present? and course.code.present? and course.group.present? and course.type.present?
-                section = Section.where(code: course.code, name: course.name).first_or_create!
+              if course.id.present? and course.group.present? and course.type.present?
+                section = Section.where(name: course.name).first_or_create!
                 group = Group.where(name: course.group).first_or_create!
 
                 search_options.merge! ecampus_id: course.id, kind: course.type, section_id: section.id, group_id: group.id
