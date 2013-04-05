@@ -21,4 +21,11 @@ namespace :data do
     end
   end
 
+  desc 'Schedule an update of every valid user\'s grades.'
+  task :update_grades => :environment do
+    User.find_each(include: :updates) do |user|
+      FetchGradesWorker.new.perform user.id, user.main_session.id if user.user_ok?
+    end
+  end
+
 end
