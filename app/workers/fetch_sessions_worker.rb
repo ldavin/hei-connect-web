@@ -1,5 +1,5 @@
 class FetchSessionsWorker
-  def perform(user_id)
+  def perform(user_id, immediatly_schedule_grades_updates = false)
     user = User.find user_id
 
     if user.sessions_ok? or user.sessions_unknown? or user.sessions_failed?
@@ -43,6 +43,13 @@ class FetchSessionsWorker
 
         # Tidy up the user's sessions
         UserSession.where(user_id: user.id).where("update_number != ?", revision).delete_all
+
+        # Schedule the grades updates if asked
+        if immediatly_schedule_grades_updates
+          user.sessions.each do |session|
+            FetchGradesWorker.new.perform user.id, session.id
+          end
+        end
 
         user.sessions_ok!
       rescue

@@ -23,6 +23,7 @@ class CheckUserWorker
 
         # User valid, retrieve its info as soon as possible
         FetchScheduleWorker.new.perform checked_user.id
+        FetchSessionsWorker.new.perform checked_user.id, true
       rescue
         checked_user.user_failed!
       end
