@@ -14,7 +14,7 @@
 #
 
 class UserSession < ActiveRecord::Base
-  has_many :grades
+  has_many :grades, dependent: :delete_all
   belongs_to :user, touch: true
 
   attr_accessible :absences_session, :grades_session, :try, :update_number, :user_id, :year
