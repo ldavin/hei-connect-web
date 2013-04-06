@@ -4,7 +4,7 @@ class FetchDetailedGradesWorker
     session = UserSession.find session_id
     ecampus_id = session.grades_session
 
-    if user.grades_ok?(ecampus_id) or user.grades_unknown?(ecampus_id) or user.grades_failed?(ecampus_id)
+    if ecampus_id.present? and (user.grades_ok?(ecampus_id) or user.grades_unknown?(ecampus_id) or user.grades_failed?(ecampus_id))
       user.grades_updating!(ecampus_id)
 
       begin
