@@ -39,5 +39,5 @@ class FetchDetailedGradesWorker
     end
   end
 
-  handle_asynchronously :perform, :queue => 'updates', :priority => 0
+  handle_asynchronously :perform, :queue => 'updates', :priority => 100
 end
