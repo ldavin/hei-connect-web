@@ -21,13 +21,17 @@
   For select inputs styling (re-activate if used in views!)
   -- require chosen.jquery
 
-  Plot drawing library
+  Charts drawing library
+  = require raphael
+  = require morris
+
+  Plot drawing library (USING MORRIS INSTEAD FOR NOW)
   -- require flot/jquery.flot
   -- require flot/jquery.flot.resize
   -- require flot/jquery.flot.pie
 
   Gauge drawing library
-  -- require justgage/raphael.2.1.0.min
+  -- require raphael
   -- require justgage/justgage
 
   Calendar drawing library
