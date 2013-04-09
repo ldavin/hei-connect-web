@@ -1,0 +1,45 @@
+- session_id = session.grades_session
+- if session.grades.any?
+  = cache ['average_widget', 'v1', current_user, session] do
+    :javascript
+      var HEIConnect = {
+        Data: {
+          grades: #{grades_to_chart_data(session.grades).to_json}
+        }
+      };
+
+    .content-box
+      .content-box-header
+        %i.icon-bar-chart
+        Moyenne
+        - if session.try > 1
+          = "HEI#{session.year}##{session.try}"
+        - else
+          = "HEI#{session.year}"
+        %span.pull-right
+          %small{style: 'padding-right: 5px'}
+            - if current_user.grades_ok?(session_id)
+              Dernière mise à jour le
+              = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
+            - elsif current_user.grades_updating?(session_id)
+              Mise à jour en cours
+            - else
+              Mise à jour programmée
+      .padded
+        .row-fluid
+          .span12
+            #average-chart.chart{style: 'width: 100%; height: 330px;'}
+- else
+  .content-box
+    .content-box-header
+      %i.icon-bar-chart
+      Moyenne
+    .padded
+      - if current_user.grades_ok?(session_id)
+        %p
+          Aucune note pour l'instant (dernière vérification le
+          = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M).')
+      - elsif current_user.grades_updating?(session_id)
+        %p Mise à jour des notes en cours...
+      - else
+        %p Mise à jour des notes en attente.

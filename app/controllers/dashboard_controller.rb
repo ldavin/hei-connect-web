@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
 
   def index
     @courses = current_user.courses.current_weeks
+    @session = current_user.main_session || UserSession.new
 
     if stale? current_user, public: false
       respond_to do |format|

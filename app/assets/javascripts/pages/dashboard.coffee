@@ -8,6 +8,9 @@
     calendar.maxTime = 21
     calendar.render()
 
+    average = new HEIConnect.Widgets.Average 'average-chart', HEIConnect.Data.grades, 'date', ['grade'], ['Moyenne']
+    average.render()
+
   courses: ->
     calendar = new HEIConnect.Widgets.Calendar '#full-calendar', HEIConnect.Data.events
     calendar.render()
