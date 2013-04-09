@@ -45,8 +45,9 @@ class FetchSessionsWorker
         UserSession.where(user_id: user.id).where("update_number != ?", revision).delete_all
 
         # Schedule the grades updates if asked
+        # We sort the session in desc chronological order to have the interesting grades first
         if immediatly_schedule_grades_updates
-          user.sessions.each do |session|
+          user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
             FetchGradesWorker.new.perform user.id, session.id
           end
         end
