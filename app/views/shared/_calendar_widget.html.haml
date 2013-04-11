@@ -1,12 +1,6 @@
 - if courses.any?
-  = cache ['calendar_widget', 'v3', current_user] do
-    :javascript
-      var HEIConnect = {
-        Data: {
-          events: #{(courses.collect {|c| c.to_fullcalendar_event}).to_json}
-        }
-      };
-
+  = cache ['calendar_widget', 'v4', current_user] do
+    = content_tag :div, '', id: 'calendar_data', data: {events: courses.collect {|c| c.to_fullcalendar_event}}
     .content-box
       .content-box-header
         %i.icon-calendar

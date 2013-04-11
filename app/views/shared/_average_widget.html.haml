@@ -1,13 +1,7 @@
 - session_id = session.grades_session
 - if session.grades.any?
-  = cache ['average_widget', 'v2', current_user, session] do
-    :javascript
-      var HEIConnect = {
-        Data: {
-          grades: #{grades_to_chart_data(session.grades).to_json}
-        }
-      };
-
+  = cache ['average_widget', 'v3', current_user, session] do
+    = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades)}
     .content-box
       .content-box-header
         %i.icon-bar-chart
