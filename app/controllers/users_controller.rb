@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         session[:user_id] = @user.id
-        CheckUserWorker.new.perform @user.id, @user.ecampus_id, @user.password
+        CheckUserWorker.new.schedule @user.id, @user.ecampus_id, @user.password
         redirect_to validate_users_url
       else
         render 'welcome/index'

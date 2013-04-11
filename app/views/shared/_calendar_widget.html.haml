@@ -1,5 +1,5 @@
 - if courses.any?
-  = cache ['calendar_widget', 'v2', current_user] do
+  = cache ['calendar_widget', 'v3', current_user] do
     :javascript
       var HEIConnect = {
         Data: {
@@ -18,8 +18,11 @@
               = current_user.schedule_last_update.strftime('%d/%m à %H:%M')
             - elsif current_user.schedule_updating?
               Mise à jour en cours
-            - else
+            - elsif current_user.schedule_scheduled?
               Mise à jour programmée
+            - else
+              La dernière mise à jour a échoué le
+              = current_user.schedule_last_update.strftime('%d/%m à %H:%M')
       .row-fluid
         .span12
           #full-calendar.calendar
@@ -35,5 +38,10 @@
           = current_user.schedule_last_update.strftime('%d/%m à %H:%M).')
       - elsif current_user.schedule_updating?
         %p Mise à jour du calendrier en cours...
+      - elsif current_user.schedule_scheduled?
+        %p Mise à jour du calendrier programmée.
+      - elsif current_user.schedule_unknown?
+        %p L'application n'a pas encore essayé de récupérer l'emploi du temps.
       - else
-        %p Mise à jour du calendrier en attente.
+        La dernière tentative de mise à jour a échoué le
+        = current_user.schedule_last_update.strftime('%d/%m à %H:%M).')

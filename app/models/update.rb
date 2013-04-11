@@ -19,10 +19,11 @@ class Update < ActiveRecord::Base
   OBJECTS = [OBJECT_USER, OBJECT_SCHEDULE, OBJECT_SESSIONS, OBJECT_GRADES]
 
   STATE_UNKNOWN = 'unknown'
+  STATE_SCHEDULED = 'scheduled'
   STATE_UPDATING = 'updating'
   STATE_OK = 'ok'
   STATE_FAILED = 'failed'
-  STATES = [STATE_UNKNOWN, STATE_UPDATING, STATE_OK, STATE_FAILED]
+  STATES = [STATE_UNKNOWN, STATE_SCHEDULED, STATE_UPDATING, STATE_OK, STATE_FAILED]
 
   belongs_to :user, touch: true
   attr_accessible :rev, :state, :object, :user_id

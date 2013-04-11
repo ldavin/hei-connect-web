@@ -1,6 +1,6 @@
 - session_id = session.grades_session
 - if session.grades.any?
-  = cache ['average_widget', 'v1', current_user, session] do
+  = cache ['average_widget', 'v2', current_user, session] do
     :javascript
       var HEIConnect = {
         Data: {
@@ -23,8 +23,11 @@
               = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
             - elsif current_user.grades_updating?(session_id)
               Mise à jour en cours
-            - else
+            - elsif current_user.grades_scheduled?(session_id)
               Mise à jour programmée
+            - else
+              La dernière mise à jour a échoué le
+              = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
       .padded
         .row-fluid
           .span12
@@ -41,5 +44,10 @@
           = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M).')
       - elsif current_user.grades_updating?(session_id)
         %p Mise à jour des notes en cours...
+      - elsif current_user.grades_scheduled?(session_id)
+        %p Mise à jour des notes programmée...
+      - elsif current_user.grades_unknown?(session_id)
+        %p L'application n'a pas encore essayé de récupérer les notes.
       - else
-        %p Mise à jour des notes en attente.
+        La dernière tentative de mise à jour a échoué le
+        = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
