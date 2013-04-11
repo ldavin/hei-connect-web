@@ -1,0 +1,21 @@
+= cache ['status_widget', 'v1', current_user] do
+  .content-box
+    .content-box-header
+      %i.icon-dashboard
+      Dernières mises à jour
+    .row-fluid
+      .span12
+        %table.table#status_table
+          %thead
+            %tr
+              %th Objet
+              %th Etat
+              %th Dernière mise à jour
+          %tbody
+            - [{title: 'Emploi du temps', update: current_user.schedule_update}, {title: "Notes (HEI#{session.year}##{session.try})", update: current_user.grades_update(session.grades_session)}].each do |o|
+              - title = o[:title]
+              - update = o[:update]
+              %tr
+                %td= title
+                %td= update_status_label(update)
+                %td= update.updated_at.strftime('%d/%m à %H:%M')

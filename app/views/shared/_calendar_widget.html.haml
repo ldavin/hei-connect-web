@@ -5,18 +5,6 @@
       .content-box-header
         %i.icon-calendar
         %span#calendar-title Emploi du temps
-        %span.pull-right
-          %small{style: 'padding-right: 5px'}
-            - if current_user.schedule_ok?
-              Dernière mise à jour le
-              = current_user.schedule_last_update.strftime('%d/%m à %H:%M')
-            - elsif current_user.schedule_updating?
-              Mise à jour en cours
-            - elsif current_user.schedule_scheduled?
-              Mise à jour programmée
-            - else
-              La dernière mise à jour a échoué le
-              = current_user.schedule_last_update.strftime('%d/%m à %H:%M')
       .row-fluid
         .span12
           #full-calendar.calendar
@@ -27,15 +15,6 @@
       Emploi du temps
     .padded
       - if current_user.schedule_ok?
-        %p
-          Aucun cours pour cette semaine et la semaine suivante (dernière vérification le
-          = current_user.schedule_last_update.strftime('%d/%m à %H:%M).')
-      - elsif current_user.schedule_updating?
-        %p Mise à jour du calendrier en cours...
-      - elsif current_user.schedule_scheduled?
-        %p Mise à jour du calendrier programmée.
-      - elsif current_user.schedule_unknown?
-        %p L'application n'a pas encore essayé de récupérer l'emploi du temps.
+        Aucun cours pour cette semaine et la semaine suivante.
       - else
-        La dernière tentative de mise à jour a échoué le
-        = current_user.schedule_last_update.strftime('%d/%m à %H:%M).')
+        Aucun cours pour l'instant.

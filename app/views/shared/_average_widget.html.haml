@@ -1,4 +1,3 @@
-- session_id = session.grades_session
 - if session.grades.any?
   = cache ['average_widget', 'v3', current_user, session] do
     = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades)}
@@ -10,18 +9,6 @@
           = "HEI#{session.year}##{session.try}"
         - else
           = "HEI#{session.year}"
-        %span.pull-right
-          %small{style: 'padding-right: 5px'}
-            - if current_user.grades_ok?(session_id)
-              Dernière mise à jour le
-              = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
-            - elsif current_user.grades_updating?(session_id)
-              Mise à jour en cours
-            - elsif current_user.grades_scheduled?(session_id)
-              Mise à jour programmée
-            - else
-              La dernière mise à jour a échoué le
-              = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
       .padded
         .row-fluid
           .span12
@@ -32,16 +19,4 @@
       %i.icon-bar-chart
       Moyenne
     .padded
-      - if current_user.grades_ok?(session_id)
-        %p
-          Aucune note pour l'instant (dernière vérification le
-          = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M).')
-      - elsif current_user.grades_updating?(session_id)
-        %p Mise à jour des notes en cours...
-      - elsif current_user.grades_scheduled?(session_id)
-        %p Mise à jour des notes programmée...
-      - elsif current_user.grades_unknown?(session_id)
-        %p L'application n'a pas encore essayé de récupérer les notes.
-      - else
-        La dernière tentative de mise à jour a échoué le
-        = current_user.grades_last_update(session_id).strftime('%d/%m à %H:%M')
+      Aucune note pour l'instant.

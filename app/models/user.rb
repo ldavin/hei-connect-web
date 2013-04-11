@@ -84,6 +84,10 @@ class User < ActiveRecord::Base
       define_method "#{object}_last_update" do |details = nil|
         fetch_update(object, details).updated_at
       end
+
+      define_method "#{object}_update" do |details = nil|
+        fetch_update(object, details)
+      end
     end
   end
 

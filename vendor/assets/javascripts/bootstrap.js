@@ -10,6 +10,6 @@
 // -- bootstrap/bootstrap-modal
 // -- bootstrap/bootstrap-scrollspy
 // -- bootstrap/bootstrap-tab
-// -- bootstrap/bootstrap-tooltip
-// -- bootstrap/bootstrap-popover
+//= require bootstrap/bootstrap-tooltip
+//= require bootstrap/bootstrap-popover
 // -- bootstrap/bootstrap-typeahead
