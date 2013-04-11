@@ -9,21 +9,20 @@
 
   .content-box
     .content-box-header
-      %i.icon-dashboard
+      %i.icon-ok
       Dernières mises à jour
-    .row-fluid
-      .span12
-        %table.table#status_table
-          %thead
+    .padded
+      %table.table.table-bordered#status_table
+        %thead
+          %tr
+            %th Objet
+            %th Etat
+            %th Dernière mise à jour
+        %tbody
+          - [schedule_object, grades_object].each do |o|
+            - title = o[:title]
+            - update = o[:update]
             %tr
-              %th Objet
-              %th Etat
-              %th Dernière mise à jour
-          %tbody
-            - [schedule_object, grades_object].each do |o|
-              - title = o[:title]
-              - update = o[:update]
-              %tr
-                %td= title
-                %td= update_status_label(update)
-                %td= update.updated_at.strftime('%d/%m à %H:%M')
+              %td= title
+              %td= update_status_label(update)
+              %td= update.updated_at.strftime('%d/%m à %H:%M')
