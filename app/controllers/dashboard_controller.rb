@@ -6,6 +6,8 @@ class DashboardController < ApplicationController
   def index
     @courses = current_user.courses.current_weeks
     @session = current_user.main_session || UserSession.new
+    @updates = [current_user.schedule_update, current_user.sessions_update]
+    @updates.push current_user.grades_update(@session.grades_session) unless @session.new_record?
 
     if stale? current_user, public: false
       respond_to do |format|
@@ -28,6 +30,7 @@ class DashboardController < ApplicationController
 
   def grades
     @session = get_sessions params[:year], params[:try]
+    @updates = current_user.sessions.collect { |s| current_user.grades_update(s.grades_session) }
   end
 
   def update_grades

@@ -38,7 +38,7 @@
 
 .row-fluid
   .span6
-    = render partial: 'shared/status_widget', locals: { updates: current_user.sessions.collect{ |s| current_user.grades_update(s.grades_session) } }
+    = render partial: 'shared/status_widget', locals: { updates: @updates }
 
   .span6
     .content-box
