@@ -6,7 +6,9 @@
       = session.title
 
     - if session.grades.any?
-      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades)}
+      - goal = 10
+      - goal = 12 if session.year > 2
+      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades), goals: [goal]}
       .row-fluid
         .span12
           #average-chart.chart{style: 'width: 100%; height: 330px;'}

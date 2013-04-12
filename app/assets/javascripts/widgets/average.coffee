@@ -1,6 +1,6 @@
 (namespace "HEIConnect.Widgets").Average =
   class Average
-    constructor: (@element_id, @data, @x_key, @y_keys, @labels) ->
+    constructor: (@element_id, @data, @x_key, @y_keys, @labels, @goals) ->
       return this
 
     render: ->
@@ -23,5 +23,5 @@
           curr_year = d.getFullYear()
           "#{curr_date}/#{curr_month}/#{curr_year}"
 
-        goals: [10, 12]
+        goals: @goals
       )
