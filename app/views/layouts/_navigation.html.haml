@@ -23,6 +23,18 @@
                 = link_to dashboard_courses_path ecampus_id: current_user.ecampus_id do
                   %i.icon-calendar
                   Cours
+              %li.dropdown
+                %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                  %i.icon-bar-chart
+                  Notes
+                  %b.caret
+
+                %ul.dropdown-menu.secondary
+                  - current_user.sessions.each do |s|
+                    %li
+                      = link_to dashboard_grades_path ecampus_id: current_user.ecampus_id, year: s.year, try: s.try do
+                        %i.icon-tag
+                        = s.title
 
             %ul.nav.pull-right.primary
 

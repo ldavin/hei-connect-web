@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||=
         begin
-          User.find(session[:user_id]) if session[:user_id]
+          User.find session[:user_id], include: [:updates, :sessions] if session[:user_id]
         rescue
           session[:user_id] = nil
         end

@@ -1,0 +1,60 @@
+= render partial: 'shared/average_widget', locals: { session: @session }
+
+.content-box
+  .content-box-header
+    %i.icon-table
+    Notes
+    = @session.title
+  .padded
+    - if @session.grades.any?
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Matière
+            %th Examen
+            %th Type
+            %th Date
+            %th Coefficient
+            %th Note
+        %tbody
+          - # Sort grades by desc. chronological order
+          - @session.grades.sort{|x,y| y.date <=> x.date}.each do |g|
+            %tr
+              %td= g.section.name
+              %td= g.name
+              %td= g.kind
+              %td= g.date.strftime('%d/%m/%Y')
+              %td
+                .pagination-right
+                  = "%.2f" % g.weight
+              %td
+                .pagination-right
+                  - if g.unknown
+                    %span.label.label-red ?
+                  - else
+                    %strong= "%.2f" % g.mark
+    - else
+      Aucune note pour l'instant.
+
+.row-fluid
+  .span6
+    = render partial: 'shared/status_widget', locals: { updates: current_user.sessions.collect{ |s| current_user.grades_update(s.grades_session) } }
+
+  .span6
+    .content-box
+      .content-box-header
+        %i.icon-info-sign
+        A propos des mises à jour
+      .padded.pagination-justify
+        :markdown
+          Les mises à jour automatiques ne sont programmées que pour l'année en cours.
+
+          La mise à jour n'est opérée que tous les deux jours, à cause du temps nécessaire pour récupérer les notes
+          depuis e-campus (20-25 secondes), et du manque de ressources d'HEI Connect.
+
+          Il est toujours possible de programmer manuellement un mise à jour des notes de n'importe quelle année grâce
+          au bouton ci-dessous.
+
+          HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!
+
+        = button_to 'Forcer la mise à jour des notes ' + @session.title, dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'
