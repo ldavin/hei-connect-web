@@ -22,4 +22,13 @@ class UserSession < ActiveRecord::Base
   def is_main_session?
     self == self.user.sessions.order('year DESC, try DESC').limit(1).first
   end
+
+  def title
+    # Write the title
+    title = 'HEI' + self.year.to_s
+    title += '-' + self.try.to_s if self.try > 1
+
+    # Return it
+    title
+  end
 end

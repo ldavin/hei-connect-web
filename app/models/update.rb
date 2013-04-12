@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # == Schema Information
 #
 # Table name: updates
@@ -29,6 +31,24 @@ class Update < ActiveRecord::Base
   attr_accessible :rev, :state, :object, :user_id
 
   after_initialize :set_default_state
+
+  def title
+    case
+      when self.object == OBJECT_USER.to_s
+        'Validité du compte'
+      when self.object == OBJECT_SCHEDULE.to_s
+        'Emploi du temps'
+      when self.object == OBJECT_SESSIONS.to_s
+        'Années de scolarité'
+      when self.object.include?(OBJECT_GRADES.to_s)
+        # Remove all the letters to keep the id, then fetch the corresponding session
+        session_id = self.object.delete('a-z').to_i
+        session = user.sessions.where(grades_session: session_id).first
+        'Notes ' + session.title
+      else
+        raise Exception
+    end
+  end
 
   private
 

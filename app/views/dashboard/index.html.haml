@@ -10,4 +10,4 @@
 
 = render partial: 'shared/average_widget', locals: { session: @session }
 
-= render partial: 'shared/status_widget', locals: { session: @session }
+= render partial: 'shared/status_widget', locals: { updates: [current_user.schedule_update, current_user.grades_update(@session.grades_session)] }

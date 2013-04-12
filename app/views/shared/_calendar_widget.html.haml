@@ -1,20 +1,18 @@
-- if courses.any?
-  = cache ['calendar_widget', 'v4', current_user] do
-    = content_tag :div, '', id: 'calendar_data', data: {events: courses.collect {|c| c.to_fullcalendar_event}}
-    .content-box
-      .content-box-header
-        %i.icon-calendar
-        %span#calendar-title Emploi du temps
-      .row-fluid
-        .span12
-          #full-calendar.calendar
-- else
+= cache ['calendar_widget', 'v5', current_user] do
   .content-box
     .content-box-header
       %i.icon-calendar
-      Emploi du temps
-    .padded
-      - if current_user.schedule_ok?
-        Aucun cours pour cette semaine et la semaine suivante.
-      - else
-        Aucun cours pour l'instant.
+      %span#calendar-title Emploi du temps
+
+    - if courses.any?
+      = content_tag :div, '', id: 'calendar_data', data: {events: courses.collect {|c| c.to_fullcalendar_event}}
+      .row-fluid
+        .span12
+          #full-calendar.calendar
+
+    - else
+      .padded
+        - if current_user.schedule_ok?
+          Aucun cours pour cette semaine et la semaine suivante.
+        - else
+          Aucun cours pour l'instant.

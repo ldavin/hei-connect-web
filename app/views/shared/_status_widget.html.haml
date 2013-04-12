@@ -1,12 +1,4 @@
-= cache ['status_widget', 'v1', current_user] do
-  - schedule_object = {title: 'Emploi du temps', update: current_user.schedule_update}
-
-  - if session.try > 1
-    - grades_title = "Notes (HEI#{session.year}##{session.try})"
-  - else
-    - grades_title = "Notes (HEI#{session.year})"
-  - grades_object = {title: grades_title, update: current_user.grades_update(session.grades_session)}
-
+= cache ['status_widget', 'v2', current_user, updates] do
   .content-box
     .content-box-header
       %i.icon-ok
@@ -19,10 +11,8 @@
             %th Etat
             %th Dernière mise à jour
         %tbody
-          - [schedule_object, grades_object].each do |o|
-            - title = o[:title]
-            - update = o[:update]
+          - updates.each do |update|
             %tr
-              %td= title
+              %td= update.title
               %td= update_status_label(update)
               %td= update.updated_at.strftime('%d/%m à %H:%M')

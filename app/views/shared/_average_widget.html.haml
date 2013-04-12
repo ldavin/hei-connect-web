@@ -1,22 +1,15 @@
-- if session.grades.any?
-  = cache ['average_widget', 'v3', current_user, session] do
-    = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades)}
-    .content-box
-      .content-box-header
-        %i.icon-bar-chart
-        Moyenne
-        - if session.try > 1
-          = "HEI#{session.year}##{session.try}"
-        - else
-          = "HEI#{session.year}"
-      .padded
-        .row-fluid
-          .span12
-            #average-chart.chart{style: 'width: 100%; height: 330px;'}
-- else
+= cache ['average_widget', 'v4', current_user, session] do
   .content-box
     .content-box-header
       %i.icon-bar-chart
       Moyenne
-    .padded
-      Aucune note pour l'instant.
+      = session.title
+
+    - if session.grades.any?
+      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades)}
+      .row-fluid
+        .span12
+          #average-chart.chart{style: 'width: 100%; height: 330px;'}
+    - else
+      .padded
+        Aucune note pour l'instant.

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :course_users, dependent: :delete_all
   has_many :courses, through: :course_users
   has_many :updates, dependent: :delete_all
-  has_many :sessions, class_name: "UserSession", dependent: :destroy
+  has_many :sessions, class_name: "UserSession", dependent: :destroy, order: 'year DESC, try DESC'
   has_many :grades, through: :sessions
 
   validates :ecampus_id, presence: true
