@@ -31,17 +31,20 @@ class FetchDetailedGradesWorker
         # Retrieve the linked section
         section = Section.where(name: grade.course).first_or_create!
 
-        # Create or retrieve the grade
-        grade_db = Grade.where(user_session_id: session.id, section_id: section.id, name: grade.name,
-                               date: grade.date, kind: grade.type.capitalize, weight: grade.weight,
-                               mark: grade.mark, unknown: grade.unknown).first_or_create!
+        # Create or retrieve the exam
+        exam_db = Exam.where(section_id: section.id, name: grade.name, date: grade.date,
+                             kind: grade.type.capitalize, weight: grade.weight).first_or_create!
+
+        # Create or retrieve the grade (link to the exam)
+        grade_db = Grade.where(user_session_id: session.id, mark: grade.mark,
+                               unknown: grade.unknown, exam_id: exam_db.id).first_or_create!
 
         # Silently update the revision
         grade_db.update_column :update_number, revision
       end
 
       # Tidy up the user's grades
-      Grade.where(user_session_id: session.id).where("update_number != ?", revision).delete_all
+      Grade.where(user_session_id: session.id).where("update_number != ?", revision).destroy_all
 
       user.grades_ok!(ecampus_id)
     rescue

@@ -18,15 +18,15 @@
             %th Note
         %tbody
           - # Sort grades by desc. chronological order
-          - @session.grades.sort{|x,y| y.date <=> x.date}.each do |g|
+          - @session.grades.includes(exam: :section).sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
             %tr
-              %td= g.section.name
-              %td= g.name
-              %td= g.kind
-              %td= g.date.strftime('%d/%m/%Y')
+              %td= g.exam.section.name
+              %td= g.exam.name
+              %td= g.exam.kind
+              %td= g.exam.date.strftime('%d/%m/%Y')
               %td
                 .pagination-right
-                  = "%.2f" % g.weight
+                  = "%.2f" % g.exam.weight
               %td
                 .pagination-right
                   - if g.unknown

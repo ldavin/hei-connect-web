@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405025356) do
+ActiveRecord::Schema.define(:version => 20130412015038) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -105,21 +105,31 @@ ActiveRecord::Schema.define(:version => 20130405025356) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "grades", :force => true do |t|
+  create_table "exams", :force => true do |t|
     t.string   "name"
     t.date     "date"
     t.string   "kind"
     t.float    "weight"
+    t.float    "average"
+    t.integer  "grades_count"
+    t.integer  "section_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "exams", ["section_id"], :name => "index_exams_on_section_id"
+
+  create_table "grades", :force => true do |t|
     t.float    "mark"
     t.boolean  "unknown"
     t.integer  "update_number"
     t.integer  "user_session_id"
-    t.integer  "section_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "exam_id"
   end
 
-  add_index "grades", ["section_id"], :name => "index_grades_on_section_id"
+  add_index "grades", ["exam_id"], :name => "index_grades_on_exam_id"
   add_index "grades", ["user_session_id"], :name => "index_grades_on_user_session_id"
 
   create_table "groups", :force => true do |t|

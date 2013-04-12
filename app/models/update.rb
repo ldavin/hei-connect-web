@@ -44,7 +44,12 @@ class Update < ActiveRecord::Base
         # Remove all the letters to keep the id, then fetch the corresponding session
         session_id = self.object.delete('a-z').to_i
         session = user.sessions.where(grades_session: session_id).first
-        'Notes ' + session.title
+
+        if session.present?
+          'Notes ' + session.title
+        else
+          'Notes'
+        end
       else
         raise Exception
     end
