@@ -7,6 +7,7 @@ HeiConnectWeb::Application.routes.draw do
   get 'dashboard/:ecampus_id/grades/:year/:try' => 'dashboard#grades', as: :dashboard_grades
   put 'dashboard/:ecampus_id/grades/:year/:try' => 'dashboard#update_grades'
   get 'dashboard/:ecampus_id/absences/:year/:try' => 'dashboard#absences', as: :dashboard_absences
+  put 'dashboard/:ecampus_id/absences/:year/:try' => 'dashboard#update_absences'
 
   get 'ics/:key' => 'ics#show', as: :ics
 

@@ -1,0 +1,48 @@
+= #render partial: 'absences_widget', locals: { session: @session }
+
+.content-box
+  .content-box-header
+    %i.icon-table
+    Absences
+    = @session.title
+  .padded
+    - if @session.absences.any?
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Matière
+            %th Date
+            %th Durée
+            %th Type
+            %th Raison
+        %tbody
+          - # Sort absences by desc. chronological order
+          - @session.absences.includes(:section).sort{|x,y| y.date <=> x.date}.each do |a|
+            %tr
+              %td= a.section.name
+              %td= a.date.strftime('%d/%m/%Y à %Hh%M')
+              %td= Time.at(a.length.minutes).utc.strftime("%Hh%M")
+              %td= absence_type_label a
+              %td= a.justification
+    - else
+      Aucune absence pour l'instant, c'est bien :)
+
+.row-fluid
+  .span6
+    = render partial: 'status_widget', locals: { updates: @updates }
+
+  .span6
+    .content-box
+      .content-box-header
+        %i.icon-info-sign
+        A propos des absences
+      .padded.pagination-justify
+        :markdown
+          La mise à jour automatique n'est programmée que pour l'année en cours, et n'est opérée que **tous les deux jours**.
+
+          Il est toujours possible de programmer **manuellement** une mise à jour des absences de n'importe quelle année grâce
+          au bouton ci-dessous.
+
+          *HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!*
+
+        = button_to 'Forcer la mise à jour des absences ' + @session.title, dashboard_absences_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'

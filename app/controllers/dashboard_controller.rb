@@ -56,6 +56,23 @@ class DashboardController < ApplicationController
     @updates = current_user.sessions.collect { |s| current_user.absences_update(s.absences_session) }
   end
 
+  def update_absences
+    @session = get_sessions params[:year], params[:try]
+
+    # We keep a 2 hours safety
+    if current_user.absences_scheduled?(@session.absences_session)
+      flash = {alert: 'La mise à jour est déjà planifiée'}
+    elsif current_user.absences_last_update(@session.absences_session) + 2.hours > DateTime.now.in_time_zone
+      flash = {alert: 'Vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
+    else
+      flash = {notice: 'Mise à jour programmée'}
+      Delayed::Job.enqueue FetchAbsencesWorker.new(current_user.id, @session.id),
+                           priority: ApplicationWorker::PR_FETCH_ABSENCES
+    end
+
+    redirect_to dashboard_absences_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), flash
+  end
+
   private
 
   def get_sessions(year, try)

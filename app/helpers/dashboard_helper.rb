@@ -65,4 +65,19 @@ module DashboardHelper
 
     content_tag :a, text, rel: 'popover', class: ['label', klass].join(' '), data: {placement: 'top', content: tooltip, 'original-title' => 'Etat: ' + text}
   end
+
+  def absence_type_label(absence)
+    if absence.excused
+      type = 'Excusée'
+      klass = 'label-green'
+    elsif absence.justification.present?
+      type = 'Justifiée'
+      klass = 'label-blue'
+    else
+      type = 'Non justifiée'
+      klass = 'label-red'
+    end
+
+    content_tag :span, type, class: ['label', klass].join(' ')
+  end
 end
