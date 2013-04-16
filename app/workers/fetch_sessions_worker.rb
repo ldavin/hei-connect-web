@@ -51,7 +51,8 @@ class FetchSessionsWorker < ApplicationWorker
     # We sort the session in desc chronological order to have the interesting grades first
     if @immediate
       user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
-        Delayed::Job.enqueue FetchGradesWorker.new(user.id, session.id), priority: ApplicationWorker::PR_FETCH_GRADES
+        Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, session.id),
+                             priority: ApplicationWorker::PR_FETCH_GRADES
       end
     end
   end
