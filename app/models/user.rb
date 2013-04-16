@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :updates, dependent: :delete_all
   has_many :sessions, class_name: "UserSession", dependent: :destroy, order: 'year DESC, try DESC'
   has_many :grades, through: :sessions
+  has_many :absences, through: :sessions
 
   validates :ecampus_id, presence: true
   validates :ecampus_id, length: {is: 6}

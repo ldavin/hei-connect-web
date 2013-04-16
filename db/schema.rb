@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412015038) do
+ActiveRecord::Schema.define(:version => 20130416220943) do
+
+  create_table "absences", :force => true do |t|
+    t.datetime "date"
+    t.integer  "length"
+    t.boolean  "excused"
+    t.string   "justification"
+    t.integer  "update_number"
+    t.integer  "section_id"
+    t.integer  "user_session_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "absences", ["section_id"], :name => "index_absences_on_section_id"
+  add_index "absences", ["user_session_id"], :name => "index_absences_on_user_session_id"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false

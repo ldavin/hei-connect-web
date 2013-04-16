@@ -18,7 +18,8 @@ class Update < ActiveRecord::Base
   OBJECT_SCHEDULE = :schedule
   OBJECT_SESSIONS = :sessions
   OBJECT_GRADES = :grades
-  OBJECTS = [OBJECT_USER, OBJECT_SCHEDULE, OBJECT_SESSIONS, OBJECT_GRADES]
+  OBJECT_ABSENCES = :absences
+  OBJECTS = [OBJECT_USER, OBJECT_SCHEDULE, OBJECT_SESSIONS, OBJECT_GRADES, OBJECT_ABSENCES]
 
   STATE_UNKNOWN = 'unknown'
   STATE_SCHEDULED = 'scheduled'
@@ -49,6 +50,16 @@ class Update < ActiveRecord::Base
           'Notes ' + session.title
         else
           'Notes'
+        end
+      when self.object.include?(OBJECT_ABSENCES.to_s)
+        # Remove all the letters to keep the id, then fetch the corresponding session
+        session_id = self.object.delete('a-z').to_i
+        session = user.sessions.where(absences_session: session_id).first
+
+        if session.present?
+          'Absences ' + session.title
+        else
+          'Absences'
         end
       else
         raise Exception
