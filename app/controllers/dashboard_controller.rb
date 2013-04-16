@@ -51,6 +51,11 @@ class DashboardController < ApplicationController
     redirect_to dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), flash
   end
 
+  def absences
+    @session = get_sessions params[:year], params[:try]
+    @updates = current_user.sessions.collect { |s| current_user.absences_update(s.absences_session) }
+  end
+
   private
 
   def get_sessions(year, try)
