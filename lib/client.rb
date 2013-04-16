@@ -88,4 +88,8 @@ class Client < RocketPants::Client
   def detailed_grades(user, session)
     get "grades/#{user.token}/detailed", extra_query: {session_id: session.grades_session}, transformer: ApiGradeDetailed
   end
+
+  def absences(user, session)
+    get "absences/#{user.token}", extra_query: {session_id: session.absences_session}, transformer: ApiAbsence
+  end
 end

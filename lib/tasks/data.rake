@@ -24,12 +24,22 @@ namespace :data do
     end
   end
 
-  desc 'Schedule an update the grades for the the valid users\' main session.'
+  desc 'Schedule an update of the grades for the the valid users\' main session.'
   task :update_grades => :environment do
     User.find_each(include: :updates) do |user|
       if user.user_ok? and user.main_session.present?
         Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, user.main_session.id),
                              priority: ApplicationWorker::PR_FETCH_GRADES
+      end
+    end
+  end
+
+  desc 'Schedule an update of the absences for the the valid users\' main session.'
+  task :update_absences => :environment do
+    User.find_each(include: :updates) do |user|
+      if user.user_ok? and user.main_session.present?
+        Delayed::Job.enqueue FetchGradesWorker.new(user.id, user.main_session.id),
+                             priority: ApplicationWorker::PR_FETCH_ABSENCES
       end
     end
   end

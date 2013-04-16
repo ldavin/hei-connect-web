@@ -47,12 +47,14 @@ class FetchSessionsWorker < ApplicationWorker
     # Tidy up the user's sessions
     UserSession.where(user_id: user.id).where("update_number != ?", revision).delete_all
 
-    # Schedule the grades updates if asked
-    # We sort the session in desc chronological order to have the interesting grades first
+    # Schedule the grades and absences updates if asked
+    # We sort the session in desc chronological order to have the interesting grades and absences first
     if @immediate
       user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
         Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, session.id),
                              priority: ApplicationWorker::PR_FETCH_GRADES
+        Delayed::Job.enqueue FetchGradesWorker.new(user.id, session.id),
+                             priority: ApplicationWorker::PR_FETCH_ABSENCES
       end
     end
   end
