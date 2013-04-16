@@ -1,4 +1,9 @@
-= cache ['average_widget', 'v5', current_user, session.exams, session.grades] do
+- draw_average ||= false
+= cache ['average_widget', 'v5', current_user, session.exams, session.grades, "average_#{draw_average}"] do
+  - y_keys = ['grade']
+  - y_keys << 'average' if draw_average
+  - labels = ['Moyenne']
+  - labels << 'Moyenne du groupe' if draw_average
   .content-box
     .content-box-header
       %i.icon-bar-chart
@@ -8,7 +13,7 @@
     - if session.grades.any?
       - goal = 10
       - goal = 12 if session.year > 2
-      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades.includes(:exam)), goals: [goal]}
+      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades.includes(:exam)), goals: [goal], x: 'date', y: y_keys, labels: labels}
       .row-fluid
         .span12
           #average-chart.chart{style: 'width: 100%; height: 330px;'}

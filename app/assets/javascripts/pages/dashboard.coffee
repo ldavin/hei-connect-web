@@ -11,8 +11,11 @@
       calendar.render()
 
     if $('#average_data').length
-      average = new HEIConnect.Widgets.Average 'average-chart', $('#average_data').data('grades'), 'date', ['grade'],
-                                               ['Moyenne'], $('#average_data').data('goals')
+      average = new HEIConnect.Widgets.Average 'average-chart', $('#average_data').data('grades'),
+                                               $('#average_data').data('x'),
+                                               $('#average_data').data('y'),
+                                               $('#average_data').data('labels'),
+                                               $('#average_data').data('goals')
       average.render()
 
 
@@ -24,6 +27,9 @@
 
   grades: ->
     if $('#average_data').length
-      average = new HEIConnect.Widgets.Average 'average-chart', $('#average_data').data('grades'), 'date', ['grade'],
-                                               ['Moyenne'], $('#average_data').data('goals')
+      average = new HEIConnect.Widgets.Average 'average-chart', $('#average_data').data('grades'),
+                                               $('#average_data').data('x'),
+                                               $('#average_data').data('y'),
+                                               $('#average_data').data('labels'),
+                                               $('#average_data').data('goals')
       average.render()

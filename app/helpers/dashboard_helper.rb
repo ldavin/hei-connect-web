@@ -5,11 +5,13 @@ module DashboardHelper
     # Sort grades and declare counters
     grades = grades.sort { |x, y| x.exam.date <=> y.exam.date }
     points = 0
+    average_points = 0
     coefficients = 0
-    final_array = Array.new
+    average_coefficients = 0
+    array = Array.new
 
     # Only keep known grades
-    grades.keep_if { |g| not g.unknown }
+    grades.keep_if { |g| (not g.unknown) or (g.unknown and g.exam.grades_count > 0) }
 
     # Group grades by date
     grades = grades.group_by { |g| g.exam.date }
@@ -17,14 +19,20 @@ module DashboardHelper
     # Compute array
     grades.each do |date, gs|
       gs.each do |g|
-        points += g.mark * g.exam.weight
-        coefficients += g.exam.weight
+        unless g.unknown
+          points += g.mark * g.exam.weight
+          coefficients += g.exam.weight
+        end
+
+        average_points += g.exam.average * g.exam.weight
+        average_coefficients += g.exam.weight
       end
 
-      final_array.push({date: date, grade: (points / coefficients).round(3)})
+      array.push({date: date, grade: (points / coefficients).round(3),
+                  average: (average_points / average_coefficients).round(3)})
     end
 
-    final_array
+    array
   end
 
   def update_status_label(update)
