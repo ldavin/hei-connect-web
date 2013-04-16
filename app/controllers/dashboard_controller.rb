@@ -18,6 +18,7 @@ class DashboardController < ApplicationController
 
   def courses
     @courses = current_user.courses.current_weeks
+    @updates = [current_user.schedule_update]
 
     if stale? current_user, public: false
       respond_to do |format|

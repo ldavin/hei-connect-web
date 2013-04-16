@@ -13,3 +13,18 @@
       = link_to url, url
 
 = render partial: 'calendar_widget', locals: { courses: @courses }
+
+.row-fluid
+  .span4
+    = render partial: 'status_widget', locals: { updates: @updates }
+
+  .span8
+    .content-box
+      .content-box-header
+        %i.icon-info-sign
+        A propos du planning
+      .padded.pagination-justify
+        :markdown
+          La mise à jour de l'emploi du temps est réalisée automatiquement **deux fois par jour**.
+
+          *A cause de la façon dont nous récupérons les données e-campus, il est possible que des cours passent à travers les filets de HEI-Connect, notamment si e-campus est mis à jour et que la structure de ses pages web change, merci de le garder en tête.*
