@@ -19,28 +19,7 @@ class Grade < ActiveRecord::Base
   belongs_to :user_session
   delegate :user, to: :user_session
 
-  after_create :increment_exam_counter
-  after_save :update_exam_average
-  after_destroy :decrement_exam_counter
-
   attr_accessible :mark, :unknown, :update_number, :user_session_id, :exam_id
 
-  private
-
-  def increment_exam_counter
-    Exam.increment_counter(:grades_count, exam_id)
-  end
-
-  def decrement_exam_counter
-    # Surround by a begin rescue in case the exam has already been destroyed
-    begin
-      Exam.decrement_counter(:grades_count, exam_id)
-      update_exam_average
-    rescue
-    end
-  end
-
-  def update_exam_average
-    exam.update_average
-  end
+  scope :known, where(unknown: false)
 end

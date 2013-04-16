@@ -19,6 +19,7 @@ class FetchDetailedGradesWorker < ApplicationWorker
     # Fetch the grades to count them
     client = Client.new
     grades = client.detailed_grades user, session
+    exams = Array.new
 
     grades.each do |grade|
       # Retrieve the linked section
@@ -34,9 +35,17 @@ class FetchDetailedGradesWorker < ApplicationWorker
 
       # Silently update the revision
       grade_db.update_column :update_number, revision
+
+      # Keep track of the exam
+      exams.push exam_db
     end
 
     # Tidy up the user's grades
     Grade.where(user_session_id: session.id).where("update_number != ?", revision).destroy_all
+
+    # Eventually update the exams average
+    exams.each do |exam|
+      exam.update_average_and_counter
+    end
   end
 end

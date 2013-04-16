@@ -20,10 +20,9 @@ class Exam < ActiveRecord::Base
 
   attr_accessible :date, :kind, :name, :weight, :section_id
 
-  def update_average
-    if grades_count > 0
-      self.average = grades.sum(:mark) / grades_count
-      save!
-    end
+  def update_average_and_counter
+    self.grades_count = grades.known.count
+    self.average = grades.known.sum(:mark) / grades_count if grades_count > 0
+    save!
   end
 end
