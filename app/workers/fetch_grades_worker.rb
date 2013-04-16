@@ -1,38 +1,30 @@
-class FetchGradesWorker
-  def schedule(user_id, session_id)
-    user = User.find user_id
-    session = UserSession.find session_id
+class FetchGradesWorker < ApplicationWorker
+  def initialize(user_id, session_id)
+    @user_id = user_id
+    @session_id = session_id
 
-    if session.grades_session.present?
-      user.grades_scheduled!(session.grades_session)
-      perform(user_id, session_id)
+    user = User.find @user_id
+    session = UserSession.find @session_id
+    super user.grades_update(session.grades_session).id
+  end
+
+  def perform
+    user = User.find @user_id
+    session = UserSession.find @session_id
+
+    # Fetch the grades to count them
+    client = Client.new
+    grades = client.grades user, session
+
+    # Because if there's any work, it will be in this worker:
+    if grades.count != session.grades.count
+      @scheduling_detailed_update = true
+      Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, session.id),
+                           priority: ApplicationWorker::PR_FETCH_DETAILED_GRADES
     end
   end
 
-  private
-
-  def perform(user_id, session_id)
-    user = User.find user_id
-    session = UserSession.find session_id
-    ecampus_id = session.grades_session
-
-    user.grades_updating!(ecampus_id)
-
-    begin
-      client = Client.new
-
-      # Fetch the grades to count them
-      grades = client.grades user, session
-
-      # We're done here!
-      user.grades_ok!(ecampus_id)
-
-      # Because if there's any work, it will be in this worker:
-      FetchDetailedGradesWorker.new.schedule user.id, session.id if grades.count != session.grades.count
-    rescue
-      user.grades_failed!(ecampus_id)
-    end
+  def success(job)
+    super job if @scheduling_detailed_update.nil?
   end
-
-  handle_asynchronously :perform, :queue => 'updates', :priority => 75
 end

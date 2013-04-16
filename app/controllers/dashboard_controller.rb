@@ -41,7 +41,8 @@ class DashboardController < ApplicationController
       flash = {alert: 'Mise à jour annulée, vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
     else
       flash = {notice: 'Mise à jour programmée'}
-      FetchDetailedGradesWorker.new.schedule current_user.id, @session.id
+      Delayed::Job.enqueue FetchDetailedGradesWorker.new(current_user.id, @session.id),
+                           priority: ApplicationWorker::PR_FETCH_DETAILED_GRADES
     end
 
     redirect_to dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), flash
