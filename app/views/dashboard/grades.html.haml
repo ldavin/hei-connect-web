@@ -16,6 +16,7 @@
             %th Date
             %th Coefficient
             %th Note
+            %th Moyenne
         %tbody
           - # Sort grades by desc. chronological order
           - @session.grades.includes(exam: :section).sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
@@ -33,14 +34,20 @@
                     %span.label.label-red ?
                   - else
                     %strong= "%.2f" % g.mark
+              %td
+                .pagination-right
+                  - if g.exam.grades_count == 0
+                    %span.label.label-red ?
+                  - else
+                    %strong= "%.2f" % g.exam.average
     - else
       Aucune note pour l'instant.
 
 .row-fluid
-  .span6
+  .span4
     = render partial: 'status_widget', locals: { updates: @updates }
 
-  .span6
+  .span5
     .content-box
       .content-box-header
         %i.icon-info-sign
@@ -58,3 +65,16 @@
           HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!
 
         = button_to 'Forcer la mise à jour des notes ' + @session.title, dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'
+
+  .span3
+    .content-box
+      .content-box-header
+        %i.icon-info-sign
+        A propos des moyennes
+      .padded.pagination-justify
+        :markdown
+          **Les moyennes sont calculées par groupe**, c'est à dire par ensemble d'utilisateurs ayant reçu une note pour le même examen à la même date.
+
+          *Exemple: moyenne des élèves d'un même groupe de khôlle, d'une même promotion, d'un même semestre.*
+
+          **Plus il y a d'utilisateurs d'un même groupe inscrits sur HEI-Connect, plus la moyenne se rapproche de la réalité.**
