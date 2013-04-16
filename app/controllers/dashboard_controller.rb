@@ -38,8 +38,10 @@ class DashboardController < ApplicationController
     @session = get_sessions params[:year], params[:try]
 
     # We keep a 2 hours safety
-    if current_user.grades_last_update(@session.grades_session) + 2.hours > DateTime.now.in_time_zone
-      flash = {alert: 'Mise à jour annulée, vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
+    if current_user.grades_scheduled?(@session.grades_session)
+      flash = {alert: 'La mise à jour est déjà planifiée'}
+    elsif current_user.grades_last_update(@session.grades_session) + 2.hours > DateTime.now.in_time_zone
+      flash = {alert: 'Vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
     else
       flash = {notice: 'Mise à jour programmée'}
       Delayed::Job.enqueue FetchDetailedGradesWorker.new(current_user.id, @session.id),
