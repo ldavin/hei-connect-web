@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # == Schema Information
 #
 # Table name: absences
@@ -15,6 +17,10 @@
 #
 
 class Absence < ActiveRecord::Base
+  TYPE_EXCUSED = 'Excusée'
+  TYPE_JUSTIFIED = 'Justifiée'
+  TYPE_NOTHING = 'Non justifiée'
+
   belongs_to :section
   belongs_to :user_session
   delegate :user, to: :user_session
@@ -24,4 +30,14 @@ class Absence < ActiveRecord::Base
   scope :excused, where(excused: true)
   scope :justified, where('excused = ? AND justification IS NOT NULL', false)
   scope :nothing, where('excused = ? AND justification IS NULL', false)
+
+  def type
+    if excused
+      TYPE_EXCUSED
+    elsif justification.present?
+      TYPE_JUSTIFIED
+    else
+      TYPE_NOTHING
+    end
+  end
 end

@@ -67,15 +67,13 @@ module DashboardHelper
   end
 
   def absence_type_label(absence)
-    if absence.excused
-      type = 'Excusée'
-      klass = 'label-green'
-    elsif absence.justification.present?
-      type = 'Justifiée'
-      klass = 'label-blue'
-    else
-      type = 'Non justifiée'
-      klass = 'label-red'
+    case absence.type
+      when Absence::TYPE_EXCUSED
+        klass = 'label-green'
+      when Absence::TYPE_JUSTIFIED
+        klass = 'label-blue'
+      when Absence::TYPE_NOTHING
+        klass = 'label-red'
     end
 
     content_tag :span, type, class: ['label', klass].join(' ')
