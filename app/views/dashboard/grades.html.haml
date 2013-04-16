@@ -56,13 +56,13 @@
         :markdown
           Les mises à jour automatiques ne sont programmées que pour l'année en cours.
 
-          La mise à jour n'est opérée que tous les deux jours, à cause du temps nécessaire pour récupérer les notes
+          La mise à jour n'est opérée que **tous les deux jours**, à cause du temps nécessaire pour récupérer les notes
           depuis e-campus (20-25 secondes), et du manque de ressources d'HEI Connect.
 
-          Il est toujours possible de programmer manuellement un mise à jour des notes de n'importe quelle année grâce
+          Il est toujours possible de programmer **manuellement** un mise à jour des notes de n'importe quelle année grâce
           au bouton ci-dessous.
 
-          HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!
+          *HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!*
 
         = button_to 'Forcer la mise à jour des notes ' + @session.title, dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'
 
