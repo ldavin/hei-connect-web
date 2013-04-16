@@ -12,12 +12,14 @@
         header:
           left: "prev,next today"
           center: "title"
-          right: ""
+          right: "agendaWeek,agendaDay"
 
         allDaySlot: false
         axisFormat: "H'h'(mm)"
         columnFormat:
           week: "ddd dd/MM"
+          day: "dddd dd/MM"
+        dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
         dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
         defaultView: 'agendaWeek'
         editable: false
@@ -32,3 +34,4 @@
         timeFormat: "H'h'mm{ - H'h'mm}"
         titleFormat:
           week: "d[ MMMM]{ '&#8212;' d MMMM yyyy}"
+          day: "dddd dd MMMM yyyy"
