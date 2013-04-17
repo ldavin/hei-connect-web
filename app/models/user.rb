@@ -93,7 +93,11 @@ class User < ActiveRecord::Base
   end
 
   def main_session
-    self.sessions.order('year DESC, try DESC').limit(1).first
+    # Try to use an included collection of sessions
+    main = sessions.sort { |x, y| y.year <=> x.year }.first
+    main = self.sessions.order('year DESC, try DESC').limit(1).first if main.nil?
+
+    main
   end
 
   private
