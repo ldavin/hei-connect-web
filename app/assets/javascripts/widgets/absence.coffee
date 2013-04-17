@@ -25,4 +25,5 @@
 
         lineColors: @colors
         hideHover: 'auto'
+        smooth: false
       )
