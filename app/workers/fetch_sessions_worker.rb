@@ -52,7 +52,7 @@ class FetchSessionsWorker < ApplicationWorker
     if @immediate
       user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
         Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, session.id),
-                             priority: ApplicationWorker::PR_FETCH_GRADES
+                             priority: ApplicationWorker::PR_FETCH_DETAILED_GRADES
         Delayed::Job.enqueue FetchAbsencesWorker.new(user.id, session.id),
                              priority: ApplicationWorker::PR_FETCH_ABSENCES
       end
