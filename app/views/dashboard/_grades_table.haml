@@ -1,0 +1,43 @@
+= cache ['grades_table', 'v1', current_user, session, grades] do
+  .content-box
+    .content-box-header
+      %i.icon-table
+      Notes
+      = session.title
+    .padded
+      - if grades.any?
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th Matière
+              %th Examen
+              %th Type
+              %th Date
+              %th Coefficient
+              %th Note
+              %th Moyenne
+          %tbody
+            - # Sort grades by desc. chronological order
+            - grades.sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
+              %tr
+                %td= g.exam.section.name
+                %td= g.exam.name
+                %td= g.exam.kind
+                %td= g.exam.date.strftime('%d/%m/%Y')
+                %td
+                  .pagination-right
+                    = "%.2f" % g.exam.weight
+                %td
+                  .pagination-right
+                    - if g.unknown
+                      %span.label.label-red ?
+                    - else
+                      %strong= "%.2f" % g.mark
+                %td
+                  .pagination-right
+                    - if g.exam.grades_count == 0
+                      %span.label.label-red ?
+                    - else
+                      %strong= "%.2f" % g.exam.average
+      - else
+        Aucune note pour l'instant.
