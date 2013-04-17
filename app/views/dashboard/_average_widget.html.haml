@@ -1,6 +1,6 @@
 - draw_average ||= false
-- cache_key = ['average_widget', 'v5', current_user, grades]
-- cache_key = ['average_widget', 'v5', current_user, exams, grades] if draw_average
+- cache_key = ['average_widget', 'v5', current_user, session, grades]
+- cache_key = cache_key + [exams] if draw_average
 
 = cache cache_key do
   - y_keys = ['grade']
