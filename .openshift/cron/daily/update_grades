@@ -1,0 +1,11 @@
+#!/bin/bash
+
+day=`date "+%j"`
+rem=$(( $day % 2 ))
+
+if [ $rem -eq 0 ]
+then
+  pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+  RAILS_ENV=production rake data:update_grades
+  popd > /dev/null
+fi
