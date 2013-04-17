@@ -1,5 +1,8 @@
 - draw_average ||= false
-= cache ['average_widget', 'v5', current_user, session.exams, session.grades, "average_#{draw_average}"] do
+- cache_key = ['average_widget', 'v5', current_user, grades]
+- cache_key = ['average_widget', 'v5', current_user, exams, grades] if draw_average
+
+= cache cache_key do
   - y_keys = ['grade']
   - y_keys << 'average' if draw_average
   - labels = ['Moyenne']
