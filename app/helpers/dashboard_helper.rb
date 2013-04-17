@@ -35,6 +35,39 @@ module DashboardHelper
     array
   end
 
+  def absences_to_chart_data(absences)
+    # Sort absences and declare counters
+    absences = absences.sort { |x, y| x.date <=> y.date }
+    hours_excused = 0.0
+    hours_justified = 0.0
+    hours_nothing = 0.0
+    array = Array.new
+
+    # Group absences by date (probably useless)
+    absences = absences.group_by { |g| g.date }
+
+    # Compute array
+    absences.each do |date, as|
+      as.each do |a|
+        case a.type
+          when Absence::TYPE_EXCUSED
+            hours_excused += a.length
+          when Absence::TYPE_JUSTIFIED
+            hours_justified += a.length
+          when Absence::TYPE_NOTHING
+            hours_nothing += a.length
+        end
+      end
+
+      array.push({date: date, excused: (hours_excused / 60).round(2),
+                  justified: (hours_justified / 60).round(2),
+                  nothing: (hours_nothing / 60).round(2),
+                  total: ((hours_excused + hours_justified + hours_nothing) / 60).round(2)})
+    end
+
+    array
+  end
+
   def update_status_label(update)
     case update.state
       when Update::STATE_UNKNOWN
@@ -76,6 +109,6 @@ module DashboardHelper
         klass = 'label-red'
     end
 
-    content_tag :span, type, class: ['label', klass].join(' ')
+    content_tag :span, absence.type, class: ['label', klass].join(' ')
   end
 end
