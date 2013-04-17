@@ -7,7 +7,10 @@ class DashboardController < ApplicationController
     @courses = current_user.courses.current_weeks
     @session = current_user.main_session || UserSession.new
     @updates = [current_user.schedule_update, current_user.sessions_update]
-    @updates.push current_user.grades_update(@session.grades_session) unless @session.new_record?
+    unless @session.new_record?
+      @updates.push current_user.grades_update(@session.grades_session)
+      @updates.push current_user.absences_update(@session.absences_session)
+    end
 
     if stale? current_user, public: false
       respond_to do |format|

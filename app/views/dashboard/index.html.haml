@@ -1,13 +1,7 @@
-.content-box
-  .content-box-header
-    %i.icon-info-sign
-    En reconstruction
-  .padded
-    :markdown
-      Prochainement ici, tout plein d'autres widgets super géniaux (moyenne, heures d'absence)...
-
 = render partial: 'calendar_widget', locals: { courses: @courses }
 
 = render partial: 'average_widget', locals: { session: @session }
+
+= render partial: 'absences_widget', locals: { session: @session }
 
 = render partial: 'status_widget', locals: { updates: @updates }
