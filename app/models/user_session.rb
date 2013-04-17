@@ -18,7 +18,7 @@ class UserSession < ActiveRecord::Base
   has_many :exams, through: :grades
   has_many :absences, dependent: :destroy
 
-  belongs_to :user, touch: true
+  belongs_to :user
 
   attr_accessible :absences_session, :grades_session, :try, :update_number, :user_id, :year
 
