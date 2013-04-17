@@ -12,7 +12,8 @@
             %th Dernière mise à jour
         %tbody
           - updates.each do |update|
-            %tr
-              %td= update.title
-              %td= update_status_label(update)
-              %td= update.updated_at.strftime('%d/%m à %H:%M')
+            = cache ['status_widget', 'tr', 'v1', update] do
+              %tr
+                %td= update.title
+                %td= update_status_label(update)
+                %td= update.updated_at.strftime('%d/%m à %H:%M')
