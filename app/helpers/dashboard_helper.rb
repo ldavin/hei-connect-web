@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module DashboardHelper
-  def grades_to_chart_data(grades)
+  def grades_to_chart_data(grades, we_want_average = false)
     # Sort grades and declare counters
     grades = grades.sort { |x, y| x.exam.date <=> y.exam.date }
     points = 0
@@ -28,8 +28,12 @@ module DashboardHelper
         average_coefficients += g.exam.weight
       end
 
-      array.push({date: date, grade: (points / coefficients).round(3),
-                  average: (average_points / average_coefficients).round(3)})
+      if we_want_average
+        array.push({date: date, grade: (points / coefficients).round(3),
+                    average: (average_points / average_coefficients).round(3)})
+      else
+        array.push({date: date, grade: (points / coefficients).round(3)})
+      end
     end
 
     array
