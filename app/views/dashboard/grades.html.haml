@@ -1,4 +1,4 @@
-= render partial: 'average_widget', locals: { session: @session, draw_average: true }
+= render partial: 'average_widget', locals: { session: @session, grades: @grades, exams: @exams, draw_average: true }
 
 .content-box
   .content-box-header
@@ -6,7 +6,7 @@
     Notes
     = @session.title
   .padded
-    - if @session.grades.any?
+    - if @grades.any?
       %table.table.table-bordered.table-striped
         %thead
           %tr
@@ -19,7 +19,7 @@
             %th Moyenne
         %tbody
           - # Sort grades by desc. chronological order
-          - @session.grades.includes(exam: :section).sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
+          - @grades.sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
             %tr
               %td= g.exam.section.name
               %td= g.exam.name

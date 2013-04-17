@@ -1,7 +1,7 @@
 = render partial: 'calendar_widget', locals: { courses: @courses }
 
-= render partial: 'average_widget', locals: { session: @session }
+= render partial: 'average_widget', locals: { session: @session, grades: @grades, exams: nil }
 
-= render partial: 'absences_widget', locals: { session: @session }
+= render partial: 'absences_widget', locals: { session: @session, absences: @absences }
 
 = render partial: 'status_widget', locals: { updates: @updates }

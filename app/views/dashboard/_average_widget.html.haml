@@ -10,10 +10,10 @@
       Moyenne
       = session.title
 
-    - if session.grades.any?
+    - if grades.any?
       - goal = 10
       - goal = 12 if session.year > 2
-      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(session.grades.includes(:exam)), goals: [goal], x: 'date', y: y_keys, labels: labels}
+      = content_tag :div, '', id: 'average_data', data: {grades: grades_to_chart_data(grades, exams.present?), goals: [goal], x: 'date', y: y_keys, labels: labels}
       .row-fluid
         .span12
           #average-chart.chart{style: 'width: 100%; height: 330px;'}
