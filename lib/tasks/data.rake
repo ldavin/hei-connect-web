@@ -38,7 +38,7 @@ namespace :data do
   task :update_absences => :environment do
     User.find_each(include: :updates) do |user|
       if user.user_ok? and user.main_session.present?
-        Delayed::Job.enqueue FetchGradesWorker.new(user.id, user.main_session.id),
+        Delayed::Job.enqueue FetchAbsencesWorker.new(user.id, user.main_session.id),
                              priority: ApplicationWorker::PR_FETCH_ABSENCES
       end
     end
