@@ -24,4 +24,6 @@
           "#{curr_date}/#{curr_month}/#{curr_year}"
 
         goals: @goals
+
+        hideHover: 'auto'
       )
