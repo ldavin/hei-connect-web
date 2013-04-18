@@ -52,6 +52,6 @@ echo "Starting delayed_job"
 RAILS_ENV=production script/delayed_job start
 
 echo "Make sure that the dropbox script is executable"
-chmod +x dropbox_uploader.sh
+chmod +x script/dropbox_uploader.sh
 
 popd > /dev/null
