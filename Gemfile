@@ -29,7 +29,6 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'ri_cal'
-gem 'activeadmin'
 gem 'newrelic_rpm'
 gem 'delayed_job_active_record'
 gem 'daemons'
