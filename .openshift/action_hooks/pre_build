@@ -5,12 +5,6 @@
 # could be python, php, ruby, etc.
 
 #########################
-# We source our env variables
-#########################
-source ${OPENSHIFT_DATA_DIR}/keys
-
-
-#########################
 # Bullshit for speeding up assets precompilation (does not really seems to work...)
 #########################
 STORED_ASSETS="${OPENSHIFT_DATA_DIR}/assets"
