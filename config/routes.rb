@@ -16,5 +16,28 @@ HeiConnectWeb::Application.routes.draw do
   get 'about' => 'welcome#about'
   get 'status' => 'welcome#status'
 
+  namespace(:admin) {
+    resources :absences
+    resources :course_rooms
+    resources :course_teachers
+    resources :course_users
+    resources :courses
+    resources :grades
+    resources :exams
+    resources :groups
+    resources :rooms
+    resources :sections
+    resources :teachers
+    resources :updates
+    resources :user_sessions
+    resources :users
+
+    post 'sessions' => 'sessions#create'
+    delete 'sessions' => 'sessions#destroy'
+    get 'dashboard' => 'dashboard#index'
+    get 'dashboard' => 'dashboard#index'
+    root to: 'sessions#index'
+  }
+
   root :to => 'welcome#index'
 end

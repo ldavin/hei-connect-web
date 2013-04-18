@@ -1,0 +1,34 @@
+- model_class = UserSession
+.content-box
+  .content-box-header
+    =t '.title', :default => model_class.model_name.human
+  .padded
+    %p
+      %strong= model_class.human_attribute_name(:year) + ':'
+      %br
+      = @user_session.year
+    %p
+      %strong= model_class.human_attribute_name(:try) + ':'
+      %br
+      = @user_session.try
+    %p
+      %strong= model_class.human_attribute_name(:absences_session) + ':'
+      %br
+      = @user_session.absences_session
+    %p
+      %strong= model_class.human_attribute_name(:grades_session) + ':'
+      %br
+      = @user_session.grades_session
+    %p
+      %strong= model_class.human_attribute_name(:update_number) + ':'
+      %br
+      = @user_session.update_number
+    %p
+      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %br
+      = @user_session.user_id
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), admin_user_sessions_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_admin_user_session_path(@user_session), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), admin_user_session_path(@user_session), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

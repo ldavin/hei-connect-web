@@ -1,0 +1,8 @@
+- model_class = Teacher
+.content-box
+  .content-box-header
+    =t '.title', :default => model_class.model_name.human.pluralize
+  .padded
+    = render :partial => 'admin/shared/teachers_table', locals:  { teachers: @teachers }
+    %br
+    = link_to t('.new', :default => t("helpers.links.new")), new_admin_teacher_path, :class => 'btn btn-primary'

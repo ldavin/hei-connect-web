@@ -1,0 +1,8 @@
+- model_class = Grade
+.content-box
+  .content-box-header
+    =t '.title', :default => model_class.model_name.human.pluralize
+  .padded
+    = render :partial => 'admin/shared/grades_table', locals: { grades: @grades }
+    %br
+    = link_to t('.new', :default => t("helpers.links.new")), new_admin_grade_path, :class => 'btn btn-primary'

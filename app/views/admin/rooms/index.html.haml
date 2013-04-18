@@ -1,0 +1,8 @@
+- model_class = Room
+.content-box
+  .content-box-header
+    =t '.title', :default => model_class.model_name.human.pluralize
+  .padded
+    = render :partial => 'admin/shared/rooms_table', locals:  { rooms: @rooms }
+    %br
+    = link_to t('.new', :default => t("helpers.links.new")), new_admin_room_path, :class => 'btn btn-primary'

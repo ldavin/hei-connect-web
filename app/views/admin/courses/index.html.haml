@@ -1,0 +1,8 @@
+- model_class = Course
+.content-box
+  .content-box-header
+    =t '.title', :default => model_class.model_name.human.pluralize
+  .padded
+    = render :partial => 'admin/shared/courses_table', locals:{ courses: @courses }
+    %br
+    = link_to t('.new', :default => t("helpers.links.new")), new_admin_course_path, :class => 'btn btn-primary'

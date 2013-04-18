@@ -1,0 +1,11 @@
+- url = admin_updates_path
+- url = admin_update_path(@update) unless @update.new_record?
+
+= simple_form_for @update, :url => url, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :object
+  = f.input :state
+  = f.input :rev
+  = f.input :user_id
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_updates_path, :class => 'btn'

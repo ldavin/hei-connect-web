@@ -1,0 +1,8 @@
+- url = admin_groups_path
+- url = admin_group_path(@group) unless @group.new_record?
+
+= simple_form_for @group, :url => url, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_groups_path, :class => 'btn'

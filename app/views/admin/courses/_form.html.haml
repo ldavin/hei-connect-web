@@ -1,0 +1,14 @@
+- url = admin_courses_path
+- url = admin_course_path(@course) unless @course.new_record?
+
+= simple_form_for @course, :url => url, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :date
+  = f.input :length
+  = f.input :kind
+  = f.input :ecampus_id
+  = f.input :section_id
+  = f.input :group_id
+  = f.input :broken_name
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_courses_path, :class => 'btn'
