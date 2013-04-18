@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416220943) do
+ActiveRecord::Schema.define(:version => 20130418212925) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -202,12 +202,13 @@ ActiveRecord::Schema.define(:version => 20130416220943) do
 
   create_table "users", :force => true do |t|
     t.string   "ecampus_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "ics_key"
     t.string   "password_digest"
     t.string   "token"
     t.datetime "last_activity"
+    t.boolean  "admin",           :default => false
   end
 
   add_index "users", ["ecampus_id"], :name => "index_users_on_ecampus_id"
