@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Clean log files to save space (hopefully logentries will have streamed them to the cloud)
+
+# Delete old ruby log files
+find ${OPENSHIFT_RUBY_LOG_DIR} -type f -mtime +3 -exec rm {} \;
+
+# Clear mysql error file
+cp /dev/null ${OPENSHIFT_MYSQL_DB_LOG_DIR}/mysql_error.log
+
+# Clean rails log files
+RAILS_ENV=production rake log:clear
