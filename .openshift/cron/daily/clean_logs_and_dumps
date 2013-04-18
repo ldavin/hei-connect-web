@@ -4,10 +4,11 @@
 # Clean dumps files too (should be synced to dropbox)
 
 # Delete old ruby log files
-find ${OPENSHIFT_RUBY_LOG_DIR} -type f -mtime +3 -exec rm {} \;
+find ${OPENSHIFT_RUBY_LOG_DIR} -type f -mtime +14 -exec rm {} \;
 
 # Clear mysql error file
-cp /dev/null ${OPENSHIFT_MYSQL_DB_LOG_DIR}/mysql_error.log
+# **** Commented out because does not almost grow in size... ****
+# cp /dev/null ${OPENSHIFT_MYSQL_DB_LOG_DIR}/mysql_error.log
 
 # Clean rails log files
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
@@ -15,4 +16,4 @@ RAILS_ENV=production rake log:clear
 popd > /dev/null
 
 # Delete old sql dumps
-find ${OPENSHIFT_DATA_DIR}/dumps -type f -name *.sql -mtime +3 -exec rm {} \;
+find ${OPENSHIFT_DATA_DIR}/dumps -type f -name *.sql -mtime +7 -exec rm {} \;
