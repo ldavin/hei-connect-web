@@ -4,6 +4,10 @@
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
+#########################
+# Bullshit for the database (don't understand what it does)
+#########################
+
 set -e
 
 if [ -z "$OPENSHIFT_MYSQL_DB_HOST" ]
@@ -40,16 +44,32 @@ then
     exit 5
 fi
 
+
+#########################
+# Delayed job, migrations, dropbox uploader
+#########################
+
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+
+# Stop delay jobs before migration
 
 echo "Stopping delayed_job"
 RAILS_ENV=production script/delayed_job stop
 
+
+# Run ruby mugrations
+
 echo "Migrating database..."
 bundle exec rake db:migrate RAILS_ENV="production"
 
+
+# Restart delayed jobs
+
 echo "Starting delayed_job"
 RAILS_ENV=production script/delayed_job start
+
+
+# Give exec right to dropbox uploader script
 
 echo "Make sure that the dropbox script is executable"
 chmod +x script/dropbox_uploader.sh
