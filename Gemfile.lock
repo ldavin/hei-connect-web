@@ -119,6 +119,7 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    le (2.1.6)
     libv8 (3.11.8.13)
     mail (2.5.3)
       i18n (>= 0.4.0)
@@ -246,6 +247,7 @@ DEPENDENCIES
   delayed_job_active_record
   haml-rails
   jquery-rails
+  le
   libv8
   minitest
   mysql2

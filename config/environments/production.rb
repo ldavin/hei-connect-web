@@ -38,6 +38,7 @@ HeiConnectWeb::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  config.logger = Le.new(YAML.load(File.read("#{ENV['OPENSHIFT_DATA_DIR']}/keys.yaml"))['HEI_CONNECT_LOG_ENTRIES_RAILS_KEY'])
 
   # Use a different cache store in production
   config.cache_store = :redis_store, {path: ENV['OPENSHIFT_DATA_DIR'] + '/redis/socks/redis.sock', db: 0, :namespace => 'cache'}
