@@ -34,8 +34,10 @@ HeiConnectWeb::Application.routes.draw do
 
     post 'sessions' => 'sessions#create'
     delete 'sessions' => 'sessions#destroy'
+
     get 'dashboard' => 'dashboard#index'
-    get 'dashboard' => 'dashboard#index'
+    get 'dashboard/maintenance' => 'dashboard#switch_maintenance'
+
     root to: 'sessions#index'
   }
 
