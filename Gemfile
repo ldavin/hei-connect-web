@@ -38,6 +38,7 @@ gem 'redis-rails'
 gem 'newrelic-redis'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'le'
+gem 'simple_form'
 
 # Openshift
 gem 'thor', '= 0.14.6'

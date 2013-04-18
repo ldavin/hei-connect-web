@@ -163,6 +163,9 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    simple_form (2.1.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -216,6 +219,7 @@ DEPENDENCIES
   ri_cal
   rocket_pants
   sass-rails
+  simple_form
   sqlite3
   thin
   thor (= 0.14.6)
