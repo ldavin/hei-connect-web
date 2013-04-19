@@ -1,6 +1,6 @@
 = render partial: 'average_widget', locals: { session: @session, grades: @grades, exams: @exams, draw_average: true }
 
-= render :partial => 'grades_table', locals: { session: @session, grades: @grades }
+= render partial: 'grades_table', locals: { session: @session, grades: @grades, exams: @exams }
 
 .row-fluid
   .span4
