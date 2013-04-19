@@ -3,7 +3,7 @@ class IcsController < ApplicationController
     begin
       user = User.find_by_ics_key! params[:key]
     rescue
-      redirect_to root_url, alert: "Impossible de trouver de calendrier correspondant."
+      redirect_to root_url, format: 'html', status: 410, alert: 'Impossible de trouver de calendrier correspondant.'
       return
     end
 
