@@ -39,6 +39,8 @@ gem 'newrelic-redis'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'le'
 gem 'simple_form'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Openshift
 gem 'thor', '= 0.14.6'

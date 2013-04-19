@@ -5,4 +5,6 @@
   .padded
     = render :partial => 'admin/shared/exams_table', locals: { exams: @exams }
     %br
+    .center
+      = will_paginate @exams
     = link_to t('.new', :default => t("helpers.links.new")), new_admin_exam_path, :class => 'btn btn-primary'

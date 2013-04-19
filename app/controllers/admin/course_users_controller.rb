@@ -2,7 +2,7 @@ class Admin::CourseUsersController < AdminController
   # GET /course_users
   # GET /course_users.json
   def index
-    @course_users = CourseUser.all
+    @course_users = CourseUser.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

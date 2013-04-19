@@ -2,7 +2,7 @@ class Admin::UpdatesController < AdminController
   # GET /updates
   # GET /updates.json
   def index
-    @updates = Update.all
+    @updates = Update.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

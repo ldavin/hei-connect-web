@@ -5,4 +5,6 @@
   .padded
     = render partial: 'admin/shared/users_table', locals: { users: @users }
     %br
+    .center
+      = will_paginate @courses
     = link_to t('.new', :default => t("helpers.links.new")), new_admin_user_path, :class => 'btn btn-primary'

@@ -2,7 +2,7 @@ class Admin::GroupsController < AdminController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

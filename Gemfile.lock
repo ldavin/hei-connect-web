@@ -39,6 +39,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
+    bootstrap-will_paginate (0.0.9)
+      will_paginate
     builder (3.0.4)
     bullet (4.4.0)
       uniform_notifier
@@ -198,6 +200,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
+  bootstrap-will_paginate
   bullet
   coffee-rails
   compass-rails
@@ -225,3 +228,4 @@ DEPENDENCIES
   thor (= 0.14.6)
   turbo-sprockets-rails3
   uglifier
+  will_paginate

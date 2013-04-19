@@ -2,7 +2,7 @@ class Admin::GradesController < AdminController
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
+    @grades = Grade.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

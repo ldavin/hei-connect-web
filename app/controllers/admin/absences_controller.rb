@@ -2,7 +2,7 @@ class Admin::AbsencesController < AdminController
   # GET /absences
   # GET /absences.json
   def index
-    @absences = Absence.all
+    @absences = Absence.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

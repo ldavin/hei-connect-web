@@ -2,7 +2,7 @@ class Admin::SectionsController < AdminController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    @sections = Section.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

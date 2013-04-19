@@ -5,4 +5,6 @@
   .padded
     = render :partial => 'admin/shared/grades_table', locals: { grades: @grades }
     %br
+    .center
+      = will_paginate @grades
     = link_to t('.new', :default => t("helpers.links.new")), new_admin_grade_path, :class => 'btn btn-primary'

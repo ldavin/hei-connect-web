@@ -2,7 +2,7 @@ class Admin::TeachersController < AdminController
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

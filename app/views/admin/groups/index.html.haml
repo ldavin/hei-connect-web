@@ -5,4 +5,6 @@
   .padded
     = render :partial => 'admin/shared/groups_table', locals: { groups: @groups }
     %br
+    .center
+      = will_paginate @groups
     = link_to t('.new', :default => t("helpers.links.new")), new_admin_group_path, :class => 'btn btn-primary'

@@ -5,4 +5,6 @@
   .padded
     = render :partial => 'admin/shared/rooms_table', locals:  { rooms: @rooms }
     %br
+    .center
+      = will_paginate @rooms
     = link_to t('.new', :default => t("helpers.links.new")), new_admin_room_path, :class => 'btn btn-primary'

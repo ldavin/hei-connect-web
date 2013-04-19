@@ -2,7 +2,7 @@ class Admin::UserSessionsController < AdminController
   # GET /user_sessions
   # GET /user_sessions.json
   def index
-    @user_sessions = UserSession.all
+    @user_sessions = UserSession.order('id ASC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
