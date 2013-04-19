@@ -99,3 +99,12 @@ Pour comprendre ce que vous faites (et ce que vous avez fait en suivant les éta
 
 * [Railstutorial.org](http://ruby.railstutorial.org/)
 * [Rails for zombies](http://railsforzombies.org/)
+
+## Les projets autour d'HEI-Connect
+### HEI-Connect
+L'API de base permettant de récupérer en JSON des données depuis e-campus.
+[Projet GitHub](https://github.com/ldavin/hei-connect)
+
+### [HEI-Connect-Web](http://www.hei-connect.eu)
+Une application web communiquant avec HEI-Connect, visant à créer un e-campus "parallèle", plus rapide, plus simple d'utilisation, avec de nouvelles fonctionnalités.
+[Projet GitHub](https://github.com/ldavin/hei-connect-web)
