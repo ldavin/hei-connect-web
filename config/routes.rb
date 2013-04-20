@@ -17,20 +17,13 @@ HeiConnectWeb::Application.routes.draw do
   get 'status' => 'welcome#status'
 
   namespace(:admin) {
-    resources :absences
-    resources :course_rooms
-    resources :course_teachers
-    resources :course_users
-    resources :courses
-    resources :grades
-    resources :exams
-    resources :groups
-    resources :rooms
-    resources :sections
-    resources :teachers
-    resources :updates
-    resources :user_sessions
-    resources :users
+    get 'entity/:entity(.:format)' => 'entity#index', as: :entities
+    post 'entity/:entity(.:format)' => 'entity#create'
+    get 'entity/:entity/new(.:format)' => 'entity#new', as: :new_entity
+    get 'entity/:entity/:id/edit(.:format)' => 'entity#edit', as: :edit_entity
+    get 'entity/:entity/:id(.:format)' => 'entity#show', as: :entity
+    put 'entity/:entity/:id(.:format)' => 'entity#update'
+    delete 'entity/:entity/:id(.:format)' => 'entity#destroy'
 
     post 'sessions' => 'sessions#create'
     delete 'sessions' => 'sessions#destroy'

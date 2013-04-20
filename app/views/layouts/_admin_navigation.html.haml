@@ -22,7 +22,7 @@
                   Dashboard
 
               %li
-                = link_to admin_sections_path do
+                = link_to admin_entities_path(entity: 'sections') do
                   %i.icon-folder-close
                   Sections
 
@@ -34,31 +34,31 @@
 
                 %ul.dropdown-menu.secondary
                   %li
-                    = link_to admin_courses_path do
+                    = link_to admin_entities_path(entity: 'courses') do
                       %i.icon-wrench
                       Courses
                   %li
-                    = link_to admin_course_rooms_path do
+                    = link_to admin_entities_path(entity: 'course_rooms') do
                       %i.icon-wrench
                       Course Rooms
                   %li
-                    = link_to admin_course_teachers_path do
+                    = link_to admin_entities_path(entity: 'course_teachers') do
                       %i.icon-wrench
                       Course Teachers
                   %li
-                    = link_to admin_course_users_path do
+                    = link_to admin_entities_path(entity: 'course_users') do
                       %i.icon-wrench
                       Course Users
                   %li
-                    = link_to admin_groups_path do
+                    = link_to admin_entities_path(entity: 'groups') do
                       %i.icon-wrench
                       Groups
                   %li
-                    = link_to admin_rooms_path do
+                    = link_to admin_entities_path(entity: 'rooms') do
                       %i.icon-wrench
                       Rooms
                   %li
-                    = link_to admin_teachers_path do
+                    = link_to admin_entities_path(entity: 'teachers') do
                       %i.icon-wrench
                       Teachers
               %li.dropdown
@@ -69,20 +69,20 @@
 
                 %ul.dropdown-menu.secondary
                   %li
-                    = link_to admin_users_path do
+                    = link_to admin_entities_path(entity: 'users') do
                       %i.icon-wrench
                       Users
                   %li
-                    = link_to admin_user_sessions_path do
+                    = link_to admin_entities_path(entity: 'user_sessions') do
                       %i.icon-wrench
                       User Sessions
                   %li
-                    = link_to admin_updates_path do
+                    = link_to admin_entities_path(entity: 'updates') do
                       %i.icon-wrench
                       Upates
 
               %li
-                = link_to admin_absences_path do
+                = link_to admin_entities_path(entity: 'absences') do
                   %i.icon-folder-close
                   Absences
 
@@ -94,11 +94,11 @@
 
                 %ul.dropdown-menu.secondary
                   %li
-                    = link_to admin_exams_path do
+                    = link_to admin_entities_path(entity: 'exams') do
                       %i.icon-wrench
                       Exams
                   %li
-                    = link_to admin_grades_path do
+                    = link_to admin_entities_path(entity: 'grades') do
                       %i.icon-wrench
                       Grades
 

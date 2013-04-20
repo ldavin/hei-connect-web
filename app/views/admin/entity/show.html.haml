@@ -1,0 +1,38 @@
+.content-box
+  .content-box-header
+    = "#{@klass.model_name.human} n°#{@entity.id}"
+  .padded
+    - if @klass.const_defined? :ADMIN_SHOW_ATTRIBUTES
+      - @klass::ADMIN_SHOW_ATTRIBUTES.each do |attribute|
+        - if attribute.is_a? Hash and attribute[:irregular]
+          - # Custom attribute (not even an attribute from the model)
+          %p
+            %strong= attribute[:title].to_s.titleize + ':'
+            %br
+            = attribute[:value].call @entity
+
+        - elsif attribute.is_a? Hash
+          - # Attribute with custom formatting
+          %p
+            %strong= @klass.human_attribute_name(attribute.keys.first) + ':'
+            %br
+            = attribute.values.first.call @entity
+
+        - else
+          - # Regular attribute
+          %p
+            %strong= @klass.human_attribute_name(attribute) + ':'
+            %br
+            = @entity.send attribute
+
+    - else
+      - @klass.column_names.each do |attribute|
+        %p
+          %strong= @klass.human_attribute_name(attribute) + ':'
+          %br
+          = @entity.send attribute
+
+    .form-actions
+      = link_to 'Back', admin_entities_path(entity: @klass_path), :class => 'btn'
+      = link_to 'Edit', admin_edit_entity_path(entity: @klass_path, id: @entity.id), :class => 'btn'
+      = link_to 'Destroy', admin_entity_path(entity: @klass_path, id: @entity.id), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

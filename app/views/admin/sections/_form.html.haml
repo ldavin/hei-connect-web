@@ -1,8 +1,0 @@
-- url = admin_sections_path
-- url = admin_section_path(@section) unless @section.new_record?
-
-= simple_form_for @section, :url => url, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :name
-  .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_sections_path, :class => 'btn'

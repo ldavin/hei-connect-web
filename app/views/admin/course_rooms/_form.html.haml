@@ -1,9 +1,0 @@
-- url = admin_course_rooms_path
-- url = admin_course_room_path(@course_room) unless @course_room.new_record?
-
-= simple_form_for @course_room, :url => url, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :course_id
-  = f.input :room_id
-  .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_course_rooms_path, :class => 'btn'

@@ -1,9 +1,0 @@
-- url = admin_course_teachers_path
-- url = admin_course_teacher_path(@course_teacher) unless @course_teacher.new_record?
-
-= simple_form_for @course_teacher, :url => url, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :course_id
-  = f.input :teacher_id
-  .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_course_teachers_path, :class => 'btn'

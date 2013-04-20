@@ -17,6 +17,18 @@
 #
 
 class Absence < ActiveRecord::Base
+  ADMIN_INCLUDES = [:section, user_session: :user]
+  ADMIN_INDEX_ATTRIBUTES = [
+      :id,
+      {date: lambda { |a| a.date.strftime('%d/%m/%y à %H:%M') }},
+      :length,
+      :excused,
+      :update_number,
+      :section_id,
+      {title: :section_name, irregular: true, value: lambda { |a| a.section.name }},
+      :user_session_id,
+      {title: :user, irregular: true, value: lambda { |a| a.user }}
+  ]
   TYPE_EXCUSED = 'Excusée'
   TYPE_JUSTIFIED = 'Justifiée'
   TYPE_NOTHING = 'Non justifiée'

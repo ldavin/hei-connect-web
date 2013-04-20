@@ -1,0 +1,50 @@
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      - if klass.const_defined? :ADMIN_INDEX_ATTRIBUTES
+        - klass::ADMIN_INDEX_ATTRIBUTES.each do |attribute|
+          - if attribute.is_a? Hash and attribute[:irregular]
+            - # Custom attribute (not even an attribute from the model)
+            %th= attribute[:title].to_s.titleize
+
+          - elsif attribute.is_a? Hash
+            - # Attribute with custom formatting
+            %th= klass.human_attribute_name(attribute.keys.first)
+
+          - else
+            - # Regular attribute
+            %th= klass.human_attribute_name(attribute)
+
+      - else
+        - klass.column_names.each do |column|
+          %th= klass.human_attribute_name(column)
+
+
+      %th=t '.actions', :default => t("helpers.actions")
+
+
+  %tbody
+    - entities.each do |entity|
+      %tr
+        - if klass.const_defined? :ADMIN_INDEX_ATTRIBUTES
+          - klass::ADMIN_INDEX_ATTRIBUTES.each do |attribute|
+            - if attribute.is_a? Hash and attribute[:irregular]
+              - # Custom attribute (not even an attribute from the model)
+              %td= attribute[:value].call entity
+
+            - elsif attribute.is_a? Hash
+              - # Attribute with custom formatting
+              %td= attribute.values.first.call entity
+
+            - else
+              - # Regular attribute
+              %td= entity.send attribute
+
+        - else
+          - klass.column_names.each do |attribute|
+            %td= entity.send attribute
+
+        %td
+          = link_to 'Show', admin_entity_path(entity: klass_path, id: entity.id), :class => 'btn btn-mini'
+          = link_to 'Edit', admin_edit_entity_path(entity: klass_path, id: entity.id), :class => 'btn btn-mini'
+          = link_to 'Destroy', admin_entity_path(entity: klass_path, id: entity.id), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

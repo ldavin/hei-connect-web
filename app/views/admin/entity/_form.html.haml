@@ -1,0 +1,10 @@
+- url = admin_entities_path(entity: klass_path)
+- url = admin_entity_path(entity: klass_path, id: entity.id) unless entity.new_record?
+
+= simple_form_for entity, :url => url, :html => { :class => 'form-horizontal' } do |f|
+  - klass.accessible_attributes.each do |attribute|
+    = f.input attribute.to_sym if attribute.present?
+
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to 'Cancel', admin_entities_path(entity: klass_path), :class => 'btn'

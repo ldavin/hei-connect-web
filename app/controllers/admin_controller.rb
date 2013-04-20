@@ -15,11 +15,17 @@ class AdminController < ActionController::Base
         end
   end
 
-  def admin_logged_in
-    @user_loggin_in ||= !current_admin.nil?
+  def require_admin
+    redirect_to root_url if current_admin.nil?
   end
 
-  def require_admin
-    redirect_to root_url unless admin_logged_in
+  def check_entity
+    entity = params[:entity].to_sym
+    if Admin::EntityController::ENTITIES.include? entity
+      @klass = Admin::EntityController::ENTITIES[entity]
+      @klass_path = entity
+    else
+      redirect_to admin_root_url
+    end
   end
 end

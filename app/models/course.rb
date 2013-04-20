@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # == Schema Information
 #
 # Table name: courses
@@ -15,6 +17,18 @@
 #
 
 class Course < ActiveRecord::Base
+  ADMIN_INDEX_ATTRIBUTES = [
+      :id,
+      {date: lambda { |a| a.date.strftime('%d/%m/%y à %H:%M') }},
+      :length,
+      :kind,
+      :ecampus_id,
+      :section_id,
+      :group_id,
+      :broken_name,
+      {created_at: lambda { |a| a.created_at.strftime('%d/%m/%y à %H:%M') }}
+  ]
+
   has_many :course_rooms, dependent: :delete_all
   has_many :rooms, through: :course_rooms
   has_many :course_teachers, dependent: :delete_all

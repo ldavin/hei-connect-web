@@ -4,6 +4,9 @@ class Admin::SessionsController < AdminController
   skip_before_filter :require_admin, except: :destroy
 
   def index
+    if current_admin
+      redirect_to admin_dashboard_url
+    end
     @user = User.new
   end
 
