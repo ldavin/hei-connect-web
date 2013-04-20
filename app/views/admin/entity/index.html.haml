@@ -1,8 +1,14 @@
 .content-box
   .content-box-header
+    = "Search the #{@klass.model_name.human.pluralize.downcase}"
+  .padded
+    = render partial: 'search', locals: { search: @search }
+
+.content-box
+  .content-box-header
     = @klass.model_name.human.pluralize
   .padded
-    = render :partial => 'table', locals: { klass: @klass, klass_path: @klass_path, search: @search, entities: @entities }
+    = render partial: 'table', locals: { klass: @klass, klass_path: @klass_path, search: @search, entities: @entities }
     %br
     .center
       = will_paginate @entities

@@ -12,6 +12,7 @@ class Admin::EntityController < AdminController
   def index
     @search = @klass.search(params[:q])
     @entities = @search.result.includes(@klass::ADMIN_INCLUDES).page(params[:page])
+    @search.build_condition
 
     respond_to do |format|
       format.html # index.html.erb

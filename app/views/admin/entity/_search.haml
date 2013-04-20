@@ -1,0 +1,10 @@
+= search_form_for search, url: admin_entities_path() do |f|
+  = f.condition_fields do |c|
+    %div
+      = c.attribute_fields do |a|
+        = a.attribute_select
+      = c.predicate_select
+      = c.value_fields do |v|
+        = v.text_field :value
+
+  = f.submit 'Search', class: 'btn'
