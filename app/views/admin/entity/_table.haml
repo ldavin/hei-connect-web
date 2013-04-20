@@ -9,15 +9,15 @@
 
           - elsif attribute.is_a? Hash
             - # Attribute with custom formatting
-            %th= klass.human_attribute_name(attribute.keys.first)
+            %th= sort_link search, attribute.keys.first, klass.human_attribute_name(attribute.keys.first)
 
           - else
             - # Regular attribute
-            %th= klass.human_attribute_name(attribute)
+            %th= sort_link search, attribute, klass.human_attribute_name(attribute)
 
       - else
         - klass.column_names.each do |column|
-          %th= klass.human_attribute_name(column)
+          %th= sort_link search, column, klass.human_attribute_name(column)
 
 
       %th=t '.actions', :default => t("helpers.actions")

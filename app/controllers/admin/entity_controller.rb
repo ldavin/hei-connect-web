@@ -10,7 +10,8 @@ class Admin::EntityController < AdminController
   # GET /entity
   # GET /entity.json
   def index
-    @entities = @klass.includes(@klass::ADMIN_INCLUDES).order('id ASC').page(params[:page])
+    @search = @klass.search(params[:q])
+    @entities = @search.result.includes(@klass::ADMIN_INCLUDES).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

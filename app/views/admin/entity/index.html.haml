@@ -2,7 +2,7 @@
   .content-box-header
     = @klass.model_name.human.pluralize
   .padded
-    = render :partial => 'table', locals: { klass: @klass, klass_path: @klass_path, entities: @entities }
+    = render :partial => 'table', locals: { klass: @klass, klass_path: @klass_path, search: @search, entities: @entities }
     %br
     .center
       = will_paginate @entities
