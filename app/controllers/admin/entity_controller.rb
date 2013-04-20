@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::EntityController < AdminController
   ENTITIES = {absences: Absence, course_rooms: CourseRoom, course_teachers: CourseTeacher, course_users: CourseUser,
               courses: Course, grades: Grade, exams: Exam, groups: Group, rooms: Room, sections: Section,
