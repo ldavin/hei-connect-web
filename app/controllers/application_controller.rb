@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :check_maintenance_mode, :set_locale
+  before_filter :check_maintenance_mode
   helper_method :current_user, :user_logged_in
 
   def check_maintenance_mode
@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil if user_logged_in
       render file: 'public/maintenance', layout: false, status: 503
     end
-  end
-
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   def current_user
