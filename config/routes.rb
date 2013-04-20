@@ -30,6 +30,7 @@ HeiConnectWeb::Application.routes.draw do
 
     get 'dashboard' => 'dashboard#index'
     get 'dashboard/maintenance' => 'dashboard#switch_maintenance'
+    post 'dashboard/task/:task' => 'dashboard#run_rake_task', as: :run_task
 
     root to: 'sessions#index'
   }
