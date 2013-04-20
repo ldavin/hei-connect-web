@@ -8,7 +8,13 @@
   .content-box-header
     = @klass.model_name.human.pluralize
   .padded
+    %p
+      %strong
+        = pluralize @count, @klass.model_name.downcase
+      selon les filtres actuels.
+
     = render partial: 'table', locals: { klass: @klass, klass_path: @klass_path, search: @search, entities: @entities }
+
     %br
     .center
       = will_paginate @entities
