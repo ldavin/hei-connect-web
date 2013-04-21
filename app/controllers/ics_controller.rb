@@ -8,15 +8,19 @@ class IcsController < ApplicationController
     end
 
     update_user_activity user
+    @update = user.schedule_update
 
-    if stale? user, public: false
+    if stale? last_modified: @update.updated_at, public: false
+      @courses = user.courses.includes(:section, :group, :course_rooms, :course_teachers,
+                                       course_rooms: :room, course_teachers: :teacher)
+
       respond_to do |format|
         format.ics do
           calendar =
-              Rails.cache.fetch [user, 'icalendar'] do
+              Rails.cache.fetch ['ics', 'v1', user, @courses] do
                 cal = RiCal.Calendar
 
-                user.courses.current_weeks.each do |course|
+                @courses.each do |course|
                   cal.add_subcomponent course.to_ical_event
                 end
 
