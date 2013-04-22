@@ -51,12 +51,12 @@ class Admin::EntityController < AdminController
   # POST /entity
   # POST /entity.json
   def create
-    @entity = @klass.new(params[:entity])
+    @entity = @klass.new(params[@klass.table_name.singularize])
 
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to admin_entity_url(@entity), notice: 'Absence was successfully created.' }
-        format.json { render json: @entity, status: :created, location: @entity }
+        format.html { redirect_to admin_entity_url(entity: @klass_path, id: @entity.id), notice: "#{@klass.model_name.capitalize} was successfully created." }
+        format.json { render json: @entity, status: :created }
       else
         format.html { render action: "new" }
         format.json { render json: @entity.errors, status: :unprocessable_entity }
@@ -67,11 +67,11 @@ class Admin::EntityController < AdminController
   # PUT /entity/1
   # PUT /entity/1.json
   def update
-    @entity = Absence.find(params[:id])
+    @entity = @klass.find(params[:id])
 
     respond_to do |format|
-      if @entity.update_attributes(params[:entity])
-        format.html { redirect_to admin_entity_url(@entity), notice: 'Absence was successfully updated.' }
+      if @entity.update_attributes(params[@klass.table_name.singularize])
+        format.html { redirect_to admin_entity_url(entity: @klass_path, id: @entity.id), notice: "#{@klass.model_name.capitalize} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,11 +83,11 @@ class Admin::EntityController < AdminController
   # DELETE /entity/1
   # DELETE /entity/1.json
   def destroy
-    @entity = Absence.find(params[:id])
+    @entity = @klass.find(params[:id])
     @entity.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_entities_url }
+      format.html { redirect_to admin_entities_url(entity: @klass_path) }
       format.json { head :no_content }
     end
   end
