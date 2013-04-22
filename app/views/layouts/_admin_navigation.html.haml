@@ -102,6 +102,11 @@
                       %i.icon-wrench
                       Grades
 
+              %li
+                = link_to admin_entities_path(entity: 'delayed_jobs') do
+                  %i.icon-folder-close
+                  DelayedJobs
+
             %ul.nav.pull-right.primary
               %li.dropdown.profile
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

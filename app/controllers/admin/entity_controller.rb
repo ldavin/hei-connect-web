@@ -3,7 +3,7 @@
 class Admin::EntityController < AdminController
   ENTITIES = {absences: Absence, course_rooms: CourseRoom, course_teachers: CourseTeacher, course_users: CourseUser,
               courses: Course, grades: Grade, exams: Exam, groups: Group, rooms: Room, sections: Section,
-              teachers: Teacher, updates: Update, user_sessions: UserSession, users: User}
+              teachers: Teacher, updates: Update, user_sessions: UserSession, users: User, delayed_jobs: Delayed::Job}
 
   before_filter :check_entity
 
