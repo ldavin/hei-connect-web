@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418212925) do
+ActiveRecord::Schema.define(:version => 20130422230654) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -199,6 +199,8 @@ ActiveRecord::Schema.define(:version => 20130418212925) do
     t.datetime "updated_at",                      :null => false
     t.integer  "update_number"
   end
+
+  add_index "user_sessions", ["user_id"], :name => "index_user_sessions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "ecampus_id"
