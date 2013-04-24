@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "`date` Started cleaning logs" >> $OPENSHIFT_DATA_DIR/cron.log
+
 # Clean log files to save space (hopefully logentries will have streamed them to the cloud)
 # Clean dumps files too (should be synced to dropbox)
 
@@ -17,3 +19,5 @@ popd > /dev/null
 
 # Delete old sql dumps
 find ${OPENSHIFT_DATA_DIR}/dumps -type f -name *.sql -mtime +7 -exec rm {} \;
+
+echo "`date` Finished cleaning logs" >> $OPENSHIFT_DATA_DIR/cron.log

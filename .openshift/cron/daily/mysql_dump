@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "`date` Started dumping database" >> $OPENSHIFT_DATA_DIR/cron.log
+
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
 RAILS_ENV=production rake db:dump
 popd > /dev/null
+
+echo "`date` Finished dumping database" >> $OPENSHIFT_DATA_DIR/cron.log

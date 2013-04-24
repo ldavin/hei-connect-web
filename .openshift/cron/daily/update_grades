@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "`date` Started updating grades" >> $OPENSHIFT_DATA_DIR/cron.log
+
 day=`date "+%j"`
 rem=$(( $day % 2 ))
 
@@ -9,3 +11,5 @@ then
   RAILS_ENV=production rake data:update_grades
   popd > /dev/null
 fi
+
+echo "`date` Finished updating grades" >> $OPENSHIFT_DATA_DIR/cron.log
