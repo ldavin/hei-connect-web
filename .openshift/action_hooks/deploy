@@ -65,8 +65,8 @@ bundle exec rake db:migrate RAILS_ENV="production"
 
 # Restart delayed jobs
 
-echo "Starting delayed_job"
-RAILS_ENV=production script/delayed_job start
+echo "Starting delayed_job (in background to speed things up)"
+RAILS_ENV=production script/delayed_job -n 2 start &
 
 
 # Give exec right to dropbox uploader script

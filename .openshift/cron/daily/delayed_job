@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "`date` - Launching a delayed_job restart" >> $OPENSHIFT_DATA_DIR/cron.log
+
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+RAILS_ENV=production script/delayed_job -n 2 restart &
+popd > /dev/null
