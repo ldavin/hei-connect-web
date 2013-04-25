@@ -4,22 +4,18 @@ TIME=$(date '+%H%M%S' --utc)
 
 if [ $TIME -ge 020000 ] && [ $TIME -le 025959 ]
 then
-    echo "`date` Started updating schedules" >> $OPENSHIFT_DATA_DIR/cron.log
+    echo "`date` - Launching a schedule update" >> $OPENSHIFT_DATA_DIR/cron.log
 
     pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-    RAILS_ENV=production rake data:update_schedules
+    RAILS_ENV=production rake data:update_schedules &
     popd > /dev/null
-
-    echo "`date` Finished updating schedules" >> $OPENSHIFT_DATA_DIR/cron.log
 fi
 
 if [ $TIME -ge 140000 ] && [ $TIME -le 145959 ]
 then
-    echo "`date` Started updating schedules" >> $OPENSHIFT_DATA_DIR/cron.log
+    echo "`date` - Launching a schedule update" >> $OPENSHIFT_DATA_DIR/cron.log
 
     pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-    RAILS_ENV=production rake data:update_schedules
+    RAILS_ENV=production rake data:update_schedules &
     popd > /dev/null
-
-    echo "`date` Finished updating schedules" >> $OPENSHIFT_DATA_DIR/cron.log
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "`date` Started cleaning logs" >> $OPENSHIFT_DATA_DIR/cron.log
+echo "`date` - Launching a logs cleaning" >> $OPENSHIFT_DATA_DIR/cron.log
 
 # Clean log files to save space (hopefully logentries will have streamed them to the cloud)
 # Clean dumps files too (should be synced to dropbox)
@@ -14,7 +14,7 @@ find ${OPENSHIFT_RUBY_LOG_DIR} -type f -mtime +14 -exec rm {} \;
 
 # Clean rails log files
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-RAILS_ENV=production rake log:clear
+RAILS_ENV=production rake log:clear &
 popd > /dev/null
 
 # Delete old sql dumps

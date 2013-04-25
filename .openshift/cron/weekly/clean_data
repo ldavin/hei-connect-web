@@ -1,9 +1,7 @@
 #!/bin/bash
 
-echo "`date` Started cleaning data" >> $OPENSHIFT_DATA_DIR/cron.log
+echo "`date` - Launching a course data cleaning" >> $OPENSHIFT_DATA_DIR/cron.log
 
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-RAILS_ENV=production rake data:clean_courses
+RAILS_ENV=production rake data:clean_courses &
 popd > /dev/null
-
-echo "`date` Finished cleaning data" >> $OPENSHIFT_DATA_DIR/cron.log
