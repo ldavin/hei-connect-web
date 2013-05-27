@@ -3,5 +3,14 @@
 echo "`date` - Launching a delayed_job restart" >> $OPENSHIFT_DATA_DIR/cron.log
 
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+
+# Clean stop
+RAILS_ENV=production script/delayed_job stop
+
+# Kill any remaining delayed_job processes
+lsof | grep '$OPENSHIFT_REPO_DIR/log/delayed_job.log' | cut -c 1-21 | uniq | awk '/^ruby/ {if(NR > 0){system(\"kill -9 \" $2)}}'
+
+# Stop to clean orphan pid files and start delayed_job
 RAILS_ENV=production script/delayed_job restart &
+
 popd > /dev/null
