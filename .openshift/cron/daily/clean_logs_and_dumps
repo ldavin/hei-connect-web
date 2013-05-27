@@ -14,7 +14,7 @@ find ${OPENSHIFT_RUBY_LOG_DIR} -type f -mtime +14 -exec rm {} \;
 
 # Clean rails log files
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-RAILS_ENV=production rake log:clear &
+RAILS_ENV=production rake logs:rotate &
 popd > /dev/null
 
 # Delete old sql dumps
