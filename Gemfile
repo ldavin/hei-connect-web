@@ -42,7 +42,3 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'ransack'
 gem 'logrotate'
-
-# Openshift
-gem 'thor', '= 0.14.6'
-gem 'minitest'

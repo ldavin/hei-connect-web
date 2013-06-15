@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo "`date` - Launching a course data cleaning" >> $OPENSHIFT_DATA_DIR/cron.log
-
-pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-RAILS_ENV=production rake data:clean_courses &
-popd > /dev/null

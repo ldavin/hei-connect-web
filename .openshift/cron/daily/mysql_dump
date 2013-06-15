@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo "`date` - Launching a DB dumps" >> $OPENSHIFT_DATA_DIR/cron.log
-
-pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-RAILS_ENV=production rake db:dump &
-popd > /dev/null

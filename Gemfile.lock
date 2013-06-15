@@ -96,7 +96,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.21)
-    minitest (4.7.0)
     moneta (0.7.14)
     multi_json (1.7.1)
     multi_xml (0.5.3)
@@ -216,7 +215,6 @@ DEPENDENCIES
   jquery-rails
   libv8
   logrotate
-  minitest
   mysql2
   newrelic-redis
   newrelic_rpm
@@ -232,7 +230,6 @@ DEPENDENCIES
   simple_form
   sqlite3
   thin
-  thor (= 0.14.6)
   turbo-sprockets-rails3
   uglifier
   will_paginate

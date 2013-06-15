@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo "`date` - Launching a sessions update" >> $OPENSHIFT_DATA_DIR/cron.log
-
-pushd ${OPENSHIFT_REPO_DIR} > /dev/null
-RAILS_ENV=production rake data:update_sessions &
-popd > /dev/null
