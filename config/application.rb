@@ -59,7 +59,7 @@ module HeiConnectWeb
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Speed-up assets precompilation by partially initializing app
-    config.assets.initialize_on_precompile = false
+    # Initialize app on assets precompiling
+    config.assets.initialize_on_precompile = true
   end
 end
