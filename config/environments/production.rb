@@ -1,3 +1,10 @@
+if Rails.env.production? and ENV['VCAP_SERVICES']
+  services = JSON.parse(ENV['VCAP_SERVICES'])
+
+  cache_service = services['redis-2.2'].select { |service| service['name'] == 'redis-caches'}.first['credentials']
+  redis_cache_store = {host: cache_service['hostname'], port: cache_service['port'], password: cache_service['password']}
+end
+
 HeiConnectWeb::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -40,7 +47,7 @@ HeiConnectWeb::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :redis_store, REDIS_CACHE_STORE
+  config.cache_store = :redis_store, redis_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

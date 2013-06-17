@@ -44,5 +44,5 @@ HeiConnectWeb::Application.configure do
   end
 
   # Redis
-  config.cache_store = :redis_store, REDIS_CACHE_STORE
+  config.cache_store = :redis_store, {host: 'localhost', port: 6379, namespace: 'cache'}
 end
