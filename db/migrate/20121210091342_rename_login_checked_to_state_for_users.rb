@@ -1,6 +1,6 @@
 class RenameLoginCheckedToStateForUsers < ActiveRecord::Migration
   def up
-    add_column :users, :state, :string, default: User::STATES.first
+    add_column :users, :state, :string
     remove_column :users, :login_checked
   end
 
