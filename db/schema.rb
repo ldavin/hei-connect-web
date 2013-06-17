@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425030507) do
+ActiveRecord::Schema.define(:version => 20130617204132) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -70,22 +70,6 @@ ActiveRecord::Schema.define(:version => 20130425030507) do
   add_index "courses", ["ecampus_id"], :name => "index_courses_on_ecampus_id"
   add_index "courses", ["group_id"], :name => "index_courses_on_group_id"
   add_index "courses", ["section_id"], :name => "index_courses_on_section_id"
-
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "exams", :force => true do |t|
     t.string   "name"
