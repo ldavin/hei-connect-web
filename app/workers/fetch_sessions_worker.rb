@@ -1,14 +1,14 @@
-class FetchSessionsWorker < ApplicationWorker
-  def initialize(user_id, immediate = false)
-    @user_id = user_id
-    @immediate = immediate
+class FetchSessionsWorker
+  extend ApplicationWorker
 
-    user = User.find @user_id
-    super user.sessions_update.id
+  @queue = :high
+
+  def self.update_object *args
+    User.find(args.flatten.first).sessions_update
   end
 
-  def perform
-    user = User.find @user_id
+  def self.perform user_id, immediate = false, *args
+    user = User.find user_id
 
     user.sessions_rev_increment!
     revision = user.sessions_rev
@@ -49,12 +49,10 @@ class FetchSessionsWorker < ApplicationWorker
 
     # Schedule the grades and absences updates if asked
     # We sort the session in desc chronological order to have the interesting grades and absences first
-    if @immediate
+    if immediate
       user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
-        Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, session.id),
-                             priority: ApplicationWorker::PR_FETCH_DETAILED_GRADES
-        Delayed::Job.enqueue FetchAbsencesWorker.new(user.id, session.id),
-                             priority: ApplicationWorker::PR_FETCH_ABSENCES
+        Resque.enqueue FetchDetailedGradesWorker, user.id, session.id
+        Resque.enqueue FetchAbsencesWorker, user.id, session.id
       end
     end
   end

@@ -1,13 +1,14 @@
-class FetchScheduleWorker < ApplicationWorker
-  def initialize(user_id)
-    @user_id = user_id
+class FetchScheduleWorker
+  extend ApplicationWorker
 
-    user = User.find @user_id
-    super user.schedule_update.id
+  @queue = :medium
+
+  def self.update_object *args
+    User.find(args.flatten.first).schedule_update
   end
 
-  def perform
-    user = User.find @user_id
+  def self.perform user_id, *args
+    user = User.find user_id
 
     client = Client.new
     weeks = client.schedule user
