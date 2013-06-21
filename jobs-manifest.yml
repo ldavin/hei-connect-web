@@ -1,0 +1,26 @@
+---
+applications:
+  .:
+    name: hc-jobs
+    framework:
+      name: standalone
+      info:
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: ruby193
+    command: RAILS_ENV=production NEWRELIC_ENABLE=true bundle exec rake environment QUEUE='critical,high,medium,low' VERBOSE=true
+      resque:work
+    infra: eu-aws
+    url: 
+    mem: 128M
+    instances: 1
+    services:
+      mysql:
+        type: mysql
+      redis-caches:
+        type: redis
+      redis-jobs:
+        type: redis
+      redis-sessions:
+        type: redis

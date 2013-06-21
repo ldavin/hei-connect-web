@@ -1,0 +1,25 @@
+---
+applications:
+  .:
+    name: hc-clock
+    framework:
+      name: standalone
+      info:
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: ruby193
+    command: RAILS_ENV=production NEWRELIC_ENABLE=true bundle exec clockwork lib/clock.rb
+    infra: eu-aws
+    url: 
+    mem: 256M
+    instances: 1
+    services:
+      mysql:
+        type: mysql
+      redis-caches:
+        type: redis
+      redis-jobs:
+        type: redis
+      redis-sessions:
+        type: redis

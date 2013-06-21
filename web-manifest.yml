@@ -1,0 +1,23 @@
+---
+applications:
+  .:
+    name: hc-web
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    infra: eu-aws
+    url: ${name}.${target-base}
+    mem: 256M
+    instances: 1
+    services:
+      mysql:
+        type: mysql
+      redis-sessions:
+        type: redis
+      redis-caches:
+        type: redis
+      redis-jobs:
+        type: redis
