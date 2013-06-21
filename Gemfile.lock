@@ -45,6 +45,9 @@ GEM
     bullet (4.4.0)
       uniform_notifier
     chunky_png (1.2.7)
+    clockwork (0.5.2)
+      activesupport
+      tzinfo (~> 0.3.35)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -219,6 +222,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-will_paginate
   bullet
+  clockwork
   coffee-rails
   compass-rails
   haml-rails
