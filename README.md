@@ -2,6 +2,8 @@ HEI Connect Web
 =========
 
 [![Code Climate](https://codeclimate.com/github/ldavin/hei-connect-web.png)](https://codeclimate.com/github/ldavin/hei-connect-web)
+[![Coverage Status](https://coveralls.io/repos/ldavin/hei-connect-web/badge.png)](https://coveralls.io/r/ldavin/hei-connect-web)
+[![Build Status](https://travis-ci.org/ldavin/hei-connect-web.png?branch=master)](https://travis-ci.org/ldavin/hei-connect-web)
 
 ## Description
 ### En bref
