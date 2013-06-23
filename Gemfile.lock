@@ -88,7 +88,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.7.7)
     libv8 (3.11.8.13)
-    logrotate (1.2.1)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -100,9 +99,6 @@ GEM
     multi_xml (0.5.3)
     mysql2 (0.3.11)
     net-http-persistent (2.8)
-    newrelic-redis (1.4.0)
-      newrelic_rpm (~> 3.0)
-      redis (< 4.0)
     newrelic_rpm (3.5.8.72)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -228,9 +224,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   libv8
-  logrotate
   mysql2
-  newrelic-redis
   newrelic_rpm
   quiet_assets
   rack
