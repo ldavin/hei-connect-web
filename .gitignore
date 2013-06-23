@@ -29,3 +29,6 @@
 # Page caches files
 public/about.html
 public/status.html
+
+# Coveralls results
+coverage/
