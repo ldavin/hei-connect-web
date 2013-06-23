@@ -88,8 +88,6 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    faker (1.1.2)
-      i18n (~> 0.5)
     ffi (1.9.0)
     formatador (0.2.4)
     fssm (0.2.10)
@@ -301,7 +299,6 @@ DEPENDENCIES
   compass-rails
   coveralls
   factory_girl_rails
-  faker
   guard-rspec
   haml-rails
   jquery-rails
