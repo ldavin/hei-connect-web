@@ -29,6 +29,9 @@ class Course < ActiveRecord::Base
       {created_at: lambda { |a| a.created_at.strftime('%d/%m/%y à %H:%M') }}
   ]
 
+  UNKNOWN_PLACE = 'Lieu inconnu'
+  UNKNOWN_DESCRIPTION = 'E-Campus ne donne pas plus d\'informations.'
+
   has_many :course_rooms, dependent: :delete_all
   has_many :rooms, through: :course_rooms
   has_many :course_teachers, dependent: :delete_all
@@ -80,7 +83,7 @@ class Course < ActiveRecord::Base
 
   def description
     if self.broken_name.present?
-      "E-Campus ne donne pas plus d'informations."
+      UNKNOWN_DESCRIPTION
     else
       desc = "#{self.kind} de #{self.section.name}"
       if self.teachers.any?
@@ -95,7 +98,7 @@ class Course < ActiveRecord::Base
     if self.rooms.any?
       self.rooms.join ', '
     else
-      "Lieu inconnu"
+      UNKNOWN_PLACE
     end
   end
 
