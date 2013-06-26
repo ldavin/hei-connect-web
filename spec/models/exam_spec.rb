@@ -28,7 +28,7 @@ describe Exam do
         new_average.should == 11
       end
 
-      it 'should not change grades count when the new grade is unknown' do
+      it 'should not change grades count when the new grade is unknown and update average' do
         exam.update_average_and_counter
         previous_count = exam.grades_count
         previous_average = exam.average
@@ -46,7 +46,7 @@ describe Exam do
     end
 
     context 'when associated grades number goes down' do
-      it 'should decrease grades count when the deleted grade is known' do
+      it 'should decrease grades count when the deleted grade is known and update average' do
         exam.update_average_and_counter
         previous_count = exam.grades_count
         previous_average = exam.average
@@ -62,7 +62,7 @@ describe Exam do
         new_average.should == 10
       end
 
-      it 'should not change grades count when the deleted grade is unknown' do
+      it 'should not change grades count when the deleted grade is unknown and update average' do
         exam.update_average_and_counter
         previous_count = exam.grades_count
         previous_average = exam.average
