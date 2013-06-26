@@ -1,5 +1,3 @@
-# spec/factories/contacts.rb
-
 FactoryGirl.define do
   factory :absence do |f|
     f.date { DateTime.now }

@@ -1,10 +1,6 @@
-# spec/models/contact.rb
 require 'spec_helper'
 
 describe Absence do
-  it 'should have a valid factory' do
-    FactoryGirl.create(:absence).should be_valid
-  end
 
   it 'should be of correct type' do
     excused_absence =  FactoryGirl.build :absence, excused: true
