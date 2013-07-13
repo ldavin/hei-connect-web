@@ -28,3 +28,8 @@
           La mise à jour de l'emploi du temps est réalisée automatiquement **deux fois par jour**.
 
           *A cause de la façon dont nous récupérons les données e-campus, il est possible que des cours passent à travers les filets de HEI-Connect, notamment si e-campus est mis à jour et que la structure de ses pages web change, merci de le garder en tête.*
+
+        %p
+          Récupérer ces données au format
+          = link_to 'json', dashboard_courses_path(ecampus_id: params[:ecampus_id], format: 'json')
+          = link_to 'xls', dashboard_courses_path(ecampus_id: params[:ecampus_id], format: 'xls')

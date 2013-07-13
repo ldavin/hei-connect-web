@@ -41,3 +41,8 @@
                       %strong= "%.2f" % g.exam.average
       - else
         Aucune note pour l'instant.
+
+      %p{style: 'padding-top:10px; text-align:right;'}
+        Récupérer ces données au format
+        = link_to 'json', dashboard_grades_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'json')
+        = link_to 'xls', dashboard_grades_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'xls')

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Cours</Data></Cell>
+        <Cell><Data ss:Type="String">Salle</Data></Cell>
+        <Cell><Data ss:Type="String">Date début</Data></Cell>
+        <Cell><Data ss:Type="String">Date fin</Data></Cell>
+      </Row>
+      <% @courses.each do |course| %>
+          <Row>
+            <Cell><Data ss:Type="Number"><%= course.id %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= course.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= course.place %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= course.date %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= course.date + course.length.minutes %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

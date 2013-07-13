@@ -37,4 +37,17 @@ class Grade < ActiveRecord::Base
   attr_accessible :mark, :unknown, :update_number, :user_session_id, :exam_id
 
   scope :known, where(unknown: false)
+
+  def to_detailed_hash
+    {
+      id: self.id,
+      matiere: self.exam.section.name,
+      examen: self.exam.name,
+      type: self.exam.kind,
+      date: self.exam.date.strftime('%d/%m/%Y'),
+      coefficient: "%.2f" % self.exam.weight,
+      note: self.unknown ? '?' : "%.2f" % self.mark,
+      moyenne: self.exam.average == nil ? '?' : "%.2f" % self.exam.average
+    }
+  end
 end

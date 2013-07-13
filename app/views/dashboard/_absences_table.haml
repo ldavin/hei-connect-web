@@ -25,3 +25,8 @@
                 %td= a.justification
       - else
         Aucune absence pour l'instant, c'est bien :)
+
+    %p{style: 'padding-top:10px; text-align:right;'}
+      Récupérer ces données au format
+      = link_to 'json', dashboard_absences_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'json')
+      = link_to 'xls', dashboard_absences_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'xls')

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Matière</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Durée</Data></Cell>
+        <Cell><Data ss:Type="String">Type</Data></Cell>
+        <Cell><Data ss:Type="String">Raison</Data></Cell>
+
+      </Row>
+      <% @absences.each do |absence| %>
+          <Row>
+            <Cell><Data ss:Type="Number"><%= absence.id %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= absence.section.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= absence.date.strftime('%d/%m/%Y %Hh%M') %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= absence.length %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= absence.type %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= absence.justification %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

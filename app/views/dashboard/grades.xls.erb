@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Matière</Data></Cell>
+        <Cell><Data ss:Type="String">Examen</Data></Cell>
+        <Cell><Data ss:Type="String">Type</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Coefficient</Data></Cell>
+        <Cell><Data ss:Type="String">Note</Data></Cell>
+        <Cell><Data ss:Type="String">Moyenne</Data></Cell>
+
+      </Row>
+      <% @grades.each do |grade| %>
+          <Row>
+            <Cell><Data ss:Type="Number"><%= grade.id %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= grade.exam.section.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= grade.exam.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= grade.exam.kind %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= grade.exam.date.strftime('%d/%m/%Y') %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= "%.2f" % grade.exam.weight %></Data></Cell>
+            <% if grade.unknown %>
+                <Cell><Data ss:Type="String"></Data></Cell>
+            <% else %>
+                <Cell><Data ss:Type="Number"><%= "%.2f" % grade.mark %></Data></Cell>
+            <% end %>
+            <% if grade.exam.average == nil %>
+                <Cell><Data ss:Type="String"></Data></Cell>
+            <% else %>
+                <Cell><Data ss:Type="Number"><%= "%.2f" % grade.exam.average %></Data></Cell>
+            <% end %>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

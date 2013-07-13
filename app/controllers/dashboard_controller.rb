@@ -34,7 +34,7 @@ class DashboardController < ApplicationController
       respond_to do |format|
         format.html
         format.json { render :json => @courses.collect { |c| c.to_fullcalendar_event } }
-        format.xml { render :xml => @courses.collect { |c| c.to_fullcalendar_event } }
+        format.xls
       end
     end
   end
@@ -49,6 +49,8 @@ class DashboardController < ApplicationController
 
       respond_to do |format|
         format.html
+        format.json { render :json => @grades.collect { |g| g.to_detailed_hash } }
+        format.xls
       end
     end
   end
@@ -78,6 +80,8 @@ class DashboardController < ApplicationController
 
       respond_to do |format|
         format.html
+        format.json { render :json => @absences.collect { |a| a.to_detailed_hash } }
+        format.xls
       end
     end
   end

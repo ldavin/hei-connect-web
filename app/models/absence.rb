@@ -52,4 +52,15 @@ class Absence < ActiveRecord::Base
       TYPE_NOTHING
     end
   end
+
+  def to_detailed_hash
+    {
+        id: self.id,
+        matiere: self.section.name,
+        date: self.date.strftime('%d/%m/%Y %Hh%M'),
+        duree: self.length,
+        type: self.type,
+        raison: self.justification
+    }
+  end
 end
