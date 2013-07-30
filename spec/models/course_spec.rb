@@ -1,4 +1,20 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: courses
+#
+#  id          :integer          not null, primary key
+#  date        :datetime
+#  length      :integer
+#  kind        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  ecampus_id  :integer
+#  section_id  :integer
+#  group_id    :integer
+#  broken_name :string(255)
+#
+
 require 'spec_helper'
 
 describe Course do

@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: absences
+#
+#  id              :integer          not null, primary key
+#  date            :datetime
+#  length          :integer
+#  excused         :boolean
+#  justification   :string(255)
+#  update_number   :integer
+#  section_id      :integer
+#  user_session_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Absence do

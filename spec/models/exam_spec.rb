@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: exams
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  date         :date
+#  kind         :string(255)
+#  weight       :float
+#  average      :float
+#  grades_count :integer
+#  section_id   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Exam do
