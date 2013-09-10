@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Regular gems
 gem 'rails', '3.2.13'
 gem 'rack'
-gem 'thin'
+gem 'puma'
 
 group :assets do
   gem 'coffee-rails'
@@ -24,7 +24,7 @@ group :development do
 end
 
 group :production do
-  gem 'mysql2'
+  gem 'pg'
 end
 
 group :development, :test do
