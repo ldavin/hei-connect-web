@@ -37,3 +37,6 @@ run "git clean -x -f -- public/stylesheets public/javascripts"
 
 # clean unversioned files from vendor/plugins (e.g. old submodules)
 run "git clean -d -f -- vendor/plugins"
+
+# stop processing jobs
+run "kill -TERM $(cat tmp/resque/resque.pid)"
