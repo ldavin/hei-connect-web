@@ -3,4 +3,4 @@ echo "Restarting Puma"
 script/puma.sh restart
 
 echo "Updating cron"
-whenever --update-crontab
+bundle exec whenever --update-crontab
