@@ -69,5 +69,5 @@ HeiConnectWeb::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Send logs to loggly
-  config.logger = Logglier.new(ENV['LOGGLY_RAILS'])
+  config.logger = Logglier.new(ENV['LOGGLY_RAILS'], :threaded => true)
 end
