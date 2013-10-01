@@ -1,5 +1,4 @@
 if Rails.env.production?
-  redis_jobs_store = {host: '10.9.8.2', :db => 1}
-
-  Resque.redis = Redis.new redis_jobs_store
+  Resque.redis = Redis.new({host: ENV['REDIS_HOST'], db: ENV['REDIS_DB_JOBS']})
+  Resque.logger = Logglier.new(ENV['LOGGLY_RAILS'])
 end

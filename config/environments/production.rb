@@ -1,7 +1,3 @@
-if Rails.env.production?
-  redis_cache_store = {host: '10.9.8.2', :db => 2}
-end
-
 HeiConnectWeb::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -44,7 +40,7 @@ HeiConnectWeb::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :redis_store, redis_cache_store
+  config.cache_store = :redis_store, {host: ENV['REDIS_HOST'], db: ENV['REDIS_DB_CACHE']}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -69,4 +65,7 @@ HeiConnectWeb::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Send logs to loggly
+  config.logger = Logglier.new(ENV['LOGGLY_RAILS'])
 end
