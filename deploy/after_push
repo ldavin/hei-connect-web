@@ -4,6 +4,8 @@ oldrev=$1
 newrev=$2
 export RAILS_ENV=production
 
+source /home/deployer/apps/hei-connect-web_env-variables
+
 run() {
   [ -x $1 ] && $1 $oldrev $newrev
 }
