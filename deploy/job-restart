@@ -1,6 +1,3 @@
 #!/bin/sh
-echo "Restarting Puma"
-script/puma.sh restart
-
 echo "Restarting Jobs"
 kill -HUP `cat tmp/resque-pool.pid`
