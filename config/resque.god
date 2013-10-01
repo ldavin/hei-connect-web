@@ -3,7 +3,6 @@ God.watch do |w|
   w.interval = 30.seconds
   w.env = { 'RAILS_ENV' => 'production', 'QUEUE' => 'critical,high,medium,low' }
   w.uid = 'deployer'
-  w.gid = 'deployer'
   w.dir = File.expand_path(File.join(File.dirname(__FILE__),'..'))
   w.start = "bundle exec rake jobs:work"
   w.start_grace = 10.seconds
