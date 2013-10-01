@@ -3,4 +3,5 @@ echo "Restarting Puma"
 script/puma.sh restart
 
 echo "Restarting jobs"
-RAILS_ENV=production PIDFILE=tmp/resque/resque.pid BACKGROUND=yes bundle exec rake environment QUEUE='critical,high,medium,low' resque:work
+god load config/resque.god
+god start resque

@@ -39,4 +39,4 @@ run "git clean -x -f -- public/stylesheets public/javascripts"
 run "git clean -d -f -- vendor/plugins"
 
 # stop processing jobs
-run "kill -TERM $(cat tmp/resque/resque.pid)"
+run "god stop resque"
