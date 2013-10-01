@@ -1,7 +1,3 @@
 #!/bin/sh
 echo "Restarting Puma"
 script/puma.sh restart
-
-echo "Restarting jobs"
-bundle exec god load config/resque.god
-bundle exec god start resque

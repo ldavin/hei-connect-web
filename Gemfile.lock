@@ -91,7 +91,6 @@ GEM
     ffi (1.9.0)
     formatador (0.2.4)
     fssm (0.2.10)
-    god (0.13.2)
     guard (1.8.1)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -303,7 +302,6 @@ DEPENDENCIES
   compass-rails
   coveralls
   factory_girl_rails
-  god
   guard-rspec
   haml-rails
   jquery-rails
