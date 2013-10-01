@@ -29,11 +29,6 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.4)
-    airbrake (3.1.14)
-      builder
-      json
-    airbrake_user_attributes (0.1.6)
-      airbrake (~> 3.1.0)
     annotate (2.5.0)
       rake
     api_smith (1.2.0)
@@ -86,6 +81,9 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -300,7 +298,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake_user_attributes
   annotate
   bcrypt-ruby (~> 3.0.0)
   better_errors
@@ -312,6 +309,7 @@ DEPENDENCIES
   coffee-rails
   compass-rails
   coveralls
+  exception_notification
   factory_girl_rails
   guard-rspec
   haml-rails
