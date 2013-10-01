@@ -39,4 +39,4 @@ run "git clean -x -f -- public/stylesheets public/javascripts"
 run "git clean -d -f -- vendor/plugins"
 
 # stop processing jobs
-run "god stop resque"
+run "bundle exec god stop resque"
