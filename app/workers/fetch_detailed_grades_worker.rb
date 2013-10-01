@@ -1,7 +1,7 @@
 class FetchDetailedGradesWorker
   extend ApplicationWorker
 
-  @queue = :low
+  @queue = :grades
 
   def self.update_object *args
     user = User.find(args.flatten.first)
