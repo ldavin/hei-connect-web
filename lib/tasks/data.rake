@@ -9,7 +9,7 @@ namespace :data do
   desc 'Schedule an update of every valid user\'s schedule.'
   task :update_schedules => :environment do
     User.find_each(include: :updates) do |user|
-      if user.user_ok?
+      if user.user_ok? and user.last_activity > Time.now - 3.month
         Delayed::Job.enqueue FetchScheduleWorker.new(user.id), priority: ApplicationWorker::PR_FETCH_SCHEDULE
       end
     end
@@ -27,7 +27,7 @@ namespace :data do
   desc 'Schedule an update of the grades for the the valid users\' main session.'
   task :update_grades => :environment do
     User.find_each(include: :updates) do |user|
-      if user.user_ok? and user.main_session.present?
+      if user.user_ok? and user.main_session.present? and user.last_activity > Time.now - 3.month
         Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, user.main_session.id),
                              priority: ApplicationWorker::PR_FETCH_GRADES
       end
@@ -37,7 +37,7 @@ namespace :data do
   desc 'Schedule an update of the absences for the the valid users\' main session.'
   task :update_absences => :environment do
     User.find_each(include: :updates) do |user|
-      if user.user_ok? and user.main_session.present?
+      if user.user_ok? and user.main_session.present? and user.last_activity > Time.now - 3.month
         Delayed::Job.enqueue FetchAbsencesWorker.new(user.id, user.main_session.id),
                              priority: ApplicationWorker::PR_FETCH_ABSENCES
       end
