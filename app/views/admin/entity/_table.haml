@@ -28,7 +28,7 @@
       %tr
         - if klass.const_defined? :ADMIN_INDEX_ATTRIBUTES
           - klass::ADMIN_INDEX_ATTRIBUTES.each do |attribute|
-            - if attribure
+            - if attribute
               - if attribute.is_a? Hash and attribute[:irregular]
                 - # Custom attribute (not even an attribute from the model)
                 %td= attribute[:value].call entity
