@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
       :id,
       :ecampus_id,
       :admin,
-      {last_activity: lambda { |u| u.last_activity.strftime('%d/%m/%y à %H:%M') }},
+      {last_activity: lambda { |u| u.last_activity ? u.last_activity.strftime('%d/%m/%y à %H:%M') : nil }},
       {created_at: lambda { |u| u.created_at.strftime('%d/%m/%y à %H:%M') }}
   ]
 

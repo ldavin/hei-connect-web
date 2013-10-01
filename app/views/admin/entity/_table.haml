@@ -28,20 +28,17 @@
       %tr
         - if klass.const_defined? :ADMIN_INDEX_ATTRIBUTES
           - klass::ADMIN_INDEX_ATTRIBUTES.each do |attribute|
-            - if attribute
-              - if attribute.is_a? Hash and attribute[:irregular]
-                - # Custom attribute (not even an attribute from the model)
-                %td= attribute[:value].call entity
+            - if attribute.is_a? Hash and attribute[:irregular]
+              - # Custom attribute (not even an attribute from the model)
+              %td= attribute[:value].call entity
 
-              - elsif attribute.is_a? Hash
-                - # Attribute with custom formatting
-                %td= attribute.values.first.call entity
+            - elsif attribute.is_a? Hash
+              - # Attribute with custom formatting
+              %td= attribute.values.first.call entity
 
-              - else
-                - # Regular attribute
-                %td= entity.send attribute
             - else
-              %td nil
+              - # Regular attribute
+              %td= entity.send Attribute
         - else
           - klass.column_names.each do |attribute|
             %td= entity.send attribute
