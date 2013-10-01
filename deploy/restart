@@ -1,3 +1,3 @@
 #!/bin/sh
-kill -s USR2 `cat /home/deployer/apps/hei-connect-web/tmp/puma/pid`
+script/puma.sh restart
 echo "restarting Puma"
