@@ -4,7 +4,7 @@ God.watch do |w|
   w.env = { 'RAILS_ENV' => 'production', 'QUEUE' => 'critical,high,medium,low' }
   w.uid = 'deployer'
   w.dir = File.expand_path(File.join(File.dirname(__FILE__),'..'))
-  w.start = "bundle exec rake jobs:work"
+  w.start = "bundle exec rake resque:work"
   w.start_grace = 10.seconds
   w.log = File.expand_path(File.join(File.dirname(__FILE__), '..','log','resque-worker.log'))
 
