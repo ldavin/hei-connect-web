@@ -32,3 +32,4 @@ public/status.html
 
 # Coveralls results
 coverage/
+config/database.yml
