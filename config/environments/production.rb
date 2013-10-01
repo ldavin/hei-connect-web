@@ -1,8 +1,5 @@
-if Rails.env.production? and ENV['VCAP_SERVICES']
-  services = JSON.parse(ENV['VCAP_SERVICES'])
-
-  cache_service = services['redis-2.2'].select { |service| service['name'] == 'redis-caches'}.first['credentials']
-  redis_cache_store = {host: cache_service['hostname'], port: cache_service['port'], password: cache_service['password']}
+if Rails.env.production?
+  redis_cache_store = {host: '10.9.8.2', :db => 2}
 end
 
 HeiConnectWeb::Application.configure do
