@@ -38,7 +38,7 @@
 
             - else
               - # Regular attribute
-              %td= entity.send Attribute
+              %td= entity.send attribute
         - else
           - klass.column_names.each do |attribute|
             %td= entity.send attribute
