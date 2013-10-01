@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "Deploying to web server"
+git push production
+
+echo "Deploying to workers server"
+git push production_workers
