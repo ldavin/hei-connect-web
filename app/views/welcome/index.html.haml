@@ -16,6 +16,7 @@
         = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
     .actions
       = f.submit 'Connexion', class: 'btn btn-green btn-large login-btn'
+      = link_to 'A propos', about_path, class: 'btn btn-blue btn-large login-btn'
     .details
       %p
         %small Pas encore inscrit? Il suffit de remplir le formulaire de connexion avec tes identifiants ecampus.
