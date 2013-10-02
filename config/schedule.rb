@@ -19,19 +19,15 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: '6:00am' do
+every 1.day, at: '2:00pm' do
   runner "Resque.enqueue UpdateSchedulesScheduler"
 end
 
-every 1.day, at: '6:00pm' do
-  runner "Resque.enqueue UpdateSchedulesScheduler"
-end
-
-every 1.day, at: '4:00am' do
+every 1.day, at: '1:00am' do
   runner "Resque.enqueue UpdateAbsencesScheduler"
 end
 
-every 1.day, at: '2:00am' do
+every 1.day, at: '3:00am' do
   runner "Resque.enqueue UpdateGradesScheduler"
 end
 
