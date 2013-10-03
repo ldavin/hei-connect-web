@@ -6,7 +6,7 @@ env:
   - DB=mysql
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - mysql -e 'create database hc_test'
+  - "psql -c 'create database hc_test;' -U postgres"
   - RAILS_ENV=test bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
 script:
