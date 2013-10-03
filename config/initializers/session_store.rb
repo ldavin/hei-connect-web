@@ -1,2 +1,6 @@
 # Use Redis for sessions instead of the cookie-based default
-HeiConnectWeb::Application.config.session_store :redis_store, servers: {host: ENV['REDIS_HOST'], db: ENV['REDIS_DB_SESSIONS']}
+if ENV['WEB_SERVER']
+	require 'action_dispatch/middleware/session/dalli_store'
+	HeiConnectWeb::Application.config.session_store :dalli_store, :memcache_server => 'localhost', :namespace => 'sessions', 
+													:key => '_foundation_session', :expire_after => 20.minutes
+end
