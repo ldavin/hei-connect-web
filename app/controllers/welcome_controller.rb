@@ -13,6 +13,10 @@ class WelcomeController < ApplicationController
     else
       @user = User.new
     end
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def about
