@@ -18,13 +18,24 @@ require 'spec_helper'
 
 describe Absence do
 
-  it 'should be of correct type' do
-    excused_absence =  FactoryGirl.build :absence, excused: true
-    justified_absence =  FactoryGirl.build :absence, excused: false
-    bad_absence =  FactoryGirl.build :absence, excused: false, justification: ''
+  let(:absence) { build :absence }
 
-    excused_absence.type.should == Absence::TYPE_EXCUSED
-    justified_absence.type.should == Absence::TYPE_JUSTIFIED
-    bad_absence.type.should == Absence::TYPE_NOTHING
+  describe '#type' do
+    subject { absence.type }
+
+    context 'when absence is excused' do
+      let(:absence) { build :absence, excused: true }
+      it { should eq Absence::TYPE_EXCUSED }
+    end
+
+    context 'when absence is justified' do
+      let(:absence) { build :absence, excused: false }
+      it { should eq Absence::TYPE_JUSTIFIED }
+    end
+
+    context 'when absence is baaaad' do
+      let(:absence) { build :absence, excused: false, justification: '' }
+      it { should eq Absence::TYPE_NOTHING }
+    end
   end
 end
