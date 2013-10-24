@@ -4,7 +4,7 @@ sqlite: &sqlite
 
 postgresql: &postgresql
   adapter: postgresql
-  username: root
+  username: postgres
   password:
   database: hc_<%= Rails.env %>
 
