@@ -12,10 +12,10 @@ class WelcomeController < ApplicationController
       end
     else
       @user = User.new
-    end
 
-    respond_to do |format|
-      format.html
+      respond_to do |format|
+        format.html
+      end
     end
   end
 
