@@ -28,11 +28,13 @@ module DashboardHelper
         average_coefficients += g.exam.weight
       end
 
-      if we_want_average
-        array.push({date: date, grade: (points / coefficients).round(3),
-                    average: (average_points / average_coefficients).round(3)})
-      else
-        array.push({date: date, grade: (points / coefficients).round(3)})
+      if coefficients > 0 and average_coefficients > 0
+        if we_want_average
+          array.push({date: date, grade: (points / coefficients).round(3),
+                      average: (average_points / average_coefficients).round(3)})
+        else
+          array.push({date: date, grade: (points / coefficients).round(3)})
+        end
       end
     end
 
