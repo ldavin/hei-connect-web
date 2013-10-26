@@ -140,7 +140,7 @@ GEM
     multi_json (1.7.1)
     multi_xml (0.5.3)
     net-http-persistent (2.8)
-    newrelic_rpm (3.5.8.72)
+    newrelic_rpm (3.6.8.168)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     pg (0.16.0)
@@ -319,7 +319,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   libv8
-  newrelic_rpm
+  newrelic_rpm (= 3.6.8.168)
   pg
   puma
   quiet_assets

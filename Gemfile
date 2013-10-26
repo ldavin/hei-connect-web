@@ -41,7 +41,7 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'ri_cal'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '3.6.8.168'
 gem 'rocket_pants'
 gem 'redcarpet'
 gem 'redis-rails'
