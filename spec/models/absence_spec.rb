@@ -21,6 +21,11 @@ require 'spec_helper'
 describe Absence do
   let(:absence) { build :absence }
 
+  describe 'relations' do
+    it { should belong_to(:section) }
+    it { should belong_to(:user_session) }
+  end
+
   describe '#type' do
     subject { absence.type }
 

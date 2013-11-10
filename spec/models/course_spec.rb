@@ -23,6 +23,17 @@ describe Course do
   let(:teachers) { [ create(:teacher, name: 'Jean Mi') ] }
   let(:course)   { create :course, kind: 'Cours', section: section, rooms: rooms, teachers: teachers }
 
+  describe 'relations' do
+    it { should belong_to(:section) }
+    it { should belong_to(:group) }
+
+    it { should have_many(:course_rooms) }
+    it { should have_many(:course_teachers) }
+    it { should have_many(:teachers) }
+    it { should have_many(:course_users) }
+    it { should have_many(:users) }
+  end
+
   describe '#to_ical_event' do
     let(:expected_event) {
       event = RiCal.Event

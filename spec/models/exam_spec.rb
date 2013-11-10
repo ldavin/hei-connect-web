@@ -25,6 +25,10 @@ describe Exam do
   let(:unknown_grade2) { FactoryGirl.build :grade, unknown: true }
   let(:exam) { FactoryGirl.create :exam, kind: 'Cours', grades: [ known_grade1, known_grade2, unknown_grade1 ] }
 
+  describe 'relations' do
+    it { should belong_to(:section) }
+    it { should have_many(:grades) }
+  end
 
   describe 'should update grades and compute average' do
     context 'when associated grades number goes up' do
