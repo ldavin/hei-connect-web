@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 
 # Regular gems
 gem 'rails', '3.2.13'
-gem 'rack'
-gem 'puma'
+gem 'rack', '1.4.5'
+gem 'puma', '2.5.1'
 
 group :assets do
-  gem 'coffee-rails'
-  gem 'sass-rails'
-  gem 'compass-rails'
-  gem 'uglifier'
-  gem 'libv8'
-  gem 'turbo-sprockets-rails3'
+  gem 'coffee-rails', '3.2.2'
+  gem 'sass-rails', '3.2.6'
+  gem 'compass-rails', '1.0.3'
+  gem 'uglifier', '1.3.0'
+  gem 'libv8', '3.11.8.13'
+  gem 'turbo-sprockets-rails3', '0.3.6'
 end
 
 group :development do
@@ -23,37 +23,38 @@ group :development do
   gem 'annotate'
 end
 
-group :production do
-  gem 'pg'
-end
-
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-end
-group :test do
-  gem 'capybara'
-  gem 'guard-rspec'
-  gem 'launchy'
-  gem 'coveralls'
+  gem 'rspec-rails', '2.13.2'
+  gem 'factory_girl_rails', '4.2.1'
+  gem 'guard-rspec', '3.0.2'
 end
 
-gem 'jquery-rails'
-gem 'haml-rails'
-gem 'ri_cal'
+group :test do
+  gem 'capybara', '2.1.0'
+  gem 'launchy', '2.3.0'
+  gem 'coveralls', '0.6.7'
+end
+
+group :production do
+  gem 'pg', '0.16.0'
+end
+
+gem 'jquery-rails', '2.2.1'
+gem 'haml-rails', '0.4'
+gem 'ri_cal', '0.8.8'
 gem 'newrelic_rpm', '3.6.8.168'
-gem 'rocket_pants'
-gem 'redcarpet'
-gem 'redis-rails'
+gem 'rocket_pants', '1.7.0'
+gem 'redcarpet', '2.2.2'
+gem 'redis-rails', '3.2.3'
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'simple_form'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
-gem 'ransack'
-gem 'resque'
-gem 'therubyracer'
-gem 'resque-pool'
-gem 'exception_notification'
-gem 'yaml_db'
-gem 'whenever'
-gem 'dalli'
+gem 'simple_form', '2.1.0'
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
+gem 'ransack', '0.7.2'
+gem 'resque', '1.24.1'
+gem 'therubyracer', '0.11.4'
+gem 'resque-pool', '0.3.0'
+gem 'exception_notification', '4.0.1'
+gem 'yaml_db', '0.2.3'
+gem 'whenever', '0.8.4'
+gem 'dalli', '2.6.4'

@@ -305,40 +305,40 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
-  bootstrap-will_paginate
+  bootstrap-will_paginate (= 0.0.9)
   bullet
-  capybara
-  coffee-rails
-  compass-rails
-  coveralls
-  dalli
-  exception_notification
-  factory_girl_rails
-  guard-rspec
-  haml-rails
-  jquery-rails
-  launchy
-  libv8
+  capybara (= 2.1.0)
+  coffee-rails (= 3.2.2)
+  compass-rails (= 1.0.3)
+  coveralls (= 0.6.7)
+  dalli (= 2.6.4)
+  exception_notification (= 4.0.1)
+  factory_girl_rails (= 4.2.1)
+  guard-rspec (= 3.0.2)
+  haml-rails (= 0.4)
+  jquery-rails (= 2.2.1)
+  launchy (= 2.3.0)
+  libv8 (= 3.11.8.13)
   newrelic_rpm (= 3.6.8.168)
-  pg
-  puma
+  pg (= 0.16.0)
+  puma (= 2.5.1)
   quiet_assets
-  rack
+  rack (= 1.4.5)
   rails (= 3.2.13)
-  ransack
-  redcarpet
-  redis-rails
-  resque
-  resque-pool
-  ri_cal
-  rocket_pants
-  rspec-rails
-  sass-rails
-  simple_form
+  ransack (= 0.7.2)
+  redcarpet (= 2.2.2)
+  redis-rails (= 3.2.3)
+  resque (= 1.24.1)
+  resque-pool (= 0.3.0)
+  ri_cal (= 0.8.8)
+  rocket_pants (= 1.7.0)
+  rspec-rails (= 2.13.2)
+  sass-rails (= 3.2.6)
+  simple_form (= 2.1.0)
   sqlite3
-  therubyracer
-  turbo-sprockets-rails3
-  uglifier
-  whenever
-  will_paginate
-  yaml_db
+  therubyracer (= 0.11.4)
+  turbo-sprockets-rails3 (= 0.3.6)
+  uglifier (= 1.3.0)
+  whenever (= 0.8.4)
+  will_paginate (= 3.0.4)
+  yaml_db (= 0.2.3)
