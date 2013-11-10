@@ -1,4 +1,4 @@
-= cache ['grades_table', 'v1', current_user, session, grades, exams] do
+= cache ['grades_table', 'v2', current_user, session, grades, exams] do
   .content-box
     .content-box-header
       %i.icon-table
@@ -15,7 +15,7 @@
               %th Date
               %th Coefficient
               %th Note
-              %th Moyenne
+              %th Moyenne (Nb élèves)
           %tbody
             - # Sort grades by desc. chronological order
             - grades.sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
@@ -39,6 +39,7 @@
                       %span.label.label-red ?
                     - else
                       %strong= "%.2f" % g.exam.average
+                    = "(#{g.exam.grades_count})"
       - else
         Aucune note pour l'instant.
 
