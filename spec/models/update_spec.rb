@@ -41,6 +41,39 @@ describe Update do
         it { should eq 'Notes' }
       end
     end
+
+    context 'when object is absence' do
+      let!(:user)  { create :user }
+      let(:update) { build :update, object: Update::OBJECT_ABSENCES.to_s, user: user }
+
+      context 'when the session is defined' do
+        let!(:session) { create :user_session, absences_session: '543', year: 3, user: user }
+        let(:update)   { build :update, object: Update::OBJECT_ABSENCES.to_s + '543', user: user }
+        it { should eq 'Absences HEI3' }
+      end
+
+      context 'when the session is NOT defined' do
+        it { should eq 'Absences' }
+      end
+    end
+
+    context 'when object is corrupted' do
+      it { should raise_error(Exception) }
+    end
   end
 
+  describe '#set_default_state' do
+    let(:update) { build :update }
+    subject { update }
+    before { update.save! }
+
+    context 'when the state is known' do
+      let(:update) { build :update, state: Update::STATE_UPDATING.to_s }
+      its(:state) { should eq Update::STATE_UPDATING.to_s }
+    end
+
+    context 'when the state is NOT known' do
+      its(:state) { should eq Update::STATE_UNKNOWN.to_s }
+    end
+  end
 end

@@ -7,4 +7,11 @@ describe Teacher do
     it { should have_many(:course_teachers) }
   end
 
+  describe '#to_s' do
+    let(:name) { %w(mon professeur prefere).sample }
+    let(:teacher) { build :teacher, name: name }
+    subject { teacher.to_s }
+    it { should eq name }
+  end
+
 end
