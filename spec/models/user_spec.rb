@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  ecampus_id      :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  ics_key         :string(255)
+#  password_digest :string(255)
+#  token           :string(255)
+#  last_activity   :datetime
+#  admin           :boolean          default(FALSE)
+#
+
 require 'spec_helper'
 
 describe User do

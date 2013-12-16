@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: course_teachers
+#
+#  id         :integer          not null, primary key
+#  course_id  :integer
+#  teacher_id :integer
+#
+
 require 'spec_helper'
 
 describe CourseTeacher do

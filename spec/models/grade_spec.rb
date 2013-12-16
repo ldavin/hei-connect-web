@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: grades
+#
+#  id              :integer          not null, primary key
+#  mark            :float
+#  unknown         :boolean
+#  update_number   :integer
+#  user_session_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  exam_id         :integer
+#
+
 require 'spec_helper'
 
 describe Grade do
