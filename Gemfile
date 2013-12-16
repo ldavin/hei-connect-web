@@ -39,6 +39,8 @@ group :test do
   gem 'launchy', '2.3.0'
   gem 'coveralls', '0.6.7'
   gem 'resque_spec', '0.14.4'
+  gem 'capybara-webkit', '1.1.0'
+  gem 'database_cleaner'
 end
 
 group :production do
