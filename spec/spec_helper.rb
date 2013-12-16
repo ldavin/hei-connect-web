@@ -13,8 +13,8 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'database_cleaner'
   require 'capybara/rspec'
-  require 'capybara/webkit/matchers'
-  Capybara.javascript_driver = :webkit
+  require 'capybara/poltergeist'
+  Capybara.javascript_driver = :poltergeist
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
