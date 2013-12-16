@@ -10,7 +10,7 @@ group :assets do
   gem 'sass-rails', '3.2.6'
   gem 'compass-rails', '1.0.3'
   gem 'uglifier', '1.3.0'
-  gem 'libv8', '3.11.8.13'
+  gem 'libv8', '3.16.14.0'
   gem 'turbo-sprockets-rails3', '0.3.6'
 end
 
@@ -38,6 +38,7 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'launchy', '2.3.0'
   gem 'coveralls', '0.6.7'
+  gem 'resque_spec', '0.14.4'
 end
 
 group :production do
@@ -57,7 +58,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'ransack', '0.7.2'
 gem 'resque', '1.24.1'
-gem 'therubyracer', '0.11.4'
+gem 'therubyracer', '0.12.0'
 gem 'resque-pool', '0.3.0'
 gem 'exception_notification', '4.0.1'
 gem 'yaml_db', '0.2.3'

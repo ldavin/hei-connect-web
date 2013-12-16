@@ -9,6 +9,9 @@ HeiConnectWeb::Application.routes.draw do
   get 'ics/:key' => 'ics#show', as: :ics
 
   resource :sessions, only: [:destroy]
+  # Should be improved
+  get 'sessions' => 'sessions#destroy' if Rails.env.test?
+
   resource :users, only: [:create] do
     get 'validate'
   end

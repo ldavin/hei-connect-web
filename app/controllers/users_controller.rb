@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     case current_user.user_state
       when Update::STATE_OK
         redirect_to root_url, notice: "Les identifiants de votre compte ont été validés."
-      when Update::STATE_FAILED
+      when Update::STATE_FAILED, Update::STATE_UNKNOWN
         current_user.destroy
         session[:user_id] = nil
         redirect_to root_url, alert: "Les identifiants que vous avez entré ne permettent pas de vous connecter" +
