@@ -25,7 +25,7 @@ describe UserSession do
   end
 
   describe '#title' do
-    let(:session) { build :user_session}
+    let(:session) { build :user_session, year: nil }
     subject { session.title }
 
     context 'when session is empty' do
