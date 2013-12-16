@@ -18,6 +18,13 @@
                                                $('#average_data').data('goals')
       average.render()
 
+    if $('#absences_data').length
+      absences = new HEIConnect.Widgets.Absence 'absences-chart', $('#absences_data').data('absences'),
+        $('#absences_data').data('x'),
+        $('#absences_data').data('y'),
+        $('#absences_data').data('labels'),
+        $('#absences_data').data('colors')
+      absences.render()
 
   courses: ->
     if $('#calendar_data').length
