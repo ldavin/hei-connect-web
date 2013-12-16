@@ -5,7 +5,6 @@ feature 'User checks its grades' do
   before :each do
     sign_out
     user.user_ok!
-    user.schedule_ok!
   end
 
   given(:id)       { 'h01234' }
