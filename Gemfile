@@ -45,6 +45,7 @@ end
 
 group :production do
   gem 'pg', '0.16.0'
+  gem 'therubyracer', '0.12.0'
 end
 
 gem 'jquery-rails', '2.2.1'
