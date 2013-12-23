@@ -230,4 +230,14 @@ ActiveAdmin.setup do |config|
 
   config.before_filter :set_admin_locale
 
+
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add label: 'Users', priority: 1
+      menu.add label: 'Courses', priority: 2
+      menu.add label: 'Exams', priority: 3
+    end
+
+  end
+
 end
