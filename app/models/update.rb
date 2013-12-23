@@ -31,6 +31,12 @@ class Update < ActiveRecord::Base
   belongs_to :user
   attr_accessible :rev, :state, :object, :user_id
 
+  scope :unknown, where(state: STATE_UNKNOWN)
+  scope :scheduled, where(state: STATE_SCHEDULED)
+  scope :updating, where(state: STATE_UPDATING)
+  scope :ok, where(state: STATE_OK)
+  scope :failed, where(state: STATE_FAILED)
+
   after_initialize :set_default_state
 
   def title
