@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 # == Schema Information
 #
 # Table name: users
@@ -12,19 +11,10 @@
 #  password_digest :string(255)
 #  token           :string(255)
 #  last_activity   :datetime
-#  admin           :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
   require 'bcrypt'
-
-  ADMIN_INDEX_ATTRIBUTES = [
-      :id,
-      :ecampus_id,
-      :admin,
-      {last_activity: lambda { |u| u.last_activity ? u.last_activity.strftime('%d/%m/%y à %H:%M') : nil }},
-      {created_at: lambda { |u| u.created_at.strftime('%d/%m/%y à %H:%M') }}
-  ]
 
   has_many :course_users, dependent: :delete_all
   has_many :courses, through: :course_users

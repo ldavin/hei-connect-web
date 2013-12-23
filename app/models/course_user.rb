@@ -13,16 +13,6 @@
 #
 
 class CourseUser < ActiveRecord::Base
-  ADMIN_INCLUDES = [:user, course: :section]
-  ADMIN_INDEX_ATTRIBUTES = [
-      :id,
-      :course_id,
-      {title: :course_name, irregular: true, value: lambda { |cu| cu.course.name }},
-      :user_id,
-      {title: :user_name, irregular: true, value: lambda { |cu| cu.user }},
-      {created_at: lambda { |cu| cu.created_at.strftime('%d/%m/%y à %H:%M') }}
-  ]
-
   belongs_to :course
   belongs_to :user
 

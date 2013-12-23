@@ -10,7 +10,6 @@
 #  password_digest :string(255)
 #  token           :string(255)
 #  last_activity   :datetime
-#  admin           :boolean          default(FALSE)
 #
 
 require 'spec_helper'

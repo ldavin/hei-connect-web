@@ -17,18 +17,6 @@
 #
 
 class Exam < ActiveRecord::Base
-  ADMIN_INCLUDES = [:section]
-  ADMIN_INDEX_ATTRIBUTES = [
-      :id,
-      :section_id,
-      {title: :section_name, irregular: true, value: lambda { |e| e.section.name }},
-      :kind,
-      {date: lambda { |a| a.date.strftime('%d/%m/%y') }},
-      :average,
-      :grades_count,
-      {updated_at: lambda { |u| u.updated_at.strftime('%d/%m/%y à %H:%M') }}
-  ]
-
   has_many :grades, dependent: :destroy
   belongs_to :section
 

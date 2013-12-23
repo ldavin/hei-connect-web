@@ -1,5 +1,0 @@
-.content-box
-  .content-box-header
-    = "Edit #{@klass.model_name.human}"
-  .padded
-    = render :partial => "form", locals: { klass: @klass, klass_path: @klass_path, entity: @entity }

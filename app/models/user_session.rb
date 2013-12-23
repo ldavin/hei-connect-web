@@ -16,18 +16,6 @@
 #
 
 class UserSession < ActiveRecord::Base
-  ADMIN_INCLUDES = [:user]
-  ADMIN_INDEX_ATTRIBUTES = [
-      :id,
-      {title: :name, irregular: true, value: lambda { |us| us.title }},
-      :absences_session,
-      :grades_session,
-      :user_id,
-      {title: :user_name, irregular: true, value: lambda { |us| us.user }},
-      :update_number,
-      {updated_at: lambda { |u| u.updated_at.strftime('%d/%m/%y à %H:%M') }}
-  ]
-
   has_many :grades, dependent: :destroy
   has_many :exams, through: :grades
   has_many :absences, dependent: :destroy

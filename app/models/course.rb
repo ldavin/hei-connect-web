@@ -17,18 +17,6 @@
 #
 
 class Course < ActiveRecord::Base
-  ADMIN_INDEX_ATTRIBUTES = [
-      :id,
-      {date: lambda { |a| a.date.strftime('%d/%m/%y à %H:%M') }},
-      :length,
-      :kind,
-      :ecampus_id,
-      :section_id,
-      :group_id,
-      :broken_name,
-      {created_at: lambda { |a| a.created_at.strftime('%d/%m/%y à %H:%M') }}
-  ]
-
   UNKNOWN_PLACE = 'Lieu inconnu'
   UNKNOWN_DESCRIPTION = 'E-Campus ne donne pas plus d\'informations.'
 
