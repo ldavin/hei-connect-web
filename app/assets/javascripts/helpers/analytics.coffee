@@ -1,6 +1,5 @@
 _gaq = _gaq or []
 _gaq.push ["_setAccount", "UA-37226172-1"]
-_gaq.push ["_setDomainName", "hei-connect.eu"]
 _gaq.push ["_trackPageview"]
 (->
   ga = document.createElement("script")
