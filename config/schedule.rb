@@ -38,3 +38,7 @@ end
 every :sunday do
   runner "Resque.enqueue UpdateSessionsScheduler"
 end
+
+every 5.minutes do
+  runner "Resque.enqueue CleanAccountsScheduler"
+end
