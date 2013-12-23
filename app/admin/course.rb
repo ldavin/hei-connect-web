@@ -11,7 +11,7 @@ ActiveAdmin.register Course do
     selectable_column
     column :id
     column :ecampus_id
-    column 'Section Name', sortable: 'sections.name', class: nil do |course|
+    column 'Section Name', sortable: 'sections.name' do |course|
       link_to course.section.name, admin_section_path(course.section)
     end
     column 'Group', sortable: 'groups.name' do |course|
