@@ -1,6 +1,12 @@
 ActiveAdmin.register Grade do
   menu priority: 2, parent: 'Exams'
 
+  filter :id
+  filter :mark
+  filter :unknown
+  filter :updated_at
+  filter :created_at
+
   controller do
     def scoped_collection
       resource_class.includes(user_session: :user)

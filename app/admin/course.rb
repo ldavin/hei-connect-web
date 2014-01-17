@@ -1,6 +1,19 @@
 ActiveAdmin.register Course do
   menu priority: 1, parent: 'Courses'
 
+  filter :id
+  filter :rooms
+  filter :teachers
+  filter :users
+  filter :section
+  filter :group
+  filter :date
+  filter :length
+  filter :kind
+  filter :broken_name
+  filter :updated_at
+  filter :created_at
+
   controller do
     def scoped_collection
       resource_class.includes(:section, :group)

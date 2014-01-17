@@ -1,6 +1,15 @@
 ActiveAdmin.register Absence do
   menu priority: 5
 
+  filter :id
+  filter :section
+  filter :date
+  filter :length
+  filter :excused
+  filter :justification
+  filter :updated_at
+  filter :created_at
+
   controller do
     def scoped_collection
       resource_class.includes(:section, user_session: :user)

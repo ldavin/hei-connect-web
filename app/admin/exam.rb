@@ -1,6 +1,16 @@
 ActiveAdmin.register Exam do
   menu priority: 1, parent: 'Exams'
 
+  filter :id
+  filter :section
+  filter :name
+  filter :date
+  filter :kind
+  filter :weight
+  filter :average
+  filter :updated_at
+  filter :created_at
+
   controller do
     def scoped_collection
       resource_class.includes(:section)
