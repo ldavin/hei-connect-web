@@ -3,6 +3,7 @@ class Client < RocketPants::Client
   class ApiUser < APISmith::Smash
     property :username
     property :token
+    property :email
   end
 
   class ApiTeacher < APISmith::Smash
@@ -63,6 +64,10 @@ class Client < RocketPants::Client
 
   def user(username, password)
     get 'users', extra_query: {user: {username: username, password: password}}, transformer: ApiUser
+  end
+
+  def user_detailed(user)
+    get 'users_detailed', extra_query: {token: user.token}, transformer: ApiUser
   end
 
   def new_user(username, password)

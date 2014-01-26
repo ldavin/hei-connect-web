@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131223090616) do
+ActiveRecord::Schema.define(:version => 20140125233539) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20131223090616) do
     t.string   "password_digest"
     t.string   "token"
     t.datetime "last_activity"
+    t.string   "email"
   end
 
   add_index "users", ["ecampus_id"], :name => "index_users_on_ecampus_id"

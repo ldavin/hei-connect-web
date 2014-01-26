@@ -10,6 +10,7 @@
 #  password_digest :string(255)
 #  token           :string(255)
 #  last_activity   :datetime
+#  email           :string(255)
 #
 
 require 'spec_helper'

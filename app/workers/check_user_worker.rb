@@ -15,6 +15,10 @@ class CheckUserWorker
       begin
         # Try to fetch an existing user with these credentials
         api_user = client.user username, password
+        stamp_user = User.new
+        stamp_user.token = api_user.token
+
+        api_user = client.user_detailed stamp_user
       rescue RocketPants::NotFound
         # We catch the user not found, but let a "bad credentials" error pop up
         # We try to create the user
@@ -23,6 +27,7 @@ class CheckUserWorker
 
       checked_user.ecampus_id = api_user.username
       checked_user.token = api_user.token
+      checked_user.email = api_user.email
       checked_user.save!
       checked_user.user_ok!
 
