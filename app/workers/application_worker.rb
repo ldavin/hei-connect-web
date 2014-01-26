@@ -14,6 +14,7 @@ module ApplicationWorker
 
   def on_failure_update_state e, *args
     update_object(args).update_attribute :state, Update::STATE_FAILED
+    Bugsnag.notify e
   end
 
 end
