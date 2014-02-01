@@ -1,3 +1,5 @@
+require 'bugsnag'
+
 module ApplicationWorker
 
   def after_enqueue_update_state *args
