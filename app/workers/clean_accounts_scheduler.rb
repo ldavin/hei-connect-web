@@ -1,8 +1,6 @@
 class CleanAccountsScheduler
 
-  @queue = :critical
-
-  def self.perform *args
+  def perform
     now = DateTime.now
     User.where(token: nil).where('created_at < ?', now - 5.minutes).destroy_all
     User.where(last_activity: nil).destroy_all

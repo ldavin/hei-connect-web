@@ -40,5 +40,5 @@ every :sunday do
 end
 
 every 5.minutes do
-  runner "Resque.enqueue CleanAccountsScheduler"
+  runner "Delayed::Job.enqueue CleanAccountsScheduler.new, priority: ApplicationWorker::PR_HIGHEST"
 end

@@ -1,7 +1,8 @@
 require 'bugsnag'
 
 module ApplicationWorker
-  PR_CHECK_USER = 0
+  PR_HIGHEST = 0
+  PR_CHECK_USER = 1
   PR_FETCH_ABSENCES = 75
   PR_FETCH_GRADES = 75
   PR_FETCH_DETAILED_GRADES = 100
