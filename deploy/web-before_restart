@@ -9,6 +9,8 @@ RAILS_ENV   = ENV['RAILS_ENV'] || 'production'
 use_bundler = File.file? 'Gemfile'
 rake_cmd    = use_bundler ? 'bundle exec rake' : 'rake'
 
+run "script/delayed_job stop"
+
 if use_bundler
   bundler_args = ['--deployment']
   BUNDLE_WITHOUT = ENV['BUNDLE_WITHOUT'] || 'development:test'
