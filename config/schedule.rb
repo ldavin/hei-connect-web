@@ -19,8 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: '2:00pm' do
-  runner "Delayed::Job.enqueue UpdateSchedulesScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
+every 5.minutes do
+  runner "Delayed::Job.enqueue CleanAccountsScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
 every 1.day, at: '1:00am' do
@@ -31,14 +31,15 @@ every 1.day, at: '3:00am' do
   runner "Delayed::Job.enqueue UpdateGradesScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
+every 1.day, at: '2:00pm' do
+  runner "Delayed::Job.enqueue UpdateSchedulesScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
+end
+
 every :sunday do
   runner "Delayed::Job.enqueue CleanCoursesScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
 every :sunday do
-  runner "Resque.enqueue UpdateSessionsScheduler"
+  runner "Delayed::Job.enqueue UpdateSessionsScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
-every 5.minutes do
-  runner "Delayed::Job.enqueue CleanAccountsScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
-end
