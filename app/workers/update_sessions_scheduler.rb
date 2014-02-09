@@ -5,7 +5,7 @@ class UpdateSessionsScheduler
   def self.perform *args
     User.find_each(include: :updates) do |user|
       if user.user_ok?
-        Resque.enqueue FetchSessionsWorker, user.id, false
+        Delayed::Job.enqueue FetchSessionsWorker.new(user.id, false), priority: ApplicationWorker::PR_FETCH_SESSIONS, queue: ApplicationWorker::QUEUE_REGULAR
       end
     end
   end

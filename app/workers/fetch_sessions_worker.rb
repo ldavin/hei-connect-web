@@ -1,14 +1,16 @@
-class FetchSessionsWorker
-  extend ApplicationWorker
+class FetchSessionsWorker < ApplicationWorker
 
-  @queue = :high
+  def initialize(user_id, immediate = false)
+    @user_id = user_id
+    @immediate = immediate
 
-  def self.update_object *args
-    User.find(args.flatten.first).sessions_update
+    user = User.find @user_id
+    super user.sessions_update.id
   end
 
-  def self.perform user_id, immediate = false, *args
-    user = User.find user_id
+  def perform
+    user = User.find @user_id
+    immediate = @immediate
 
     user.sessions_rev_increment!
     revision = user.sessions_rev
