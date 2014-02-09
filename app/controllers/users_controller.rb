@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     else
       if @user.save
         session[:user_id] = @user.id
-        Resque.enqueue CheckUserWorker, @user.id, @user.ecampus_id, @user.password
+        Delayed::Job.enqueue CheckUserWorker.new(@user.id, @user.ecampus_id, @user.password),
+                             priority: ApplicationWorker::PR_CHECK_USER
         redirect_to validate_users_url
       else
         render 'welcome/index'

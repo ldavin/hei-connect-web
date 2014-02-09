@@ -1,22 +1,35 @@
 require 'bugsnag'
 
 module ApplicationWorker
+  PR_CHECK_USER = 0
+  PR_FETCH_ABSENCES = 75
+  PR_FETCH_GRADES = 75
+  PR_FETCH_DETAILED_GRADES = 100
+  PR_FETCH_SCHEDULE = 25
+  PR_FETCH_SESSIONS = 75
 
-  def after_enqueue_update_state *args
-    update_object(args).update_attribute :state, Update::STATE_SCHEDULED
+  def initialize(update_id)
+    @update = Update.find(update_id)
   end
 
-  def before_perform_update_state *args
-    update_object(args).update_attribute :state, Update::STATE_UPDATING
+  def enqueue(job)
+    @update.update_attribute :state, Update::STATE_SCHEDULED
   end
 
-  def after_perform_update_state *args
-    update_object(args).update_attribute :state, Update::STATE_OK
+  def before(job)
+    @update.update_attribute :state, Update::STATE_UPDATING
   end
 
-  def on_failure_update_state e, *args
-    update_object(args).update_attribute :state, Update::STATE_FAILED
-    Bugsnag.notify e
+  def success(job)
+    @update.update_attribute :state, Update::STATE_OK
+  end
+
+  def error(job, exception)
+    Bugsnag.notify exception
+  end
+
+  def failure(job)
+    @update.update_attribute :state, Update::STATE_FAILED
   end
 
 end
