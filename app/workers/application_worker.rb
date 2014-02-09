@@ -9,6 +9,9 @@ module ApplicationWorker
   PR_FETCH_SCHEDULE = 25
   PR_FETCH_SESSIONS = 75
 
+  QUEUE_REGULAR = 'regular'
+  QUEUE_DETAILED_GRADES = 'grades'
+
   def initialize(update_id)
     @update = Update.find(update_id)
   end

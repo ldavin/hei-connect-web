@@ -34,8 +34,8 @@ class CheckUserWorker < ApplicationWorker
       checked_user.user_ok!
 
       # User valid, retrieve its info as soon as possible
-      Delayed::Job.enqueue FetchScheduleWorker.new(checked_user.id), priority: ApplicationWorker::PR_FETCH_SCHEDULE
-      Delayed::Job.enqueue FetchSessionsWorker.new(checked_user.id, true), priority: ApplicationWorker::PR_FETCH_SESSIONS
+      Delayed::Job.enqueue FetchScheduleWorker.new(checked_user.id), priority: ApplicationWorker::PR_FETCH_SCHEDULE, queue: ApplicationWorker::QUEUE_REGULAR
+      Delayed::Job.enqueue FetchSessionsWorker.new(checked_user.id, true), priority: ApplicationWorker::PR_FETCH_SESSIONS, queue: ApplicationWorker::QUEUE_REGULAR
     rescue RocketPants::Unauthenticated
       checked_user.user_failed!
     end

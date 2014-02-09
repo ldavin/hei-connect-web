@@ -65,7 +65,9 @@ class DashboardController < ApplicationController
       flash = {alert: 'Vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
     else
       flash = {notice: 'Mise à jour programmée'}
-      Resque.enqueue FetchDetailedGradesWorker, current_user.id, @session.id
+      Delayed::Job.enqueue FetchDetailedGradesWorker.new(current_user.id, @session.id),
+                           priority: ApplicationWorker::PR_FETCH_DETAILED_GRADES,
+                           queue: ApplicationWorker::QUEUE_DETAILED_GRADES
     end
 
     redirect_to dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), flash
@@ -97,7 +99,8 @@ class DashboardController < ApplicationController
     else
       flash = {notice: 'Mise à jour programmée'}
       Delayed::Job.enqueue FetchAbsencesWorker.new(current_user.id, @session.id),
-                           priority: ApplicationWorker::PR_FETCH_ABSENCES
+                           priority: ApplicationWorker::PR_FETCH_ABSENCES,
+                           queue: ApplicationWorker::QUEUE_REGULAR
     end
 
     redirect_to dashboard_absences_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), flash

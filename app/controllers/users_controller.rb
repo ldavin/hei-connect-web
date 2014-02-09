@@ -20,7 +20,8 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         Delayed::Job.enqueue CheckUserWorker.new(@user.id, @user.ecampus_id, @user.password),
-                             priority: ApplicationWorker::PR_CHECK_USER
+                             priority: ApplicationWorker::PR_CHECK_USER,
+                             queue: ApplicationWorker::QUEUE_REGULAR
         redirect_to validate_users_url
       else
         render 'welcome/index'

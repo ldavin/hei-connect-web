@@ -32,7 +32,7 @@ every 1.day, at: '3:00am' do
 end
 
 every :sunday do
-  runner "Delayed::Job.enqueue CleanCoursesScheduler.new, priority: ApplicationWorker::PR_HIGHEST"
+  runner "Delayed::Job.enqueue CleanCoursesScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
 every :sunday do
@@ -40,5 +40,5 @@ every :sunday do
 end
 
 every 5.minutes do
-  runner "Delayed::Job.enqueue CleanAccountsScheduler.new, priority: ApplicationWorker::PR_HIGHEST"
+  runner "Delayed::Job.enqueue CleanAccountsScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end

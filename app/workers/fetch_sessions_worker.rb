@@ -51,9 +51,12 @@ class FetchSessionsWorker
     # We sort the session in desc chronological order to have the interesting grades and absences first
     if immediate
       user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
-        Resque.enqueue FetchDetailedGradesWorker, user.id, session.id
+        Delayed::Job.enqueue FetchDetailedGradesWorker.new(user.id, session.id),
+                             priority: ApplicationWorker::PR_FETCH_DETAILED_GRADES,
+                             queue: ApplicationWorker::QUEUE_DETAILED_GRADES
         Delayed::Job.enqueue FetchAbsencesWorker.new(user.id, session.id),
-                             priority: ApplicationWorker::PR_FETCH_ABSENCES
+                             priority: ApplicationWorker::PR_FETCH_ABSENCES,
+                             queue: ApplicationWorker::QUEUE_REGULAR
       end
     end
   end
