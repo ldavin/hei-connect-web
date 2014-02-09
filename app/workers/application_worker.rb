@@ -1,6 +1,6 @@
 require 'bugsnag'
 
-module ApplicationWorker
+class ApplicationWorker
   PR_HIGHEST = 0
   PR_CHECK_USER = 1
   PR_FETCH_ABSENCES = 75
