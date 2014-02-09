@@ -32,7 +32,7 @@ every 1.day, at: '3:00am' do
 end
 
 every :sunday do
-  runner "Resque.enqueue CleanCoursesScheduler"
+  runner "Delayed::Job.enqueue CleanCoursesScheduler.new, priority: ApplicationWorker::PR_HIGHEST"
 end
 
 every :sunday do

@@ -1,8 +1,6 @@
 class CleanCoursesScheduler
 
-  @queue = :critical
-
-  def self.perform *args
+  def perform
     date = Date.today
     date = date - date.wday + 1
     Course.where('date < ?', date).destroy_all
