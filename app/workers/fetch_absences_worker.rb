@@ -1,18 +1,17 @@
-class FetchAbsencesWorker
-  extend ApplicationWorker
+class FetchAbsencesWorker < ApplicationWorker
 
-  @queue = :low
+  def initialize(user_id, session_id)
+    @user_id = user_id
+    @session_id = session_id
 
-  def self.update_object *args
-    user = User.find(args.flatten.first)
-    session = UserSession.find(args.flatten.second)
-
-    user.absences_update(session.absences_session)
+    user = User.find @user_id
+    session = UserSession.find @session_id
+    super user.absences_update(session.absences_session).id
   end
 
-  def self.perform user_id, session_id, *args
-    user = User.find user_id
-    session = UserSession.find session_id
+  def perform
+    user = User.find @user_id
+    session = UserSession.find @session_id
     ecampus_id = session.absences_session
 
     user.absences_rev_increment!(ecampus_id)

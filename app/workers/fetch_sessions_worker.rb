@@ -52,7 +52,8 @@ class FetchSessionsWorker
     if immediate
       user.sessions.sort { |x, y| y.year <=> x.year }.each do |session|
         Resque.enqueue FetchDetailedGradesWorker, user.id, session.id
-        Resque.enqueue FetchAbsencesWorker, user.id, session.id
+        Delayed::Job.enqueue FetchAbsencesWorker.new(user.id, session.id),
+                             priority: ApplicationWorker::PR_FETCH_ABSENCES
       end
     end
   end
