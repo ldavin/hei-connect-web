@@ -24,7 +24,7 @@ every 1.day, at: '2:00pm' do
 end
 
 every 1.day, at: '1:00am' do
-  runner "Resque.enqueue UpdateAbsencesScheduler"
+  runner "Delayed::Job.enqueue UpdateAbsencesScheduler.new, priority: ApplicationWorker::PR_FETCH_ABSENCES, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
 every 1.day, at: '3:00am' do
