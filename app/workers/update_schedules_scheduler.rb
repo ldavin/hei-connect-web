@@ -1,8 +1,6 @@
 class UpdateSchedulesScheduler
 
-  @queue = :critical
-
-  def self.perform *args
+  def perform
     User.find_each(include: :updates) do |user|
       if user.user_ok? and user.last_activity > Time.now - 3.month
         Delayed::Job.enqueue FetchScheduleWorker.new(user.id),

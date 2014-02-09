@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, at: '2:00pm' do
-  runner "Resque.enqueue UpdateSchedulesScheduler"
+  runner "Delayed::Job.enqueue UpdateSchedulesScheduler.new, priority: ApplicationWorker::PR_HIGHEST, queue: ApplicationWorker::QUEUE_REGULAR"
 end
 
 every 1.day, at: '1:00am' do
