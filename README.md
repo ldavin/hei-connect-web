@@ -33,29 +33,23 @@ Dans tous les cas, vous devez avoir les paquets suivants installés sur votre PC
 - Git
 - SQLite
 
-### 2. Installer redis
-Redis est un gestionnaire de base de données clef-valeur, très léger et très rapide.
-L'application utilise redis comme serveur de cache (par exemple pour sauvegarder certains resultats et court-circuiter les appels vers la base de données).
-[L'installation de redis](http://redis.io/download) ne devrait pas être un problème, n'hésitez pas à suivre d'autres tutos trouvés sur le web, et rédigés spécifiquement pour votre système d'exploitation.
-
-### 3. Récupérer le code
+### 2. Récupérer le code
 * Forquez le projet
 * Clonez le code
 
-### 4. Installer les gems
+### 3. Installer les gems
 Les "gems" sont des paquets (librairies) écrits en ruby. Pour éviter d'avoir à ré-écrire constamment les même fonctionnalités propres à la plupart des sites internet, l'application utilise un certain nombre de gemmes. Le fichier `Gemfile` liste toutes les gemmes utilisées.
 Pour les installer, lancez un simple `bundle install` dans la console depuis le repertoire de l'application.
 
-### 5. Créer la base de données
-Avant de pouvoir lancer l'application, il vous faut créer votre propre version de la BDD. Executez un `rake db:schema:load`, cela créera une base de données sqlite (development.sqlite3) dans le sous-dossier `db/` de l'application.
+### 4. Créer la base de données
+Avant de pouvoir lancer l'application, il vous faut créer votre propre version de la BDD. Executez un `rake db:create db:schema:load`, cela créera une base de données sqlite (development.sqlite3) dans le sous-dossier `db/` de l'application.
 Voilà! La partie "installation" est terminée.
 
-### 6. Lancer redis et les background jobs
-Avant de lancer le serveur local, lancez l'instance de redis avec un `redis-server` dans une console.
+### 5. Lancer les background jobs
+Avant de lancer le serveur local, lancez l'instance delayed_job avec un `script/delayed_job start` dans une console.
 
 L'application utilise un système pour pouvoir effectuer des tâches en arrière plan, qui ne ralentiront pas le chargement de la page.
 Par exemple, lors de la création d'un compte, l'application doit aller demander à l'API HEI-Connect si le compte est valide. Cette requête prend plusieurs secondes (5 à 10), et on veut éviter de bloquer le chargement de la page pendant ce temps.
-Pour lancer le script qui s'occupe des tâches longues en arrière plan, il faut lancer un `resque-pool` dans une console.
 
 ### 7. Lancer l'application
 Maintenant que tout est installé et que les différents services sont lancés, il n'y a plus qu'à faire un petit `rails server`, et c'est tout bon!
@@ -65,13 +59,13 @@ Rendez-vous sur `http://localhost:3000` pour naviguer sur l'appli.
 ### Récapitulons
 Avant de lancer le serveur local:
 
-* `redis-server` pour lancer redis (utilisé par l'application pour la mise en cache).
-* `resque-pool` pour lancer les background jobs (utilisés par l'application pour passer les appels à l'API, et récupérer les données e-campus)
+* Mettre à jour la base de données `rake db:migrate`,
+* `script/delayed_job start` pour lancer les background jobs (utilisés par l'application pour passer les appels à l'API, et récupérer les données e-campus)
 
 Puis `rails server`, ou `rails s` pour lancer le serveur local.
 Vous pouvez alors bidouiller le code de l'application, et un refresh dans le navigateur affichera les modifications.
 
-Une fois terminé, `Ctrl+C` pour arrêter le serveur local, l'instance de redis, et les background jobs.
+Une fois terminé, `Ctrl+C` pour arrêter le serveur local, `script/delayed_job stop` pour arrêter le worker des background jobs.
 
 ### Sauvegardez vos modifications et propagez-les
 Au fur et à mesure de votre travail, sauvegardez vos modifications sur votre dépôt git. Une fois satifait du résultat, retournez sur la page github de votre fork, et lancez une "pull request".
