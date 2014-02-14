@@ -38,7 +38,6 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'launchy', '2.3.0'
   gem 'coveralls', '0.6.7'
-  gem 'resque_spec', '0.14.4'
   gem 'database_cleaner'
   gem 'poltergeist'
 end

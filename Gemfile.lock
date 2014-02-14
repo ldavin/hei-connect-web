@@ -275,11 +275,6 @@ GEM
       rake
       resque (~> 1.20)
       trollop (~> 1.16)
-    resque_spec (0.14.4)
-      resque (>= 1.19.0)
-      rspec-core (>= 2.5.0)
-      rspec-expectations (>= 2.5.0)
-      rspec-mocks (>= 2.5.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ri_cal (0.8.8)
@@ -399,7 +394,6 @@ DEPENDENCIES
   redcarpet (= 2.2.2)
   redis-rails (= 3.2.3)
   resque-pool
-  resque_spec (= 0.14.4)
   ri_cal (= 0.8.8)
   rocket_pants (= 1.7.0)
   rspec-rails (= 2.13.2)

@@ -3,7 +3,6 @@ require 'spec_helper'
 feature 'Visitor signs up' do
 
   before :each do
-    ResqueSpec.reset!
     sign_out
   end
 
@@ -15,7 +14,7 @@ feature 'Visitor signs up' do
     sign_in_with valid_id, password
 
     expect(page).to have_content 'Premier login'
-    expect(CheckUserWorker).to have_queue_size_of 1
+    expect(Delayed::Job.count).to be 1 # Improve this one if possible
     expect(User.count).to be 1
   end
 
