@@ -271,6 +271,10 @@ GEM
       redis-namespace (~> 1.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-pool (0.3.0)
+      rake
+      resque (~> 1.20)
+      trollop (~> 1.16)
     resque_spec (0.14.4)
       resque (>= 1.19.0)
       rspec-core (>= 2.5.0)
@@ -338,6 +342,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    trollop (1.16.2)
     turbo-sprockets-rails3 (0.3.6)
       railties (> 3.2.8, < 4.0.0)
       sprockets (>= 2.0.0)
@@ -393,6 +398,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   redcarpet (= 2.2.2)
   redis-rails (= 3.2.3)
+  resque-pool
   resque_spec (= 0.14.4)
   ri_cal (= 0.8.8)
   rocket_pants (= 1.7.0)

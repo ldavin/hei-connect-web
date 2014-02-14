@@ -1,22 +1,59 @@
-.login-container.center
-  .title Login
-  = form_for @user, html: {class: 'login-form'}  do |f|
-    - if @user.errors.any?
-      .alert.alert-error
-        - @user.errors.full_messages.each do |msg|
-          %p
-            %small= msg
 
-    %ul.fields-list
-      %li
-        %i.icon-user{style: 'style="float: left;"'}
-        = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
-      %li
-        %i.icon-key{style: 'style="float: left;"'}
-        = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
-    .actions
-      = f.submit 'Connexion', class: 'btn btn-green btn-large login-btn'
-      = link_to 'A propos', about_path, class: 'btn btn-blue btn-large login-btn'
-    .details
-      %p
-        %small Pas encore inscrit? Il suffit de remplir le formulaire de connexion avec tes identifiants ecampus.
+.contenu
+  .span4
+    .login-container
+      .title.center Le Blog
+      -if (!@latest_blog_posts.nil?)
+        %p.lead Les derniers posts
+        -@latest_blog_posts.each do |post|
+          -if post != nil && post.respond_to?(:pubDate)
+            %blockquote
+              =link_to post.title, post.link, :target => "_blank"
+              %small
+                =post.pubDate.to_formatted_s(:short)
+
+
+
+  .span4
+    .login-container.center
+      .title Login
+      = form_for @user, html: {class: 'login-form'}  do |f|
+        - if @user.errors.any?
+          .alert.alert-error
+            - @user.errors.full_messages.each do |msg|
+              %p
+                %small= msg
+
+        %ul.fields-list
+          %li
+            %i.icon-user{style: 'style="float: left;"'}
+            = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
+          %li
+            %i.icon-key{style: 'style="float: left;"'}
+            = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
+        .actions
+          = f.submit 'Connexion', class: 'btn btn-green btn-large login-btn'
+          = link_to 'A propos', about_path, class: 'btn btn-blue btn-large login-btn'
+        .details
+          %p
+            %small Pas encore inscrit? Il suffit de remplir le formulaire de connexion avec tes identifiants ecampus.
+
+
+  .span4
+    .login-container.center.twitter-box
+      .title Ça gazouille ?
+      %a.twitter-timeline{:href => 'https://twitter.com/HEI_Connect', :data => { :dnt => "true", :tweet => { :limit => "4"}, :widget => { :id => "324730400142397441"}}} 
+
+      :javascript
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+
+
+
+
+
+
+
+
+
+

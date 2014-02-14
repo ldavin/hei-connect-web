@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'rack', '1.4.5'
 gem 'puma', '2.5.1'
+gem 'resque-pool'
 
 group :assets do
   gem 'coffee-rails', '3.2.2'
