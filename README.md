@@ -46,7 +46,7 @@ Avant de pouvoir lancer l'application, il vous faut créer votre propre version 
 Voilà! La partie "installation" est terminée.
 
 ### 5. Lancer les background jobs
-Avant de lancer le serveur local, lancez l'instance delayed_job avec un `script/delayed_job start` dans une console.
+Avant de lancer le serveur local, lancez l'instance delayed_job avec un `script/delayed_job --queues=regular,grades start` dans une console.
 
 L'application utilise un système pour pouvoir effectuer des tâches en arrière plan, qui ne ralentiront pas le chargement de la page.
 Par exemple, lors de la création d'un compte, l'application doit aller demander à l'API HEI-Connect si le compte est valide. Cette requête prend plusieurs secondes (5 à 10), et on veut éviter de bloquer le chargement de la page pendant ce temps.
@@ -60,7 +60,7 @@ Rendez-vous sur `http://localhost:3000` pour naviguer sur l'appli.
 Avant de lancer le serveur local:
 
 * Mettre à jour la base de données `rake db:migrate`,
-* `script/delayed_job start` pour lancer les background jobs (utilisés par l'application pour passer les appels à l'API, et récupérer les données e-campus)
+* `script/delayed_job --queues=regular,grades start` pour lancer les background jobs (utilisés par l'application pour passer les appels à l'API, et récupérer les données e-campus)
 
 Puis `rails server`, ou `rails s` pour lancer le serveur local.
 Vous pouvez alors bidouiller le code de l'application, et un refresh dans le navigateur affichera les modifications.
