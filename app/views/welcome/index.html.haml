@@ -2,7 +2,9 @@
 .contenu
   .span4
     .login-container
-      .title.center Le Blog
+      .title.center
+        %a{href: 'http://blog.hei-connect.eu/'}
+          Le Blog
       -if (!@latest_blog_posts.nil?)
         %p.lead Les derniers posts
         -@latest_blog_posts.each do |post|
