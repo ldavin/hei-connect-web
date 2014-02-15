@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214223214) do
+ActiveRecord::Schema.define(:version => 20140215100247) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -136,9 +136,10 @@ ActiveRecord::Schema.define(:version => 20140214223214) do
 
   create_table "features", :force => true do |t|
     t.string   "key"
-    t.boolean  "enabled",    :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "enabled",       :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "error_message"
   end
 
   create_table "grades", :force => true do |t|

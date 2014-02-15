@@ -2,11 +2,12 @@
 #
 # Table name: features
 #
-#  id         :integer          not null, primary key
-#  key        :string(255)
-#  enabled    :boolean          default(FALSE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :integer          not null, primary key
+#  key           :string(255)
+#  enabled       :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  error_message :string(255)
 #
 
 require 'spec_helper'
@@ -46,5 +47,12 @@ describe Feature do
     before { Feature.disable_example }
     subject { Feature.example_enabled? }
     it { should be_false }
+  end
+
+  describe '#error_message' do
+    let(:message) { 'Super message d\'erreur' }
+    let!(:feature) {create :feature, key: 'example', error_message: message}
+    subject { Feature.example_error_message }
+    it { should eq message }
   end
 end
