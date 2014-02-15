@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'rack', '1.4.5'
 gem 'puma', '2.5.1'
-gem 'resque-pool'
 
 group :assets do
   gem 'coffee-rails', '3.2.2'
@@ -44,6 +43,8 @@ end
 
 group :production do
   gem 'pg', '0.16.0'
+  gem 'dalli', '2.6.4'
+  gem 'whenever', '0.8.4'
 end
 
 gem 'jquery-rails', '2.2.1'
@@ -54,8 +55,6 @@ gem 'rocket_pants', '1.7.0'
 gem 'redcarpet', '2.2.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form', '2.1.0'
-gem 'whenever', '0.8.4'
-gem 'dalli', '2.6.4'
 gem 'activeadmin'
 gem 'bugsnag'
 gem 'delayed_job_active_record'
