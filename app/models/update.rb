@@ -69,8 +69,6 @@ class Update < ActiveRecord::Base
         else
           'Absences'
         end
-      else
-        raise Exception
     end
   end
 

@@ -69,10 +69,6 @@ describe Update do
         it { should eq 'Absences' }
       end
     end
-
-    context 'when object is corrupted' do
-      it { should raise_error(Exception) }
-    end
   end
 
   describe '#set_default_state' do

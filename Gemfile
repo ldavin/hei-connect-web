@@ -2,15 +2,15 @@ source 'https://rubygems.org'
 
 # Regular gems
 gem 'rails', '3.2.16'
-gem 'rack', '1.4.5'
-gem 'puma', '2.5.1'
+gem 'rack'
+gem 'puma'
 
 group :assets do
-  gem 'coffee-rails', '3.2.2'
-  gem 'sass-rails', '3.2.6'
-  gem 'compass-rails', '1.0.3'
-  gem 'uglifier', '1.3.0'
-  gem 'turbo-sprockets-rails3', '0.3.6'
+  gem 'coffee-rails'
+  gem 'sass-rails'
+  gem 'compass-rails'
+  gem 'uglifier'
+  gem 'turbo-sprockets-rails3'
 end
 
 group :development do
@@ -23,38 +23,38 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '2.13.2'
-  gem 'factory_girl_rails', '4.2.1'
-  gem 'shoulda-matchers', '2.4.0'
-  gem 'guard-rspec', '3.0.2'
-  gem 'spork-rails', '4.0.0'
-  gem 'guard-spork', '1.5.1'
-  gem 'childprocess', '0.3.9'
-  gem 'terminal-notifier-guard', '1.5.3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'terminal-notifier-guard'
 end
 
 group :test do
-  gem 'capybara', '2.1.0'
-  gem 'launchy', '2.3.0'
-  gem 'coveralls', '0.6.7'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'coveralls'
   gem 'database_cleaner'
   gem 'poltergeist'
 end
 
 group :production do
-  gem 'pg', '0.16.0'
-  gem 'dalli', '2.6.4'
-  gem 'whenever', '0.8.4'
+  gem 'pg'
+  gem 'dalli'
+  gem 'whenever'
 end
 
-gem 'jquery-rails', '2.2.1'
-gem 'haml-rails', '0.4'
-gem 'ri_cal', '0.8.8'
-gem 'newrelic_rpm', '3.6.8.168'
-gem 'rocket_pants', '1.7.0'
-gem 'redcarpet', '2.2.2'
-gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'simple_form', '2.1.0'
+gem 'jquery-rails'
+gem 'haml-rails'
+gem 'ri_cal'
+gem 'newrelic_rpm'
+gem 'rocket_pants'
+gem 'redcarpet'
+gem 'bcrypt-ruby'
+gem 'simple_form'
 gem 'activeadmin'
 gem 'bugsnag'
 gem 'delayed_job_active_record'
