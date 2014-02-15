@@ -16,6 +16,11 @@
 //
 //   .status_tag { background: #6090DB; }
 
+.status_tag a {
+  color: white;
+}
+
+.status_tag.true { background: #8daa92; }
 .status_tag.scheduled { background: #e29b20; }
 .status_tag.updating { background: #d45f53; }
-.status_tag.failed { background: #d45f53; }
+.status_tag.failed, .status_tag.false { background: #d45f53; }

@@ -1,5 +1,5 @@
 ActiveAdmin.register Section do
-  menu priority: 6
+  menu priority: 7
 
   filter :id
   filter :name

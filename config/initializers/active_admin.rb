@@ -233,9 +233,9 @@ ActiveAdmin.setup do |config|
 
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
-      menu.add label: 'Users', priority: 1
-      menu.add label: 'Courses', priority: 2
-      menu.add label: 'Exams', priority: 3
+      menu.add label: 'Users', priority: 3
+      menu.add label: 'Courses', priority: 4
+      menu.add label: 'Exams', priority: 5
     end
 
   end
