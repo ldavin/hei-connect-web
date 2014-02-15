@@ -7,6 +7,7 @@ ActiveAdmin.register Update do
   scope :updating
   scope :ok
   scope :failed
+  scope :disabled
 
   controller do
     def scoped_collection
