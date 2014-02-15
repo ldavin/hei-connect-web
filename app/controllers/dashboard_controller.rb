@@ -27,6 +27,8 @@ class DashboardController < ApplicationController
   def courses
     @updates = [current_user.schedule_update]
 
+    flash.now[:alert] = Feature.update_schedule_error_message unless Feature.update_schedule_enabled?
+
     if stale? last_modified: max_timestamp(@updates), public: false
       @courses = current_user.courses.includes(:section, :group, :course_rooms, :course_teachers,
                                                course_rooms: :room, course_teachers: :teacher)
@@ -44,6 +46,8 @@ class DashboardController < ApplicationController
     @updates = current_user.sessions.collect { |s| current_user.grades_update(s.grades_session) }
     @exams = @session.exams
 
+    flash.now[:alert] = Feature.update_grades_error_message unless Feature.update_grades_enabled?
+
     if stale? last_modified: max_timestamp(@updates + @exams), public: false
       @grades = @session.grades.includes(:exam, exam: :section)
 
@@ -58,11 +62,8 @@ class DashboardController < ApplicationController
   def update_grades
     @session = get_session params[:year], params[:try]
 
-    # We keep a 2 hours safety
     if current_user.grades_scheduled?(@session.grades_session)
       flash = {alert: 'La mise à jour est déjà planifiée'}
-    elsif current_user.grades_last_update(@session.grades_session) + 2.hours > DateTime.now.in_time_zone
-      flash = {alert: 'Vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
     else
       flash = {notice: 'Mise à jour programmée'}
       Delayed::Job.enqueue FetchDetailedGradesWorker.new(current_user.id, @session.id),
@@ -76,6 +77,8 @@ class DashboardController < ApplicationController
   def absences
     @session = get_session params[:year], params[:try]
     @updates = current_user.sessions.collect { |s| current_user.absences_update(s.absences_session) }
+
+    flash.now[:alert] = Feature.update_absences_error_message unless Feature.update_absences_enabled?
 
     if stale? last_modified: max_timestamp(@updates), public: false
       @absences = @session.absences.includes(:section)
@@ -91,11 +94,8 @@ class DashboardController < ApplicationController
   def update_absences
     @session = get_session params[:year], params[:try]
 
-    # We keep a 2 hours safety
     if current_user.absences_scheduled?(@session.absences_session)
       flash = {alert: 'La mise à jour est déjà planifiée'}
-    elsif current_user.absences_last_update(@session.absences_session) + 2.hours > DateTime.now.in_time_zone
-      flash = {alert: 'Vous devez attendre au moins deux heures avant de forcer une nouvelle mise à jour'}
     else
       flash = {notice: 'Mise à jour programmée'}
       Delayed::Job.enqueue FetchAbsencesWorker.new(current_user.id, @session.id),

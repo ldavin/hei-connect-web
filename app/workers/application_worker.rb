@@ -12,8 +12,9 @@ class ApplicationWorker
   QUEUE_REGULAR = 'regular'
   QUEUE_DETAILED_GRADES = 'grades'
 
-  def initialize(update_id)
+  def initialize(update_id, feature_key=nil)
     @update = Update.find(update_id)
+    @feature_key = feature_key
   end
 
   def enqueue(job)
@@ -25,7 +26,11 @@ class ApplicationWorker
   end
 
   def success(job)
-    @update.update_attribute :state, Update::STATE_OK
+    if @feature_key.nil? or Feature.enabled? @feature_key
+      @update.update_attribute :state, Update::STATE_OK
+    else
+      @update.update_attribute :state, Update::STATE_DISABLED
+    end
   end
 
   def error(job, exception)

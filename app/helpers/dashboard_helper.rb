@@ -83,7 +83,7 @@ module DashboardHelper
       when Update::STATE_SCHEDULED
         klass = 'label-blue'
         text = 'Programmé'
-        tooltip = 'Une demande de mise a jour a été ajoutée à la queue. L\'attente peut varier de quelques minutes à plus d\'une heure.'
+        tooltip = 'Une demande de mise a jour a été ajoutée à la queue. L\'attente peut varier de quelques minutes à plusieurs heures.'
       when Update::STATE_UPDATING
         klass = 'label-red'
         text = 'Mise à jour'
@@ -96,6 +96,10 @@ module DashboardHelper
         klass = 'label-orange'
         text = 'Echec'
         tooltip = 'La dernière mise à jour a échoué. Si vous remarquez que certaines mises à jour échouent trop souvent, contactez l\'équipe.'
+      when Update::STATE_DISABLED
+        klass = ''
+        text = 'Désactivé'
+        tooltip = 'La fonctionnalité de mise à jour automatique a été désactivée pour cet objet.'
       else
         klass = ''
         text = ''

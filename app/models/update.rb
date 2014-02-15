@@ -26,7 +26,8 @@ class Update < ActiveRecord::Base
   STATE_UPDATING = 'updating'
   STATE_OK = 'ok'
   STATE_FAILED = 'failed'
-  STATES = [STATE_UNKNOWN, STATE_SCHEDULED, STATE_UPDATING, STATE_OK, STATE_FAILED]
+  STATE_DISABLED = 'disabled'
+  STATES = [STATE_UNKNOWN, STATE_SCHEDULED, STATE_UPDATING, STATE_OK, STATE_FAILED, STATE_DISABLED]
 
   belongs_to :user
   attr_accessible :rev, :state, :object, :user_id
@@ -36,6 +37,7 @@ class Update < ActiveRecord::Base
   scope :updating, where(state: STATE_UPDATING)
   scope :ok, where(state: STATE_OK)
   scope :failed, where(state: STATE_FAILED)
+  scope :disabled, where(state: STATE_DISABLED)
 
   after_initialize :set_default_state
 

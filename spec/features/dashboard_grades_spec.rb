@@ -4,6 +4,7 @@ feature 'User checks its grades' do
 
   before :each do
     Feature.enable_user_login
+    Feature.where(key: 'update_grades', enabled: true, error_message: 'MAJ désactivée!').first_or_create
     sign_out
     user.user_ok!
   end
@@ -63,6 +64,23 @@ feature 'User checks its grades' do
       expect(page).to have_content "Notes #{user_session.title}"
       expect(page).not_to have_content 'Matière'
     end
+  end
 
+  context 'check feature flags' do
+    scenario 'when updates are disabled', js: true do
+      Feature.disable_update_grades
+      sign_in_with id, password
+      visit dashboard_grades_path ecampus_id: user.ecampus_id, year: user_session.year, try: user_session.try
+
+      expect(page).to have_content Feature.update_grades_error_message
+    end
+
+    scenario 'when updates are enabled', js: true do
+      Feature.enable_update_grades
+      sign_in_with id, password
+      visit dashboard_grades_path ecampus_id: user.ecampus_id, year: user_session.year, try: user_session.try
+
+      expect(page).not_to have_content Feature.update_grades_error_message
+    end
   end
 end
