@@ -7,7 +7,9 @@ class WelcomeController < ApplicationController
 
   def index
     begin
-       @latest_blog_posts = RSS::Parser.parse(open('http://blog.hei-connect.eu/rss').read, false).items[0...5]
+       @latest_blog_posts = Rails.cache.fetch 'rss-items', expires_in: 5.minutes do
+         RSS::Parser.parse(open('http://blog.hei-connect.eu/rss').read, false).items[0...5]
+       end
      rescue
        # Do nothing, just continue.  The view will skip the blog section if the feed is nil.
        @latest_blog_posts = nil
