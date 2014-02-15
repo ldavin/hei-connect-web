@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'Visitor being validated signs in' do
 
   before :each do
+    Feature.enable_user_login
     sign_out
     user.user_updating!
   end

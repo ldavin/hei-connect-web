@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'User checks its absences' do
 
   before :each do
+    Feature.enable_user_login
     sign_out
     user.user_ok!
   end

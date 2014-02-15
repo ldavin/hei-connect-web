@@ -10,21 +10,30 @@ class UsersController < ApplicationController
     if User.where(ecampus_id: @user.ecampus_id).any?
       user_db = User.find_by_ecampus_id @user.ecampus_id
       if user_db.authenticate @user.password
-        session[:user_id] = user_db.id
-        redirect_to root_url
+
+        if Feature.user_login_enabled?
+          session[:user_id] = user_db.id
+          redirect_to root_url
+        else
+          redirect_to root_url, alert: Feature.user_login_error_message
+        end
       else
         flash.now[:alert] = 'Identifiants erronés'
         render 'welcome/index'
       end
     else
-      if @user.save
-        session[:user_id] = @user.id
-        Delayed::Job.enqueue CheckUserWorker.new(@user.id, @user.ecampus_id, @user.password),
-                             priority: ApplicationWorker::PR_CHECK_USER,
-                             queue: ApplicationWorker::QUEUE_REGULAR
-        redirect_to validate_users_url
+      if Feature.user_registration_enabled?
+        if @user.save
+          session[:user_id] = @user.id
+          Delayed::Job.enqueue CheckUserWorker.new(@user.id, @user.ecampus_id, @user.password),
+                               priority: ApplicationWorker::PR_CHECK_USER,
+                               queue: ApplicationWorker::QUEUE_REGULAR
+          redirect_to validate_users_url
+        else
+          render 'welcome/index'
+        end
       else
-        render 'welcome/index'
+        redirect_to root_url, alert: Feature.user_registration_error_message
       end
     end
   end
