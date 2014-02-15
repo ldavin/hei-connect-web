@@ -51,7 +51,7 @@ Avant de lancer le serveur local, lancez l'instance delayed_job avec un `script/
 L'application utilise un système pour pouvoir effectuer des tâches en arrière plan, qui ne ralentiront pas le chargement de la page.
 Par exemple, lors de la création d'un compte, l'application doit aller demander à l'API HEI-Connect si le compte est valide. Cette requête prend plusieurs secondes (5 à 10), et on veut éviter de bloquer le chargement de la page pendant ce temps.
 
-### 7. Lancer l'application
+### 6. Lancer l'application
 Maintenant que tout est installé et que les différents services sont lancés, il n'y a plus qu'à faire un petit `rails server`, et c'est tout bon!
 
 Rendez-vous sur `http://localhost:3000` pour naviguer sur l'appli.
