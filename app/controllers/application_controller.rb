@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :user_logged_in
 
   def check_maintenance_mode
-    if Rails.cache.read 'maintenance'
+    if Feature.maintenance_enabled?
       session[:user_id] = nil if user_logged_in
       render file: 'public/maintenance', layout: false, status: 503
     end
