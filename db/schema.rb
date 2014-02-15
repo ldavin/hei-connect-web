@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140209161422) do
+ActiveRecord::Schema.define(:version => 20140214223214) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -133,6 +133,13 @@ ActiveRecord::Schema.define(:version => 20140209161422) do
   end
 
   add_index "exams", ["section_id"], :name => "index_exams_on_section_id"
+
+  create_table "features", :force => true do |t|
+    t.string   "key"
+    t.boolean  "enabled"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "grades", :force => true do |t|
     t.float    "mark"
