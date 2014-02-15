@@ -13,15 +13,14 @@
         A propos des mises à jour
       .padded.pagination-justify
         :markdown
-          La mise à jour automatique n'est programmée que pour l'année en cours.
+          La mise à jour automatique n'est programmée que pour l'année en cours. Il est toujours possible de
+          programmer *manuellement* un mise à jour des notes grâce au bouton ci-dessous.
 
-          La mise à jour n'est opérée que **tous les deux jours**, à cause du temps nécessaire pour récupérer les notes
-          depuis e-campus (20-25 secondes), et du manque de ressources d'HEI Connect.
+          La mise à jour est planifiée tous les jours à partir de 3h.
 
-          Il est toujours possible de programmer **manuellement** un mise à jour des notes de n'importe quelle année grâce
-          au bouton ci-dessous.
-
-          *HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!*
+          **HEI-Connect s'efforce de récupérer tes notes et calculer ta moyenne du mieux qu'il peut, mais certains cas
+          particuliers ne sont pas gérés correctement (en cas d'absence à un examen par exemple). La moyenne donnée
+          n'est donc qu'une approximation.**
 
         = button_to 'Forcer la mise à jour des notes ' + @session.title, dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'
 
@@ -36,4 +35,4 @@
 
           *Exemple: moyenne des élèves d'un même groupe de khôlle, d'une même promotion, d'un même semestre.*
 
-          **Plus il y a d'utilisateurs d'un même groupe inscrits sur HEI-Connect, plus la moyenne se rapproche de la réalité.**
+          **Plus il y a d'utilisateurs inscrits sur HEI-Connect, plus la moyenne se rapproche de la réalité.**

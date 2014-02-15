@@ -13,11 +13,13 @@
         A propos des absences
       .padded.pagination-justify
         :markdown
-          La mise à jour automatique n'est programmée que pour l'année en cours, et est opérée **tous les jours**.
+          La mise à jour automatique n'est programmée que pour l'année en cours, et est planifié *tous
+          les jours* à partir de 1h,
 
-          Il est toujours possible de programmer **manuellement** une mise à jour des absences de n'importe quelle année grâce
-          au bouton ci-dessous.
+          Il est toujours possible de programmer *manuellement* une mise à jour des absences grâce au
+          bouton ci-dessous.
 
-          *HEI Connect ne sait pas (encore) gérer les années particulières (FLST...), désolé si vous êtes impacté!*
+          **Attention, HEI-Connect essaie de récupérer tes absences du mieux qu'il peut, mais cette page
+          peut contenir des erreurs. La répartition excusé/justifié/non-justifié est d'ailleurs donnée sans garantie**
 
         = button_to 'Forcer la mise à jour des absences ' + @session.title, dashboard_absences_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'
