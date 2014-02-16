@@ -2,15 +2,19 @@
 #
 # Table name: user_sessions
 #
-#  id               :integer          not null, primary key
-#  year             :integer
-#  try              :integer          default(1)
 #  absences_session :integer
-#  grades_session   :integer
-#  user_id          :integer
 #  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  grades_session   :integer
+#  id               :integer          not null, primary key
+#  try              :integer          default(1)
 #  update_number    :integer
+#  updated_at       :datetime         not null
+#  user_id          :integer
+#  year             :integer
+#
+# Indexes
+#
+#  index_user_sessions_on_user_id  (user_id)
 #
 
 require 'spec_helper'

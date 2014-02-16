@@ -3,16 +3,22 @@
 #
 # Table name: courses
 #
-#  id          :integer          not null, primary key
-#  date        :datetime
-#  length      :integer
-#  kind        :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  ecampus_id  :integer
-#  section_id  :integer
-#  group_id    :integer
 #  broken_name :string(255)
+#  created_at  :datetime         not null
+#  date        :datetime
+#  ecampus_id  :integer
+#  group_id    :integer
+#  id          :integer          not null, primary key
+#  kind        :string(255)
+#  length      :integer
+#  section_id  :integer
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_courses_on_ecampus_id  (ecampus_id)
+#  index_courses_on_group_id    (group_id)
+#  index_courses_on_section_id  (section_id)
 #
 
 require 'spec_helper'

@@ -2,16 +2,20 @@
 #
 # Table name: exams
 #
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  date         :date
-#  kind         :string(255)
-#  weight       :float
 #  average      :float
-#  grades_count :integer
-#  section_id   :integer
 #  created_at   :datetime         not null
+#  date         :date
+#  grades_count :integer
+#  id           :integer          not null, primary key
+#  kind         :string(255)
+#  name         :string(255)
+#  section_id   :integer
 #  updated_at   :datetime         not null
+#  weight       :float
+#
+# Indexes
+#
+#  index_exams_on_section_id  (section_id)
 #
 
 require 'spec_helper'

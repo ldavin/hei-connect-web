@@ -2,10 +2,14 @@
 #
 # Table name: groups
 #
+#  created_at :datetime         not null
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_groups_on_name  (name)
 #
 
 require 'spec_helper'

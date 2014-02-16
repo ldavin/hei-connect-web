@@ -1,19 +1,23 @@
 # encoding: utf-8
-
 # == Schema Information
 #
 # Table name: absences
 #
-#  id              :integer          not null, primary key
-#  date            :datetime
-#  length          :integer
-#  excused         :boolean
-#  justification   :string(255)
-#  update_number   :integer
-#  section_id      :integer
-#  user_session_id :integer
 #  created_at      :datetime         not null
+#  date            :datetime
+#  excused         :boolean
+#  id              :integer          not null, primary key
+#  justification   :string(255)
+#  length          :integer
+#  section_id      :integer
+#  update_number   :integer
 #  updated_at      :datetime         not null
+#  user_session_id :integer
+#
+# Indexes
+#
+#  index_absences_on_section_id       (section_id)
+#  index_absences_on_user_session_id  (user_session_id)
 #
 
 class Absence < ActiveRecord::Base

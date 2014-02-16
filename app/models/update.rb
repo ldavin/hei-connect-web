@@ -1,16 +1,20 @@
 # encoding: utf-8
-
 # == Schema Information
 #
 # Table name: updates
 #
+#  created_at :datetime         not null
 #  id         :integer          not null, primary key
 #  object     :string(255)
-#  state      :string(255)
 #  rev        :integer          default(0)
-#  user_id    :integer
-#  created_at :datetime         not null
+#  state      :string(255)
 #  updated_at :datetime         not null
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_updates_on_user_id             (user_id)
+#  index_updates_on_user_id_and_object  (user_id,object)
 #
 
 class Update < ActiveRecord::Base

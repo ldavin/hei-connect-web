@@ -2,15 +2,22 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  ecampus_id      :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  ics_key         :string(255)
-#  password_digest :string(255)
-#  token           :string(255)
-#  last_activity   :datetime
-#  email           :string(255)
+#  api_last_activity :datetime
+#  api_token         :string(255)
+#  created_at        :datetime         not null
+#  ecampus_id        :string(255)
+#  email             :string(255)
+#  ics_key           :string(255)
+#  id                :integer          not null, primary key
+#  last_activity     :datetime
+#  password_digest   :string(255)
+#  token             :string(255)
+#  updated_at        :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_ecampus_id  (ecampus_id)
+#  index_users_on_ics_key     (ics_key)
 #
 
 require 'spec_helper'

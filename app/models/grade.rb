@@ -1,17 +1,21 @@
 # encoding: utf-8
-
 # == Schema Information
 #
 # Table name: grades
 #
+#  created_at      :datetime         not null
+#  exam_id         :integer
 #  id              :integer          not null, primary key
 #  mark            :float
 #  unknown         :boolean
 #  update_number   :integer
-#  user_session_id :integer
-#  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  exam_id         :integer
+#  user_session_id :integer
+#
+# Indexes
+#
+#  index_grades_on_exam_id          (exam_id)
+#  index_grades_on_user_session_id  (user_session_id)
 #
 
 class Grade < ActiveRecord::Base
