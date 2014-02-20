@@ -24,10 +24,10 @@
 require 'spec_helper'
 
 describe Course do
-  let(:section)  { create :section, name: 'Chimie organique' }
-  let(:rooms)    { [ create(:room, name: 'AC602') ] }
-  let(:teachers) { [ create(:teacher, name: 'Jean Mi') ] }
-  let(:course)   { create :course, kind: 'Cours', section: section, rooms: rooms, teachers: teachers }
+  let(:section) { create :section, name: 'Chimie organique' }
+  let(:rooms) { [create(:room, name: 'AC602')] }
+  let(:teachers) { [create(:teacher, name: 'Jean Mi')] }
+  let(:course) { create :course, kind: 'Cours', section: section, rooms: rooms, teachers: teachers }
 
   describe 'relations' do
     it { should belong_to(:section) }
@@ -60,8 +60,8 @@ describe Course do
   end
 
   describe '#to_fullcalendar_event' do
-    let(:expected_hash) { { id: course.id, title: 'Cours - Chimie organique, AC602', start: course.date,
-                            end: course.date + course.length.minutes, allDay: false } }
+    let(:expected_hash) { {id: course.id, title: 'Cours - Chimie organique, AC602', start: course.date,
+                           end: course.date + course.length.minutes, allDay: false} }
     subject { course.to_fullcalendar_event }
 
     it { should eq expected_hash }
@@ -80,6 +80,19 @@ describe Course do
     end
   end
 
+  describe '#short_name' do
+    subject { course.short_name }
+
+    context 'when there is a broken name' do
+      let(:course) { build :course, broken_name: 'cassé' }
+      it { should eq 'cassé' }
+    end
+
+    context 'when there is NOT a broken name' do
+      it { should eq 'Chimie organique' }
+    end
+  end
+
   describe '#description' do
     subject { course.description }
 
@@ -89,7 +102,7 @@ describe Course do
     end
 
     context 'when there are teachers' do
-      let(:teachers) { [ build(:teacher, name: 'Bibi'), build(:teacher, name: 'Bobo') ] }
+      let(:teachers) { [build(:teacher, name: 'Bibi'), build(:teacher, name: 'Bobo')] }
       it { should eq "Cours de Chimie organique\r\nPar Bibi, Bobo." }
     end
 
@@ -107,7 +120,7 @@ describe Course do
     end
 
     context 'when in several rooms' do
-      let(:rooms) { [ build(:room, name: 'RR131'), build(:room, name: 'RR132') ] }
+      let(:rooms) { [build(:room, name: 'RR131'), build(:room, name: 'RR132')] }
       it { should eq 'RR131, RR132' }
     end
 
@@ -116,4 +129,10 @@ describe Course do
       it { should eq Course::UNKNOWN_PLACE }
     end
   end
+
+  describe '#end_date' do
+    subject { course.end_date }
+    it { should eq course.date + course.length.minutes }
+  end
+
 end

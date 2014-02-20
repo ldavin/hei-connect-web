@@ -12,12 +12,7 @@ class Api::ApiController < ActionController::Base
   end
 
   def current_user
-    @current_user ||=
-        begin
-          User.find session[:user_id], include: [:updates, :sessions] if session[:user_id]
-        rescue
-          session[:user_id] = nil
-        end
+    @current_user ||= User.find_by_api_token params[:token]
   end
 
   def user_logged_in
@@ -35,7 +30,7 @@ class Api::ApiController < ActionController::Base
 
   def update_user_api_activity(specific_user = nil)
     user = specific_user || current_user
-    user.update_column :last_activity, Time.zone.now
+    user.update_column :api_last_activity, Time.zone.now
   end
 
 end
