@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'API User signs in' do
 
   before :each do
-    Feature.where(key: 'user_login', enabled: true, error_message: 'Le login est désactivé ma poule!').first_or_create
+    Feature.where(key: 'user_login', enabled: true, error_message: 'Le login est down ma poule!').first_or_create
   end
 
   let(:id) { 'h01234' }
