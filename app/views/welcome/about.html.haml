@@ -12,9 +12,11 @@
     :markdown
       HEI Connect s'adresse aux étudiants de l'école d'ingénieurs [HEI (Hautes études d'ingénieur)](http://www.hei.fr/).
 
-      C'est un projet indépendant, réalisé par des étudiants de l'école, dans le but fournir aux élèves un intranet étudiant de meilleure qualité que l'outil officiel [e-campus](http://e-campus.hei.fr/).
+      C'est un projet indépendant, réalisé par des étudiants de l'école, dans le but proposer aux élèves un service complémentaire à l'outil officiel [e-campus](http://e-campus.hei.fr/).
 
       HEI Connect utilise les identifiants e-campus d'un étudiant pour récupérer ses données (planning, notes, absences) et les lui restituer rapidement et efficacement.
+
+      **HEI Connect n'a pas d'accès direct à la base de données d'e-campus. Les données en sont donc extraites en simulant automatiquement des visites une fois par jour. Il n'y a donc aucune garantie que les données présentes sur HEI Connect soient correctes et à jour, même si tout est fait pour. Seuls e-campus et les babillards présents dans l'école font foi en cas de doutes ou de différences.**
 
 .row-fluid
   .span4
@@ -36,8 +38,8 @@
         :markdown
           HEI Connect est un ensemble de projets open-source. Le code source des applications est donc consultable sur internet, et il est possible de participer au développement des projets.
 
-          + [HEI-Connect](https://github.com/ldavin/hei-connect) est l'API de base permettant de récupérer dans un format générique des données depuis e-campus.
-          + [HEI-Connect-Web](https://github.com/ldavin/hei-connect-web) est une application web (celle-ci!), communiquant avec HEI-Connect pour créer un e-campus "parallèle".
+          + [HEI Connect](https://github.com/ldavin/hei-connect) est l'API de base permettant de récupérer dans un format générique des données depuis e-campus.
+          + [HEI Connect-Web](https://github.com/ldavin/hei-connect-web) est une application web (celle-ci!), communiquant avec HEI Connect pour créer un e-campus "parallèle".
 
 .content-box
   .content-box-header
@@ -47,7 +49,7 @@
     :markdown
       HEI Connect est un projet étudiant, réalisé sans soutien particulier de la part d'[HEI](http://www.hei.fr/).
 
-      Le site est donc hebergé sur les offres gratuites de différentes plateformes (actuellement sur [Heroku](http://www.heroku.com/) pour l'API, et sur [Openshift](https://www.openshift.com/) pour la web-app).
-      Ces offres nous permettent de maintenir le site en ligne, mais c'est un peu chaotique (indisponibilités chroniques hors de notre contrôle, indisponibilités trop longues lors des déploiements des mises à jour...).
+      Le site est donc hebergé sur différentes plateformes afin de minimiser les coûts. L'API est hébergée sur [Heroku](http://www.heroku.com/), la web-app (le site sur lequel vous vous trouvez actuellement) est hébergé sur deux serveurs OVH.
+      Tout est fait pour maintenir le site en ligne, mais ces efforts étant réalisés bénévolement, le site peut subir régulièrement des indisponibilités ou des dysfonctionnements. Merci de le garder en tête.
 
-      **Vous pouvez consulter [sur cette page](http://status.hei-connect.eu/) les statistiques concernant la disponibilité du site, le temps de réponse...**
+      **Vous pouvez consulter [sur cette page](http://status.hei-connect.eu/) les statistiques concernant la disponibilité du site, son temps de réponse, taux d'erreurs...**
