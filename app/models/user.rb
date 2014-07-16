@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates_presence_of :password_digest
 
-  after_create :set_ics_key
+  after_create :set_ics_key, :initialize_last_activity
 
   attr_reader :password
   attr_accessible :ecampus_id, :password
@@ -112,10 +112,15 @@ class User < ActiveRecord::Base
     self.update_attribute(:api_token, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}")) if self.api_token.nil?
   end
 
+
   private
 
   def set_ics_key
     self.update_attribute(:ics_key, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}"))
+  end
+
+  def initialize_last_activity
+    self.update_attribute(:last_activity, Time.zone.now)
   end
 
   def fetch_update(object, details)
