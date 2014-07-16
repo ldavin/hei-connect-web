@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Regular gems
-gem 'rails', '3.2.16'
+gem 'rails', '~> 3'
 gem 'rack'
 gem 'puma'
 
