@@ -44,7 +44,6 @@ end
 group :production do
   gem 'pg'
   gem 'dalli'
-  gem 'whenever'
 end
 
 gem 'jquery-rails'
