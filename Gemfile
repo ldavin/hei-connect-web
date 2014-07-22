@@ -6,6 +6,7 @@ ruby '2.1.2'
 gem 'rails', '~> 3'
 gem 'rack'
 gem 'puma'
+gem 'rack-timeout'
 
 group :assets do
   gem 'coffee-rails'

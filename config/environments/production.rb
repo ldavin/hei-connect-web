@@ -74,7 +74,7 @@ HeiConnectWeb::Application.configure do
     address:              'smtp.mandrillapp.com',
     port:                 587,
     user_name:            'louis.davin@gmail.com',
-    password:             ENV['MANDRILL_PASSWORD'], # FIXME for heroku !
+    password:             ENV['MANDRILL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true  
   }
