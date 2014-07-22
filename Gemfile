@@ -46,6 +46,7 @@ end
 group :production do
   gem 'pg'
   gem 'dalli'
+  gem 'rails_12factor'
 end
 
 gem 'jquery-rails'

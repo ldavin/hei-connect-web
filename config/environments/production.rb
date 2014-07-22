@@ -40,6 +40,7 @@ HeiConnectWeb::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
+  # FIXME for heroku !
   config.cache_store = :dalli_store, { namespace: 'cache', compress: true } if ENV['WEB_SERVER'] == "true"
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
@@ -73,7 +74,7 @@ HeiConnectWeb::Application.configure do
     address:              'smtp.mandrillapp.com',
     port:                 587,
     user_name:            'louis.davin@gmail.com',
-    password:             ENV['MANDRILL_PASSWORD'],
+    password:             ENV['MANDRILL_PASSWORD'], # FIXME for heroku !
     authentication:       'plain',
     enable_starttls_auto: true  
   }

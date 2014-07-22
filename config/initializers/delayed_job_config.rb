@@ -1,3 +1,4 @@
+# FIXME on heroku !
 Delayed::Worker.destroy_failed_jobs = true
 Delayed::Worker.sleep_delay = 60
 Delayed::Worker.max_attempts = 3

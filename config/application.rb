@@ -34,7 +34,7 @@ module HeiConnectWeb
     config.i18n.default_locale = :fr
     I18n.config.enforce_available_locales = false
 
-        # Configure the default encoding used in templates for Ruby 1.9.
+    # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
@@ -61,16 +61,16 @@ module HeiConnectWeb
     config.assets.version = '1.0'
 
     # Initialize app on assets precompiling
-    config.assets.initialize_on_precompile = true
+    config.assets.initialize_on_precompile = false
 
     config.generators do |g|
       g.test_framework :rspec,
-        :fixtures => true,
-        :view_specs => false,
-        :helper_specs => false,
-        :routing_specs => false,
-        :controller_specs => true,
-        :request_specs => true
+                       :fixtures => true,
+                       :view_specs => false,
+                       :helper_specs => false,
+                       :routing_specs => false,
+                       :controller_specs => true,
+                       :request_specs => true
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
   end
