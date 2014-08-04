@@ -17,19 +17,19 @@ class Api::V1::LoginController < Api::ApiController
           @user = user_db
         else
           @error = OpenStruct.new
-          @error.code = 403.1
+          @error.code = 20
           @error.message = 'Login/password incorrect'
           render 'api/v1/error', status: 403
         end
       else
         @error = OpenStruct.new
-        @error.code = 403.2
+        @error.code = 21
         @error.message = 'Compte inconnu, inscris toi sur hei-connect.eu'
         render 'api/v1/error', status: 403
       end
     else
       @error = OpenStruct.new
-      @error.code = 503
+      @error.code = 22
       @error.message = Feature.user_login_error_message
       render 'api/v1/error', status: 503
     end

@@ -5,8 +5,8 @@ class Api::ApiController < ActionController::Base
   def check_maintenance_mode
     if Feature.maintenance_enabled?
       @error = OpenStruct.new
-      @error.code = 503
-      @error.message = 'Application is in maintenance'
+      @error.code = 10
+      @error.message = 'L\'application est en maintenance'
       render 'api/v1/error', status: 503
     end
   end
@@ -22,7 +22,7 @@ class Api::ApiController < ActionController::Base
   def require_login
     unless user_logged_in
       @error = OpenStruct.new
-      @error.code = 401
+      @error.code = 11
       @error.message = 'Connexion requise'
       render 'api/v1/error', status: 401
     end

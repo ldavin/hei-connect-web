@@ -26,7 +26,7 @@ describe 'API User signs in' do
     post 'api/v1/login.json', parameters
 
     expect(response.response_code).to eq 403
-    expect(response.body).to eq '{"error":{"code":403.1,"message":"Login/password incorrect"}}'
+    expect(response.body).to eq '{"error":{"code":20,"message":"Login/password incorrect"}}'
   end
 
   it 'returns an error for an unknown user' do
@@ -34,7 +34,7 @@ describe 'API User signs in' do
     post 'api/v1/login.json', parameters
 
     expect(response.response_code).to eq 403
-    expect(response.body).to eq '{"error":{"code":403.2,"message":"Compte inconnu, inscris toi sur hei-connect.eu"}}'
+    expect(response.body).to eq '{"error":{"code":21,"message":"Compte inconnu, inscris toi sur hei-connect.eu"}}'
   end
 
   it 'returns an error when user login is disabled' do
@@ -43,7 +43,7 @@ describe 'API User signs in' do
     post 'api/v1/login.json', parameters
 
     expect(response.response_code).to eq 503
-    expect(response.body).to eq "{\"error\":{\"code\":503,\"message\":\"#{Feature.user_login_error_message}\"}}"
+    expect(response.body).to eq "{\"error\":{\"code\":22,\"message\":\"#{Feature.user_login_error_message}\"}}"
   end
 
 end

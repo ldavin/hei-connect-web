@@ -23,6 +23,7 @@ HeiConnectWeb::Application.routes.draw do
   get 'status' => 'welcome#status'
 
   scope module: 'api/v1', path: 'api/v1', constraints: {:format => /(json|xml)/} do
+    get 'config' => 'config#index'
     post 'login' => 'login#index'
     get 'schedule/today' => 'schedule#index'
     get 'schedule/tomorrow' => 'schedule#tomorrow'
