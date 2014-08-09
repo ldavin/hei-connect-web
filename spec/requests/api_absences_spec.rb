@@ -31,7 +31,7 @@ describe 'API User fetches its absences' do
       get 'api/v1/absences.json', parameters
 
       expect(response.response_code).to eq 200
-      expect(response.body).to eq "{\"absences\":[{\"id\":1,\"section_name\":\"Chimie\",\"date\":#{absence.date.to_json},\"length\":5400}],\"last_update\":{\"state\":\"#{user.absences_update(user_session.absences_session).state}\",\"updated_at\":#{user.absences_update(user_session.absences_session).updated_at.to_json}}}"
+      expect(response.body).to eq "{\"absences\":[{\"id\":1,\"section_name\":\"Chimie\",\"date\":#{absence.date.to_json},\"length\":90}],\"last_update\":{\"state\":\"#{user.absences_update(user_session.absences_session).state}\",\"updated_at\":#{user.absences_update(user_session.absences_session).updated_at.to_json}}}"
     end
   end
 
