@@ -27,6 +27,7 @@ HeiConnectWeb::Application.routes.draw do
     post 'login' => 'login#index'
     get 'schedule/today' => 'schedule#index'
     get 'schedule/tomorrow' => 'schedule#tomorrow'
+    get 'grades' => 'grades#index'
   end
 
 
