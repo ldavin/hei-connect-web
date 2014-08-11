@@ -1,27 +1,6 @@
-// Compass mixins
-@import "compass";
-@import "compass/css3";
+// Stylesheets preceded by "//" are not required since not used
+
 
 // Bootstrap base styles (Some sub-stylesheets could also be disabled)
-@import "bootstrap";
-@import "bootstrap-responsive";
+@import 'bootstrap.min.css';
 
-// Theme definition
-@import "general/manifest";
-
-// Fontawesome icons
-@import "fontawesome/manifest";
-
-// Some other theme overrides
-@import "components/manifest";
-
-// Bootstrap supplementary responsive sheets
-@import "bootstrap/responsive_max480";
-@import "bootstrap/responsive_max768";
-@import "bootstrap/responsive_max1024";
-
-// Custom
-.login-container .title a {
-  color: #777;
-  @include text-shadow(0px 1px 0px rgba(255, 255, 255, .8));
-}

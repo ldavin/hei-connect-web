@@ -6,52 +6,7 @@
   = require jquery_ujs
 
   For bootstrap theme related functionalitites (some sub-scrits could also be disabled!)
-  = require bootstrap
-
-  For inline charts or pies (http://benpickles.github.com/peity/)
-  -- require jquery.piety
-
-  For radio, checkboxes, and file inputs styling (re-activate if used in views!)
-  -- require jquery.browser
-  -- require jquery.uniform
-
-  Dials (circle stats)
-  -- require jquery.knob
-
-  For select inputs styling (re-activate if used in views!)
-  -- require chosen.jquery
-
-  Charts drawing library
-  = require raphael
-  = require morris
-
-  Plot drawing library (USING MORRIS INSTEAD FOR NOW)
-  -- require flot/jquery.flot
-  -- require flot/jquery.flot.resize
-  -- require flot/jquery.flot.pie
-
-  Gauge drawing library
-  -- require raphael
-  -- require justgage/justgage
-
-  Calendar drawing library
-  = require jquery-ui
-  = require fullcalendar
-
-  Fix for placeholders on old (ie only?) browsers
-  = require ie_placeholder_fix
-
-  Lib for creating namespaces
-  = require namespace
-
-  App helpers
-  = require_tree ./helpers
-
-  App widgets
-  = require_tree ./widgets
-
-  App pages specific scripts
-  = require_tree ./pages
+  = require bootstrap.min
 
   = require_self
 ###
