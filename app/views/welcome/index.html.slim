@@ -5,7 +5,7 @@
       .panel-heading.login.text-center 
         p.big Login
       .panel-body.login.text-center
-        = simple_form_for @user, html: {class: 'login-form'}  do |f|
+        = form_for @user, html: {class: 'login-form'}  do |f|
           - if @user.errors.any?
             .alert.alert-error
               - @user.errors.full_messages.each do |msg|
@@ -14,6 +14,7 @@
 
           = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
           = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
+          br
           = f.submit 'Connexion', class: 'btn btn-success'
           = link_to 'A propos', about_path, class: 'btn btn-blue btn-large about'
           .details

@@ -1,4 +1,8 @@
+// Stylesheets preceded by "//" are not required since not used
 
+
+// Bootstrap base styles (Some sub-stylesheets could also be disabled)
+@import 'bootstrap.min.css';
 
 @import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,300,200);
 h1, h2, h3 {
@@ -20,33 +24,9 @@ body {
   margin: 0 auto;
 }
 
-.login-box {
-  margin-top: 50px;
-}
+@import 'login';
 
-.panel {
+.navbar-default .navbar-nav>li>a {
   color: #ebebeb;
-}
-.panel-heading.login p{
-	font-size: 1.8em;
-	margin: 0;
-}
-
-.login-box .btn {
-	margin: 10px;
-}
-
-.about {
-	border: solid 1px #5bc0de;
-	color: #5bc0de;
-}
-
-.about:hover{
-	background-color: #5bc0de;
-	color: white;
-}
-
-p.light{
-	font-weight: 200;
-	font-style: italic;	
+  font-size: 1.4em;
 }

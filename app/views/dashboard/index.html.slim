@@ -1,0 +1,7 @@
+= render 'calendar_widget', courses: @courses
+
+= render 'average_widget', session: @session, grades: @grades, exams: nil
+
+= render 'absences_widget', session: @session, absences: @absences
+
+= render 'status_widget', updates: @updates

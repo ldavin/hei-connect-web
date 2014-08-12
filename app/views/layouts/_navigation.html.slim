@@ -1,0 +1,51 @@
+.navbar.navbar-default
+  .navbar-header
+    button.navbar-toggle data-toggle='collapse' type="button" data-target='.navbar-responsive-collapse'
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand href='#' HEI-Connect
+  .navbar-collapse.collapse.navbar-responsive-collapse
+    ul.nav.navbar-nav
+      li
+        = link_to dashboard_path ecampus_id: current_user.ecampus_id do
+          i.icon-dashboard
+          | Dashboard
+      li
+        = link_to dashboard_courses_path ecampus_id: current_user.ecampus_id do
+          i.icon-calendar
+          | Cours
+
+      li.dropdown
+        a.dropdown-toggle data-toggle='dropdown' href='#'
+          | Notes
+          b.caret
+
+        ul.dropdown-menu.secondary
+          - current_user.sessions.each do |s|
+            li
+              = link_to dashboard_grades_path ecampus_id: current_user.ecampus_id, year: s.year, try: s.try do
+                i.icon-tag
+                = s.title
+      li.dropdown
+        a.dropdown-toggle data-toggle='dropdown' href='#'
+          i.icon-warning-sign
+          | Absences
+          b.caret
+
+        ul.dropdown-menu.secondary
+          - current_user.sessions.each do |s|
+            li
+              = link_to dashboard_absences_path ecampus_id: current_user.ecampus_id, year: s.year, try: s.try do
+                i.icon-tag
+                = s.title
+    ul.nav.navbar-nav.navbar-right
+      li.dropdown.profile
+        a.dropdown-toggle data-toggle="dropdown" href="#"
+          = current_user.ecampus_id
+          b.caret
+        ul.dropdown-menu.secondary
+          li
+            = link_to sessions_path, method: :delete do
+              i.icon-off
+              | Déconnexion
