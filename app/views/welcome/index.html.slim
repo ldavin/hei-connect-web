@@ -1,45 +1,24 @@
 .row
-  .col-md-4
-    .login-container
-      .title.center
-        a href='http://blog.hei-connect.eu/'
-          | Le Blog
-      -if (!@latest_blog_posts.nil?)
-        p.lead Les derniers posts
-        -@latest_blog_posts.each do |post|
-          -if post != nil && post.respond_to?(:pubDate)
-            blockquote
-              =link_to post.title, post.link, :target => '_blank'
-              small
-                =post.pubDate.to_formatted_s(:short)
-  .col-md-4
-    .login-container.center
-      .title Login
-      = simple_form_for @user, html: {class: 'login-form'}  do |f|
-        - if @user.errors.any?
-          .alert.alert-error
-            - @user.errors.full_messages.each do |msg|
-              p
-                small= msg
 
-        ul.fields-list
-          li
-            i.icon-user style='style="float: left;"'
-            = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
-          li
-            i.icon-key style='style="float: left;"'
-            = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
-        .actions
-          = f.submit 'Connexion', class: 'btn btn-green btn-large login-btn'
-          = link_to 'A propos', about_path, class: 'btn btn-blue btn-large login-btn'
-        .details
-          p
-            small
+  .col-md-4.col-centered
+    .login-box.panel.panel-success
+      .panel-heading.login.text-center 
+        p.big Login
+      .panel-body.login.text-center
+        = simple_form_for @user, html: {class: 'login-form'}  do |f|
+          - if @user.errors.any?
+            .alert.alert-error
+              - @user.errors.full_messages.each do |msg|
+                p
+                  small= msg
+
+          = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
+          = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
+          = f.submit 'Connexion', class: 'btn btn-success'
+          = link_to 'A propos', about_path, class: 'btn btn-blue btn-large about'
+          .details
+            p.light
               | Pas encore inscrit? Il suffit de remplir le formulaire de connexion avec tes identifiants ecampus.
-  .col-md-4
-    .login-container.center.twitter-box
-      .title Ça gazouille ?
-      a.twitter-timeline href='https://twitter.com/HEI_Connect' data-dnt="true" data-tweet-limit="4" data-widget-id="324730400142397441"
 
 
   javascript:

@@ -2,11 +2,11 @@
 
 = render partial: 'grades_table', locals: { session: @session, grades: @grades, exams: @exams }
 
-.row-fluid
-  .span4
+.row
+  .col-md-4
     = render partial: 'status_widget', locals: { updates: @updates }
 
-  .span5
+  .col-md-5
     .content-box
       .content-box-header
         %i.icon-info-sign
@@ -24,7 +24,7 @@
 
         = button_to 'Forcer la mise à jour des notes ' + @session.title, dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-mini btn-inverse'
 
-  .span3
+  .col-md-3
     .content-box
       .content-box-header
         %i.icon-info-sign

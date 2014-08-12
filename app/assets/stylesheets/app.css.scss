@@ -1,6 +1,52 @@
-// Stylesheets preceded by "//" are not required since not used
 
 
-// Bootstrap base styles (Some sub-stylesheets could also be disabled)
-@import 'bootstrap.min.css';
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,300,200);
+h1, h2, h3 {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 200;
+}
 
+$bg-grey: #ebebeb;
+$font-color: #2b3e50;
+
+body {
+  font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
+  color: $font-color;
+  background-color: $bg-grey;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.login-box {
+  margin-top: 50px;
+}
+
+.panel {
+  color: #ebebeb;
+}
+.panel-heading.login p{
+	font-size: 1.8em;
+	margin: 0;
+}
+
+.login-box .btn {
+	margin: 10px;
+}
+
+.about {
+	border: solid 1px #5bc0de;
+	color: #5bc0de;
+}
+
+.about:hover{
+	background-color: #5bc0de;
+	color: white;
+}
+
+p.light{
+	font-weight: 200;
+	font-style: italic;	
+}

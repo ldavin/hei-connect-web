@@ -14,11 +14,11 @@
 
 = render partial: 'calendar_widget', locals: { courses: @courses }
 
-.row-fluid
-  .span4
+.row
+  .col-md-4
     = render partial: 'status_widget', locals: { updates: @updates }
 
-  .span8
+  .col-md-8
     .content-box
       .content-box-header
         %i.icon-info-sign

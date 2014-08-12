@@ -2,11 +2,11 @@
 
 = render :partial => 'absences_table', locals: { session: @session, absences: @absences }
 
-.row-fluid
-  .span6
+.row
+  .col-md-6
     = render partial: 'status_widget', locals: { updates: @updates }
 
-  .span6
+  .col-md-6
     .content-box
       .content-box-header
         %i.icon-info-sign

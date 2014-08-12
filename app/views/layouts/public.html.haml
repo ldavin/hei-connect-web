@@ -16,15 +16,14 @@
 
 
   %body#body{'data-controller' => controller_name, 'data-action' => action_name}
+    .container
+      .row
+        .col-md-12
 
-    %section
-      .container
-        .row-fluid
-          .span12
-
-            %h2.transparent-text.center Un ecampus enfin simple et rapide
-            = bootstrap_flash
-            = yield
+          %h1.text-center HEI-Connect
+          %h2.text-center Un ecampus enfin simple et rapide
+          = bootstrap_flash
+          = yield
 
     = render partial: 'layouts/footer'
 

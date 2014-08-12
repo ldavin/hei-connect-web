@@ -6,8 +6,8 @@
 
     - if courses.any?
       = content_tag :div, '', id: 'calendar_data', data: {events: courses.collect {|c| c.to_fullcalendar_event}}
-      .row-fluid
-        .span12
+      .row
+        .col-md-12
           #full-calendar.calendar
 
     - else
