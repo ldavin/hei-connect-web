@@ -2,21 +2,32 @@
 
 
 // Bootstrap base styles (Some sub-stylesheets could also be disabled)
-@import 'bootstrap.min.css';
 
-@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,300,200);
-h1, h2, h3 {
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 200;
-}
+@import 'bootstrap.css';
 
-$bg-grey: #ebebeb;
-$font-color: #2b3e50;
+
+$theme-light-grey: #ebebeb;
+$theme-purple: #2b3e50;
 
 body {
   font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
-  color: $font-color;
-  background-color: $bg-grey;
+  color: $theme-purple;
+  background-color: $theme-light-grey;
+}
+
+.footer{
+  border: 1px solid $theme-purple;
+  margin-bottom: 10px;
+}
+
+.panel.dashboard-widget{
+  background-color: $theme-light-grey;
+  border: 1px solid $theme-purple;
+  color: $theme-purple!important;
+  a {
+    color: #df691a!important;
+    text-decoration: none!important;
+  }
 }
 
 .col-centered{
@@ -27,6 +38,6 @@ body {
 @import 'login';
 
 .navbar-default .navbar-nav>li>a {
-  color: #ebebeb;
+  color: $theme-light-grey;
   font-size: 1.4em;
 }

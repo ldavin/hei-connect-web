@@ -1,7 +1,11 @@
-= render 'calendar_widget', courses: @courses
+.panel.panel-default.dashboard-widget
+  = render 'calendar_widget', courses: @courses
 
-= render 'average_widget', session: @session, grades: @grades, exams: nil
+.panel.panel-default.dashboard-widget
+  = render 'average_widget', session: @session, grades: @grades, exams: nil
 
-= render 'absences_widget', session: @session, absences: @absences
+.panel.panel-default.dashboard-widget
+  = render 'absences_widget', session: @session, absences: @absences
 
-= render 'status_widget', updates: @updates
+.panel.panel-default.dashboard-widget
+  = render 'status_widget', updates: @updates
