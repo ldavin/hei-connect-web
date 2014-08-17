@@ -1,11 +1,11 @@
-.panel.panel-default.dashboard-widget
+.panel.panel-default
   = render 'calendar_widget', courses: @courses
 
-.panel.panel-default.dashboard-widget
-  = render 'average_widget', session: @session, grades: @grades, exams: nil
+.panel.panel-default
+  = render 'average_widget', session: @session, grades: @grades, exams: nil, chart: @chart
 
-.panel.panel-default.dashboard-widget
+.panel.panel-default
   = render 'absences_widget', session: @session, absences: @absences
 
-.panel.panel-default.dashboard-widget
+.panel.panel-default
   = render 'status_widget', updates: @updates

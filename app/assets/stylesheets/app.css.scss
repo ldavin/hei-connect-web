@@ -4,9 +4,10 @@
 // Bootstrap base styles (Some sub-stylesheets could also be disabled)
 
 @import 'bootstrap.css';
-
+@import 'morris.css';
 
 $theme-light-grey: #ebebeb;
+$theme-red: #dd5555;
 $theme-purple: #2b3e50;
 
 body {
@@ -20,14 +21,27 @@ body {
   margin-bottom: 10px;
 }
 
-.panel.dashboard-widget{
+.panel-default{
   background-color: $theme-light-grey;
-  border: 1px solid $theme-purple;
   color: $theme-purple!important;
   a {
     color: #df691a!important;
     text-decoration: none!important;
   }
+}
+
+.panel-default > .panel-heading {
+  background-color: $theme-light-grey;
+  color: $theme-red;
+  font-weight: bolder;
+  font-variant: small-caps;
+  font-size: 2em;
+  padding: 5px;
+}
+
+.panel-body.dashboard-widget{
+  border: 1px solid $theme-purple;
+
 }
 
 .col-centered{
