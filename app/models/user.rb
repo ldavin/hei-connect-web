@@ -116,7 +116,7 @@ class User < ActiveRecord::Base
   private
 
   def set_ics_key
-    self.update_attribute(:ics_key, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}"))
+    self.update_attribute(:ics_key, Digest::MD5.hexdigest(self.ecampus_id))
   end
 
   def initialize_last_activity
