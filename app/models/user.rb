@@ -9,7 +9,9 @@
 #  ecampus_id        :string(255)
 #  email             :string(255)
 #  ics_key           :string(255)
+#  ics_last_activity :datetime
 #  id                :integer          not null, primary key
+#  is_demo           :boolean          default(FALSE)
 #  last_activity     :datetime
 #  password_digest   :string(255)
 #  token             :string(255)
@@ -112,8 +114,27 @@ class User < ActiveRecord::Base
     self.update_attribute(:api_token, Digest::MD5.hexdigest("#{self.id}-#{Random.rand}")) if self.api_token.nil?
   end
 
+  def is_eligible_for_schedule_update?
+    has_used_web_app_recently? or has_used_mobile_app_recently? or has_used_ics_recently?
+  end
+
+  def is_eligible_for_absences_or_grades_update?
+    has_used_web_app_recently? or has_used_mobile_app_recently?
+  end
 
   private
+
+  def has_used_mobile_app_recently?
+    self.api_last_activity != nil && self.api_last_activity > DateTime.now - 1.month
+  end
+
+  def has_used_web_app_recently?
+    self.last_activity != nil && self.last_activity > DateTime.now - 1.month
+  end
+
+  def has_used_ics_recently?
+    self.ics_last_activity != nil && self.ics_last_activity > DateTime.now - 1.month
+  end
 
   def set_ics_key
     self.update_attribute(:ics_key, Digest::MD5.hexdigest(self.ecampus_id))

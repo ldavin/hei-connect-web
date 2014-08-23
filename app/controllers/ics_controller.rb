@@ -7,7 +7,7 @@ class IcsController < ApplicationController
       return
     end
 
-    update_user_activity user
+    update_ics_user_activity user
     @update = user.schedule_update
 
     if stale? last_modified: @update.updated_at, public: false

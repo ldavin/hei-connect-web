@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216104541) do
+ActiveRecord::Schema.define(:version => 20140819071328) do
 
   create_table "absences", :force => true do |t|
     t.datetime "date"
@@ -221,8 +221,8 @@ ActiveRecord::Schema.define(:version => 20140216104541) do
 
   create_table "users", :force => true do |t|
     t.string   "ecampus_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "ics_key"
     t.string   "password_digest"
     t.string   "token"
@@ -230,6 +230,8 @@ ActiveRecord::Schema.define(:version => 20140216104541) do
     t.string   "email"
     t.string   "api_token"
     t.datetime "api_last_activity"
+    t.boolean  "is_demo",           :default => false
+    t.datetime "ics_last_activity"
   end
 
   add_index "users", ["ecampus_id"], :name => "index_users_on_ecampus_id"

@@ -39,6 +39,11 @@ class ApplicationController < ActionController::Base
     user.update_column :last_activity, Time.zone.now
   end
 
+  def update_ics_user_activity(specific_user = nil)
+    user = specific_user || current_user
+    user.update_column :ics_last_activity, Time.zone.now
+  end
+
   def set_admin_locale
     I18n.locale = :en
   end
