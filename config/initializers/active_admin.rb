@@ -229,6 +229,7 @@ ActiveAdmin.setup do |config|
   # config.filters = true
 
   config.before_filter :set_admin_locale
+  config.skip_before_filter :check_maintenance_mode
 
 
   config.namespace :admin do |admin|
