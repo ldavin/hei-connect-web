@@ -3,7 +3,7 @@ class IcsController < ApplicationController
     begin
       user = User.find_by_ics_key! params[:key]
     rescue
-      render nothing: true, status: 410, layout: false
+      render nothing: true, status: 404, layout: false
       return
     end
 
