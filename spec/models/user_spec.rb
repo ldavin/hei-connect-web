@@ -107,7 +107,7 @@ describe User do
         end
 
         context 'old' do
-          before { user.api_last_activity = DateTime.now - 6.weeks }
+          before { user.api_last_activity = DateTime.now - 3.weeks }
           it { should be_false }
         end
 
@@ -124,7 +124,7 @@ describe User do
         end
 
         context 'old' do
-          before { user.last_activity = DateTime.now - 6.weeks }
+          before { user.last_activity = DateTime.now - 3.weeks }
           it { should be_false }
         end
       end
@@ -140,7 +140,7 @@ describe User do
         end
 
         context 'old' do
-          before { user.api_last_activity = DateTime.now - 6.weeks }
+          before { user.api_last_activity = DateTime.now - 3.weeks }
           it { should be_false }
         end
 
@@ -157,7 +157,7 @@ describe User do
         end
 
         context 'old' do
-          before { user.last_activity = DateTime.now - 6.weeks }
+          before { user.last_activity = DateTime.now - 3.weeks }
           it { should be_false }
         end
       end
@@ -169,7 +169,7 @@ describe User do
         end
 
         context 'old' do
-          before { user.ics_last_activity = DateTime.now - 6.weeks }
+          before { user.ics_last_activity = DateTime.now - 3.weeks }
           it { should be_false }
         end
 

@@ -125,15 +125,15 @@ class User < ActiveRecord::Base
   private
 
   def has_used_mobile_app_recently?
-    self.api_last_activity != nil && self.api_last_activity > DateTime.now - 1.month
+    self.api_last_activity != nil && self.api_last_activity > DateTime.now - 2.weeks
   end
 
   def has_used_web_app_recently?
-    self.last_activity != nil && self.last_activity > DateTime.now - 1.month
+    self.last_activity != nil && self.last_activity > DateTime.now - 2.weeks
   end
 
   def has_used_ics_recently?
-    self.ics_last_activity != nil && self.ics_last_activity > DateTime.now - 1.month
+    self.ics_last_activity != nil && self.ics_last_activity > DateTime.now - 2.weeks
   end
 
   def set_ics_key
