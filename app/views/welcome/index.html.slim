@@ -1,6 +1,6 @@
 .row
 
-  .col-md-4.col-centered
+  .col-md-4.login.col-centered
     .login-box.panel.panel-success
       .panel-heading.login.text-center 
         p.big Login
@@ -12,9 +12,10 @@
                 p
                   small= msg
 
-          = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
-          = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
-          br
+          .fields
+            = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
+            = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
+
           = f.submit 'Connexion', class: 'btn btn-success'
           = link_to 'A propos', about_path, class: 'btn btn-blue btn-large about'
           .details

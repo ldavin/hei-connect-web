@@ -3,12 +3,14 @@
 
 // Bootstrap base styles (Some sub-stylesheets could also be disabled)
 
-@import 'bootstrap.css';
-@import 'morris.css';
-
-$theme-light-grey: #ebebeb;
+$theme-light-grey: whitesmoke;
 $theme-red: #dd5555;
 $theme-purple: #2b3e50;
+
+@import 'bootstrap.css';
+@import 'morris.css';
+@import 'login';
+@import 'dashboard';
 
 body {
   font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
@@ -16,6 +18,13 @@ body {
   background-color: $theme-light-grey;
 }
 
+.alert-error {
+  @extend .alert-danger;
+}
+
+.dropdown-menu{
+  padding: 1px 0;
+}
 .footer{
   border: 1px solid $theme-purple;
   margin-bottom: 10px;
@@ -41,7 +50,6 @@ body {
 
 .panel-body.dashboard-widget{
   border: 1px solid $theme-purple;
-
 }
 
 .col-centered{
@@ -49,7 +57,6 @@ body {
   margin: 0 auto;
 }
 
-@import 'login';
 
 .navbar-default .navbar-nav>li>a {
   color: $theme-light-grey;
