@@ -3,7 +3,7 @@
     span#calendar-title Emploi du temps
 
   - if courses.any?
-    .panel-body.dashboard-widget
+    .panel-body.dashboard-widget.calendar
       = content_tag :div, '', id: 'calendar_data', data: {events: courses.collect {|c| c.to_fullcalendar_event}}
       .row
         .col-md-12
