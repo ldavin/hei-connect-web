@@ -7,10 +7,16 @@ $theme-light-grey: whitesmoke;
 $theme-red: #dd5555;
 $theme-purple: #2b3e50;
 
+@import "general/mixins";
+
 @import 'bootstrap.css';
 @import 'morris.css';
 @import 'login';
 @import 'dashboard';
+@import 'compass';
+
+// Calendar drawing library
+@import "fullcalendar/fullcalendar";
 
 body {
   font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
