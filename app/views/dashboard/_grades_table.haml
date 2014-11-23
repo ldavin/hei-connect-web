@@ -1,49 +1,49 @@
 = cache ['grades_table', 'v2', current_user, session, grades, exams] do
-  .content-box
-    .content-box-header
-      %i.icon-table
-      Notes
-      = session.title
-    .padded
-      - if grades.any?
-        %table.table.table-bordered.table-striped
-          %thead
-            %tr
-              %th Matière
-              %th Examen
-              %th Type
-              %th Date
-              %th Coefficient
-              %th Note
-              %th Moyenne (Nb élèves)
-          %tbody
-            - # Sort grades by desc. chronological order
-            - grades.sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
-              %tr
-                %td= g.exam.section.name
-                %td= g.exam.name
-                %td= g.exam.kind
-                %td= g.exam.date.strftime('%d/%m/%Y')
-                %td
-                  .pagination-right
-                    = "%.2f" % g.exam.weight
-                %td
-                  .pagination-right
-                    - if g.unknown
-                      %span.label.label-red ?
-                    - else
-                      %strong= "%.2f" % g.mark
-                %td
-                  .pagination-right
-                    - if g.exam.grades_count == 0
-                      %span.label.label-red ?
-                    - else
-                      %strong= "%.2f" % g.exam.average
-                    = "(#{g.exam.grades_count})"
-      - else
-        Aucune note pour l'instant.
 
-      %p{style: 'padding-top:10px; text-align:right;'}
-        Récupérer ces données au format
-        = link_to 'json', dashboard_grades_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'json')
-        = link_to 'xls', dashboard_grades_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'xls')
+  .panel-heading
+    %i.icon-table
+    Notes
+    = session.title
+  .panel-body.dashboard-widget.padded
+    - if grades.any?
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Matière
+            %th Examen
+            %th Type
+            %th Date
+            %th Coefficient
+            %th Note
+            %th Moyenne (Nb élèves)
+        %tbody
+          - # Sort grades by desc. chronological order
+          - grades.sort{|x,y| y.exam.date <=> x.exam.date}.each do |g|
+            %tr
+              %td= g.exam.section.name
+              %td= g.exam.name
+              %td= g.exam.kind
+              %td= g.exam.date.strftime('%d/%m/%Y')
+              %td
+                .pagination-right
+                  = "%.2f" % g.exam.weight
+              %td
+                .pagination-right
+                  - if g.unknown
+                    %span.label.label-red ?
+                  - else
+                    %strong= "%.2f" % g.mark
+              %td
+                .pagination-right
+                  - if g.exam.grades_count == 0
+                    %span.label.label-red ?
+                  - else
+                    %strong= "%.2f" % g.exam.average
+                  = "(#{g.exam.grades_count})"
+    - else
+      Aucune note pour l'instant.
+
+    %p{style: 'padding-top:10px; text-align:right;'}
+      Récupérer ces données au format
+      = link_to 'json', dashboard_grades_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'json')
+      = link_to 'xls', dashboard_grades_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'xls')

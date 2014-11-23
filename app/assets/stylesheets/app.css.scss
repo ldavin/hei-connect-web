@@ -14,6 +14,7 @@ $theme-purple: #2b3e50;
 @import 'login';
 @import 'dashboard';
 @import 'calendar';
+@import 'grades';
 @import 'compass';
 
 // Calendar drawing library
@@ -64,8 +65,23 @@ body {
   margin: 0 auto;
 }
 
+table.table.table-bordered {
+  margin-bottom: 0;
+}
 
 .navbar-default .navbar-nav>li>a {
   color: $theme-light-grey;
   font-size: 1.4em;
+}
+
+.popover {
+  background-color: #dddddd;
+  margin: 0;
+  border: $theme-purple;
+  &.top > .arrow:after {
+    border-top: #dddddd;
+  }
+  &.top > .arrow {
+    border-top-color: #dddddd;
+  }
 }
