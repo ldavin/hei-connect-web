@@ -11,7 +11,7 @@ describe 'API client updates its config' do
   it 'returns the configuration when the maintenance is off' do
     get 'api/v1/config.json'
 
-    expect(response.body).to eq '{"config":{"url":"https://hei-connect-web.herokuapp.com/","android_minimum_version":1000}}'
+    expect(response.body).to eq '{"config":{"url":"https://hei-connect-web.herokuapp.com/","android_minimum_version":10001}}'
   end
 
   it 'returns an error when the maintenance is on' do
