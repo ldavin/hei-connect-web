@@ -15,19 +15,19 @@ feature 'Visitor being validated signs in' do
   scenario 'waits when status is updating' do
     sign_in_with id, password
 
-    expect(page).to have_content 'Premier login'
+    expect(page).to have_content 'Premier Login'
   end
 
   scenario 'waits when status is scheduled' do
     user.user_scheduled!
     sign_in_with id, password
 
-    expect(page).to have_content 'Premier login'
+    expect(page).to have_content 'Premier Login'
   end
 
   scenario 'is redirected when status is ok' do
     sign_in_with id, password
-    expect(page).to have_content 'Premier login'
+    expect(page).to have_content 'Premier Login'
 
     user.user_ok!
     visit validate_users_path
@@ -38,7 +38,7 @@ feature 'Visitor being validated signs in' do
 
   scenario 'is deleted when status is unknown' do
     sign_in_with id, password
-    expect(page).to have_content 'Premier login'
+    expect(page).to have_content 'Premier Login'
 
     user.user_unknown!
     visit validate_users_path
@@ -48,7 +48,7 @@ feature 'Visitor being validated signs in' do
 
   scenario 'is deleted when status is failed' do
     sign_in_with id, password
-    expect(page).to have_content 'Premier login'
+    expect(page).to have_content 'Premier Login'
 
     user.user_failed!
     visit validate_users_path
