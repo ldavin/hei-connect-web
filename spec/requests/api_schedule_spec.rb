@@ -26,14 +26,15 @@ describe 'API User fetches its schedule' do
   end
 
   describe 'when there are classes' do
+    let(:today_at_noon) { DateTime.now.beginning_of_day + 12.hours }
     let(:section1) { create :section, name: 'Chimie' }
     let(:section2) { create :section, name: 'Physique' }
     let(:rooms1) { [create(:room, name: 'AC602')] }
     let(:rooms2) { [create(:room, name: 'B216')] }
     let(:kind1) { 'Cours' }
     let(:kind2) { 'TD' }
-    let(:course1) { create :course, kind: kind1, section: section1, rooms: rooms1, length: 20, date: DateTime.now }
-    let(:course2) { create :course, kind: kind2, section: section2, rooms: rooms2, length: 20, date: DateTime.now + 1.day }
+    let(:course1) { create :course, kind: kind1, section: section1, rooms: rooms1, length: 20, date: today_at_noon }
+    let(:course2) { create :course, kind: kind2, section: section2, rooms: rooms2, length: 20, date: today_at_noon + 1.day }
 
     before {
       user.courses << [course1, course2]
