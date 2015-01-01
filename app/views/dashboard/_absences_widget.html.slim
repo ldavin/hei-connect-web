@@ -2,7 +2,7 @@
   .panel-heading
     ' Absences
     = session.title
-    ' - Graphique
+    '  - Graphique
 
   - if absences.any?
     = content_tag :div, '', id: 'absences_data', data: {absences: absences_to_chart_data(absences), x: 'date', y: ['excused', 'justified', 'nothing'], labels: [Absence::TYPE_EXCUSED, Absence::TYPE_JUSTIFIED, Absence::TYPE_NOTHING], colors: ['#80b031', '#0096db', '#f54f6c']}
