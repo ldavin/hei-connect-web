@@ -14,7 +14,7 @@ feature 'Visitor signs up' do
   scenario 'with valid id and a password' do
     sign_in_with valid_id, password
 
-    expect(page).to have_content 'Premier login'
+    expect(page).to have_content 'Premier Login'
     expect(Delayed::Job.count).to be 1 # Improve this one if possible
     expect(User.count).to be 1
   end
