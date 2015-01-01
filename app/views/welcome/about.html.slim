@@ -1,0 +1,100 @@
+/ Grades screenshot modal
+#gradesModal.modal.fade aria-hidden="true" aria-labelledby="Graphique" role="dialog" tabindex="-1"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4.modal-title Exemple de graphique de moyenne
+      .modal-body
+        img.img-responsive src=image_path('moyenne.png')
+
+
+.about
+  .row
+    .col-md-12
+      = link_to 'Retour à l\'accueil', root_path, class: 'back-btn btn btn-sm btn-primary'
+
+
+  .panel.panel-success
+    .panel-heading
+      | Pour faire vite
+    .panel-body
+      markdown:
+        HEI-Connect s'adresse aux étudiants de l'école d'ingénieurs [HEI (Hautes études d'ingénieur)](http://www.hei.fr/).
+
+        C'est un projet indépendant, réalisé par des étudiants de l'école (aujourd'hui diplômés), dans le but proposer aux élèves un service complémentaire à l'outil officiel [e-campus](http://e-campus.hei.fr/).
+
+        HEI-Connect utilise tes identifiants e-campus pour récupérer tes données (planning, notes, absences) et te les restituer rapidement et efficacement.
+
+        **HEI-Connect n'a pas d'accès direct à la base de données d'e-campus. Les données en sont extraites en simulant automatiquement des visites une fois par jour. Il n'y a donc aucune garantie que les données présentes sur HEI-Connect soient correctes et à jour, même si tout est fait pour. Seuls e-campus et les babillards présents dans l'école font foi en cas de doutes ou de différences.**
+
+
+  .row
+    .col-md-4
+      .panel.panel-success
+        .panel-heading
+          | Flux iCalendar
+        .panel-body
+          markdown:
+            HEI-Connect "transforme" ton emploi du temps en un fichier [iCalendar](http://fr.wikipedia.org/wiki/ICalendar).
+
+            A quoi ça sert ? A toujours avoir ton emploi du temps synchronisé sur ton smartphone (ou bien Google Agenda, Outlook et iCal si tu es oldschool).
+
+    .col-md-4
+      .panel.panel-success
+        .panel-heading
+          | Application Mobile
+        .panel-body
+          markdown:
+            Ce site web est tout à fait lisible depuis ton smartphone ou ta tablette.
+
+            Mais pour aller encore plus loin (et surtout beaucoup plus vite), tu peux télécharger l'[application Android sur le Play Store](https://play.google.com/store/apps/details?id=eu.heiconnect.android). L'app iOS suivra peut être un jour :)
+
+    .col-md-4
+      .panel.panel-success
+        .panel-heading
+          | Des graphiques
+        .panel-body
+          p Grâce à HEI-Connect, tu n'auras plus jamais le plaisir (désolé...) de copier/coller le PDF dégueulasse d'e-campus dans excel pour calculer ta moyenne.
+          p
+            | On a préféré tracer des graphiques.&nbsp;
+            a data-target="#gradesModal" data-toggle="modal" type="button"
+              | Voilà ce que ça donne
+            | .
+
+
+  .row
+    .col-md-12
+      .panel.panel-success
+        .panel-heading
+          | Open Source
+        .panel-body
+          markdown:
+            HEI-Connect est un ensemble de projets open-source. C'est à dire que le code source des applications est consultable sur internet. Il est possible de participer au développement des projets. *(Étudiant en ITI, on t'attend !)*
+
+            + [HEI-Connect](https://github.com/ldavin/hei-connect) est une bête API permettant de récupérer, dans un format générique, des données depuis e-campus.
+            + [HEI-Connect-Web](https://github.com/ldavin/hei-connect-web) est une application web (celle-ci!), communiquant avec HEI-Connect et stockant les données pour créer un e-campus "parallèle".
+            + [HEI-Connect-Android](https://github.com/ldavin/hei-connect-android) est l'application Android. Elle communique avec HEI-Connect-Web pour afficher tes données encore plus rapidement.
+
+
+    .col-md-12
+      .panel.panel-success
+        .panel-heading
+          | Disponibilité, et indulgence :)
+        .panel-body
+          markdown:
+            HEI-Connect est un projet étudiant, réalisé sans soutien de la part de l'école.
+
+            Les deux membres fondateurs, Louis Davin et Stanislas Boyet, sont aujourd'hui diplômés, mais continuent à mettre la main à la patte de temps en temps.
+
+            En tout cas, ils continuent à mettre la main à la poche :) HEI-Connect est désormais adopté par une majorité d'HEIeins (vous êtes entre 700 et 800 à vous connecter chaque semaine), ce qui nécessite un hébergement professionnel.
+            Tout est fait pour maintenir le site en ligne, mais ces efforts étant réalisés bénévolement (et désormais en parallèle à leur travail), le site peut subir régulièrement des indisponibilités ou des dysfonctionnements. Merci de le garder en tête.
+
+            Merci aussi de garder en tête, lorsque vous contactez HEI-Connect, que vous ne vous adressez pas au service informatique de l'école, mais à deux anciens étudiants ;)
+
+          p
+            |  N'hesitez pas à les contacter à&nbsp;
+            a href='mailto:contact@hei-connect.eu'
+              | contact@hei-connect.eu
+            | .

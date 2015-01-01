@@ -4,6 +4,9 @@
   = require jquery
   = require jquery_ujs
 
+  For bootstrap theme related functionalitites
+  = require bootstrap.min
+
   Lib for creating namespaces
   = require namespace
 
