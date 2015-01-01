@@ -77,27 +77,27 @@ module DashboardHelper
   def update_status_label(update)
     case update.state
       when Update::STATE_UNKNOWN
-        klass = ''
+        klass = 'label-default'
         text = 'Inconnu'
         tooltip = 'L\'application n\'a pas encore essayé de récupérer les données sur e-campus.'
       when Update::STATE_SCHEDULED
-        klass = 'label-blue'
+        klass = 'label-info'
         text = 'Programmé'
         tooltip = 'Une demande de mise a jour a été ajoutée à la queue. L\'attente peut varier de quelques minutes à plusieurs heures.'
       when Update::STATE_UPDATING
-        klass = 'label-red'
+        klass = 'label-danger'
         text = 'Mise à jour'
         tooltip = 'Une mise à jour est en cours, et sera terminée d\'ici quelques secondes.'
       when Update::STATE_OK
-        klass = 'label-green'
+        klass = 'label-success'
         text = 'Ok'
         tooltip = 'La dernière mise à jour s\'est déroulé avec succès.'
       when Update::STATE_FAILED
-        klass = 'label-orange'
+        klass = 'label-warning'
         text = 'Echec'
         tooltip = 'La dernière mise à jour a échoué. Si vous remarquez que certaines mises à jour échouent trop souvent, contactez l\'équipe.'
       when Update::STATE_DISABLED
-        klass = ''
+        klass = 'label-default'
         text = 'Désactivé'
         tooltip = 'La fonctionnalité de mise à jour automatique a été désactivée pour cet objet.'
       else
@@ -106,17 +106,18 @@ module DashboardHelper
         tooltip = ''
     end
 
-    content_tag :a, text, rel: 'popover', class: ['label', klass].join(' '), data: {placement: 'top', content: tooltip, 'original-title' => 'Etat: ' + text}
+    content_tag :span, text, rel: 'popover', class: ['label', klass].join(' '),
+                data: {placement: 'top', content: tooltip, title: 'Etat: ' + text, trigger: 'hover'}
   end
 
   def absence_type_label(absence)
     case absence.type
       when Absence::TYPE_EXCUSED
-        klass = 'label-green'
+        klass = 'label-success'
       when Absence::TYPE_JUSTIFIED
-        klass = 'label-blue'
+        klass = 'label-warning'
       when Absence::TYPE_NOTHING
-        klass = 'label-red'
+        klass = 'label-danger'
     end
 
     content_tag :span, absence.type, class: ['label', klass].join(' ')
