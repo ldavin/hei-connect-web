@@ -1,36 +1,87 @@
 // Stylesheets preceded by "//" are not required since not used
 
-// Compass mixins
-@import "compass";
-@import "compass/css3";
 
 // Bootstrap base styles (Some sub-stylesheets could also be disabled)
-@import "bootstrap";
-@import "bootstrap-responsive";
 
-// Theme definition
-@import "general/manifest";
+$theme-light-grey: whitesmoke;
+$theme-red: #dd5555;
+$theme-purple: #2b3e50;
+
+@import "general/mixins";
+
+@import 'bootstrap.css';
+@import 'morris.css';
+@import 'login';
+@import 'dashboard';
+@import 'calendar';
+@import 'grades';
+@import 'compass';
 
 // Calendar drawing library
-@import "jqueryui";
 @import "fullcalendar/fullcalendar";
 
-// Charts drawing library
-@import "morris";
+body {
+  font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
+  color: $theme-purple;
+  background-color: $theme-light-grey;
+}
 
-// For radio, checkboxes, and file inputs styling (re-activate if used in views!)
-// @import "uniform.default";
+.alert-error {
+  @extend .alert-danger;
+}
 
-// Fontawesome icons
-@import "fontawesome/manifest";
+.dropdown-menu{
+  padding: 1px 0;
+}
+.footer{
+  border: 1px solid $theme-purple;
+  margin-bottom: 10px;
+}
 
-// For select inputs styling (re-activate if used in views!)
-// @import "chosen/manifest";
+.panel-default{
+  background-color: $theme-light-grey;
+  color: $theme-purple!important;
+  a {
+    color: #df691a!important;
+    text-decoration: none!important;
+  }
+}
 
-// Some other theme overrides
-@import "components/manifest";
+.panel-default > .panel-heading {
+  background-color: $theme-light-grey;
+  color: $theme-red;
+  font-weight: bolder;
+  font-variant: small-caps;
+  font-size: 2em;
+  padding: 5px;
+}
 
-// Bootstrap supplementary responsive sheets
-@import "bootstrap/responsive_max480";
-@import "bootstrap/responsive_max768";
-@import "bootstrap/responsive_max1024";
+.panel-body.dashboard-widget{
+  border: 1px solid $theme-purple;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+table.table.table-bordered {
+  margin-bottom: 0;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: $theme-light-grey;
+  font-size: 1.4em;
+}
+
+.popover {
+  background-color: #dddddd;
+  margin: 0;
+  border: $theme-purple;
+  &.top > .arrow:after {
+    border-top: #dddddd;
+  }
+  &.top > .arrow {
+    border-top-color: #dddddd;
+  }
+}

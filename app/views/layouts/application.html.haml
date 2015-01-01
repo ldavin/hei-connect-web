@@ -12,6 +12,7 @@
       = javascript_include_tag 'excanvas'
       = javascript_include_tag 'ie_fix'
       = stylesheet_link_tag 'ie_fix', :media => 'all'
+
     = stylesheet_link_tag 'app', :media => 'all'
 
 
@@ -21,8 +22,8 @@
 
     %section#main
       .container
-        .row-fluid
-          .span12
+        .row
+          .col-md-12
             = bootstrap_flash
             = yield
 

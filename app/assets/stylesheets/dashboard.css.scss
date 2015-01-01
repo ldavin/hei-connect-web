@@ -1,0 +1,9 @@
+table.table.table-bordered {
+  border-top: none;
+  th {
+    border-bottom: 1px solid $theme-purple;
+  }
+  td {
+    border-bottom: 1px solid lightgray;
+  }
+}

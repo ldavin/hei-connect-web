@@ -1,0 +1,17 @@
+= cache ['calendar_widget', 'v5', current_user, courses] do
+  .panel-heading
+    span#calendar-title Emploi du temps
+
+  - if courses.any?
+    .panel-body.dashboard-widget.calendar
+      = content_tag :div, '', id: 'calendar_data', data: {events: courses.collect {|c| c.to_fullcalendar_event}}
+      .row
+        .col-md-12
+          #full-calendar.calendar
+
+  - else
+    .panel-body.dashboard-widget
+      - if current_user.schedule_ok?
+        | Aucun cours pour cette semaine et la semaine suivante.
+      - else
+        | Aucun cours pour l'instant.

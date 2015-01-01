@@ -1,0 +1,33 @@
+= cache ['absences_table', 'v1', current_user, session, absences] do
+  .panel-heading
+    i.icon-table
+    ' Absences
+    = session.title
+    ' - Tableau
+  .panel-body.dashboard-widget
+    - if absences.any?
+      table.table.table-bordered.table-striped
+        thead
+          tr
+            th Matière
+            th Date
+            th Durée
+            th Type
+            th Raison
+        tbody
+          - # Sort absences by desc. chronological order
+          - absences.sort{|x,y| y.date <=> x.date}.each do |a|
+            tr
+              td= a.section.name
+              td= a.date.strftime('%d/%m/%Y à %Hh%M')
+              td= Time.at(a.length.minutes).utc.strftime("%Hh%M")
+              td= absence_type_label a
+              td= a.justification
+    - else
+      | Aucune absence pour l'instant, c'est bien :)
+
+  p.pull-right
+    ' Récupérer ces données au format
+    = link_to 'json', dashboard_absences_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'json')
+    ',
+    = link_to 'xls', dashboard_absences_path(ecampus_id: params[:ecampus_id], year: params[:year], try: params[:try], format: 'xls')

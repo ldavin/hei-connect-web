@@ -6,7 +6,7 @@ module ApplicationHelper
       next if type == :timeout
       next if type == :timedout
       type = :success if type == :notice
-      type = :error if type == :alert
+      type = :danger if type == :alert
       text = content_tag(:div,
                          content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert") +
                              message, :class => "alert fade in alert-#{type}")

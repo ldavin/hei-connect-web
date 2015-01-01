@@ -1,0 +1,41 @@
+.panel.panel-default
+  = render partial: 'average_widget', locals: {session: @session, grades: @grades, exams: @exams, draw_average: true}
+
+.panel.panel-default
+  = render partial: 'grades_table', locals: {session: @session, grades: @grades, exams: @exams}
+
+.row
+  .col-md-4
+    .panel.panel-default
+      = render partial: 'status_widget', locals: {updates: @updates}
+
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        i.icon-info-sign
+          | A propos des mises à jour
+      .panel-body.dashboard-widget
+        markdown:
+          La mise à jour automatique n'est programmée que pour l'année en cours. Il est toujours possible de
+          programmer *manuellement* un mise à jour des notes grâce au bouton ci-dessous.
+
+          La mise à jour est planifiée tous les jours à partir de 3h.
+
+          **HEI-Connect s'efforce de récupérer tes notes et calculer ta moyenne du mieux qu'il peut, mais certains cas
+          particuliers ne sont pas gérés correctement (en cas d'absence à un examen par exemple). La moyenne donnée
+          n'est donc qu'une approximation.**
+
+        = button_to 'Forcer la mise à jour des notes ' + @session.title, dashboard_grades_path(ecampus_id: current_user.ecampus_id, year: @session.year, try: @session.try), method: :put, class: 'btn btn-sm btn-default pull-right'
+
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        i.icon-info-sign
+        | A propos des moyennes
+      .panel-body.dashboard-widget
+        markdown:
+          **Les moyennes sont calculées par groupe**, c'est à dire par ensemble d'utilisateurs ayant reçu une note pour le même examen à la même date.
+
+          *Exemple: moyenne des élèves d'un même groupe de khôlle, d'une même promotion, d'un même semestre.*
+
+          **Plus il y a d'utilisateurs inscrits sur HEI-Connect, plus la moyenne se rapproche de la réalité.**

@@ -1,61 +1,30 @@
-###
-  Scripts preceded by "--" are not required since not used
 
-  JQuery
-  = require jquery
-  = require jquery_ujs
+# JQuery
+#= require jquery
+#= require jquery_ujs
 
-  For bootstrap theme related functionalitites (some sub-scrits could also be disabled!)
-  = require bootstrap
+# For bootstrap theme related functionalitites (some sub-scrits could also be disabled!)
+#= require bootstrap.min
 
-  For inline charts or pies (http://benpickles.github.com/peity/)
-  -- require jquery.piety
+# Charts drawing library
+#= require raphael
+#= require morris
 
-  For radio, checkboxes, and file inputs styling (re-activate if used in views!)
-  -- require jquery.browser
-  -- require jquery.uniform
+# Lib for creating namespaces
+#= require namespace
 
-  Dials (circle stats)
-  -- require jquery.knob
+# App helpers
+#= require_tree ./helpers
 
-  For select inputs styling (re-activate if used in views!)
-  -- require chosen.jquery
+# App widgets
+#= require_tree ./widgets
 
-  Charts drawing library
-  = require raphael
-  = require morris
+# Calendar drawing library
+#= require jquery-ui
+#= require fullcalendar/fullcalendar.js
 
-  Plot drawing library (USING MORRIS INSTEAD FOR NOW)
-  -- require flot/jquery.flot
-  -- require flot/jquery.flot.resize
-  -- require flot/jquery.flot.pie
+# App pages specific scripts
+#= require_tree ./pages
 
-  Gauge drawing library
-  -- require raphael
-  -- require justgage/justgage
-
-  Calendar drawing library
-  = require jquery-ui
-  = require fullcalendar
-
-  Fix for placeholders on old (ie only?) browsers
-  = require ie_placeholder_fix
-
-  Lib for creating namespaces
-  = require namespace
-
-  App helpers
-  = require_tree ./helpers
-
-  App widgets
-  = require_tree ./widgets
-
-  App pages specific scripts
-  = require_tree ./pages
-
-  = require_self
-###
-
-# Launch scripts for the current page
 $ ->
   HEIConnect.Helpers.Moka.miaou()

@@ -1,0 +1,22 @@
+javascript:
+  setTimeout((function () {
+    return window.location.reload(1);
+  }), 5000);
+
+.col-md-4.login.col-centered
+  .login-box.panel.panel-success
+    .panel-heading.login.text-center
+      p.big Premier Login
+    .panel-body.login.text-center
+      .details
+        p
+          ' HEI Connect est en train d'essayer de se connecter à e-campus avec tes identifiants pour vérifier la validité de ton compte.
+        p.small
+          ' Bienvenue à la maison !
+
+        .progress
+          .progress-bar.progress-bar-striped.progress-bar-info.active aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" style="width: 100%"
+            span.sr-only Ça turbine !
+
+      .actions
+        = link_to 'Annuler', sessions_path, method: :delete, class: 'btn btn-lg btn-info'

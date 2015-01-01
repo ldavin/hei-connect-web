@@ -1,0 +1,27 @@
+.row
+
+  .col-md-4.login.col-centered
+    .login-box.panel.panel-success
+      .panel-heading.login.text-center 
+        p.big Login
+      .panel-body.login.text-center
+        = form_for @user, html: {class: 'login-form'}  do |f|
+          - if @user.errors.any?
+            .alert.alert-danger
+              - @user.errors.full_messages.each do |msg|
+                p
+                  small= msg
+
+          .fields
+            = f.text_field :ecampus_id, autocomplete: 'off', placeholder: 'Identifiant ecampus'
+            = f.password_field :password, autocomplete: 'off', placeholder: 'Mot de passe'
+
+          = f.submit 'Connexion', class: 'btn btn-success'
+          = link_to 'A propos', about_path, class: 'btn btn-blue btn-large about'
+          .details
+            p.light
+              | Pas encore inscrit? Il suffit de remplir le formulaire de connexion avec tes identifiants ecampus.
+
+
+  javascript:
+    function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
