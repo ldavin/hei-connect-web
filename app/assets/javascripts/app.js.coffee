@@ -3,7 +3,7 @@
 #= require jquery
 #= require jquery_ujs
 
-# For bootstrap theme related functionalitites (some sub-scrits could also be disabled!)
+# For bootstrap theme related functionalitites
 #= require bootstrap.min
 
 # Charts drawing library

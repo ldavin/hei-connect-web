@@ -4,8 +4,8 @@ $theme-purple: #2b3e50;
 
 @import "general/mixins";
 
-@import 'bootstrap.css';
-@import 'morris.css';
+@import 'bootstrap';
+@import 'morris';
 @import 'login';
 @import 'dashboard';
 @import 'calendar';
@@ -25,20 +25,21 @@ body {
   @extend .alert-danger;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   padding: 1px 0;
 }
-.footer{
+
+.footer {
   border: 1px solid $theme-purple;
   margin-bottom: 10px;
 }
 
-.panel-default{
+.panel-default {
   background-color: $theme-light-grey;
-  color: $theme-purple!important;
+  color: $theme-purple !important;
   a {
-    color: #df691a!important;
-    text-decoration: none!important;
+    color: #df691a !important;
+    text-decoration: none !important;
   }
 }
 
@@ -51,11 +52,11 @@ body {
   padding: 5px;
 }
 
-.panel-body.dashboard-widget{
+.panel-body.dashboard-widget {
   border: 1px solid $theme-purple;
 }
 
-.col-centered{
+.col-centered {
   float: none;
   margin: 0 auto;
 }
@@ -64,7 +65,7 @@ table.table.table-bordered {
   margin-bottom: 0;
 }
 
-.navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav > li > a {
   color: $theme-light-grey;
   font-size: 1.4em;
 }
@@ -82,6 +83,6 @@ table.table.table-bordered {
 }
 
 .additional-data {
-  padding-top:10px;
-  text-align:right;
+  padding-top: 10px;
+  text-align: right;
 }
