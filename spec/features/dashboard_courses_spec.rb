@@ -26,8 +26,8 @@ feature 'User checks its schedule' do
       sign_in_with id, password
 
       expect(page).to have_content 'Emploi du temps'
-      expect(page).to have_content course.name
-      expect(page).to have_content room.name
+      expect(page.find('#calendar_data')['data-events']).to have_content course.name
+      expect(page.find('#calendar_data')['data-events']).to have_content room.name
     end
 
     scenario 'on courses home', js: true do
@@ -36,8 +36,8 @@ feature 'User checks its schedule' do
 
       expect(page).to have_content 'Flux iCalendar'
       expect(page).to have_content 'Emploi du temps'
-      expect(page).to have_content course.name
-      expect(page).to have_content room.name
+      expect(page.find('#calendar_data')['data-events']).to have_content course.name
+      expect(page.find('#calendar_data')['data-events']).to have_content room.name
     end
   end
 
