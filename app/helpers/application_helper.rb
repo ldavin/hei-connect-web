@@ -14,4 +14,8 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def is_on_android?
+    request.env['HTTP_USER_AGENT'] =~ /android/i
+  end
+
 end

@@ -4,8 +4,13 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0")
-    %title= content_for?(:title) ? yield(:title) : 'HEI-Connect'
     = csrf_meta_tags
+    %link(href="#{image_path('favicon')}" rel="icon")
+    %link(href="#{image_path('apple-touch-logo')}" rel="apple-touch-icon")
+    %link(href="#{image_path('play-store-logo')}" rel="android-touch-icon")
+
+    %title= content_for?(:title) ? yield(:title) : 'HEI-Connect'
+
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
       = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js'
@@ -16,6 +21,7 @@
   %body#body{'data-controller' => controller_name, 'data-action' => action_name}
 
     = render partial: 'layouts/navigation'
+    = render partial: 'layouts/mobile_banner'
 
     %section#main
       .container
