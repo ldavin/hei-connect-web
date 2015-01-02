@@ -5,9 +5,9 @@
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0")
     = csrf_meta_tags
-    %link(href="#{image_path('favicon')}" rel="icon")
-    %link(href="#{image_path('apple-touch-logo')}" rel="apple-touch-icon")
-    %link(href="#{image_path('play-store-logo')}" rel="android-touch-icon")
+    %link(href="#{image_path('favicon.ico')}" rel="icon")
+    %link(href="#{image_path('apple-touch-logo.png')}" rel="apple-touch-icon")
+    %link(href="#{image_path('play-store-logo.png')}" rel="android-touch-icon")
 
     %title= content_for?(:title) ? yield(:title) : 'HEI-Connect'
 
