@@ -5,6 +5,7 @@ HEI Connect Web
 [![Coverage Status](https://coveralls.io/repos/ldavin/hei-connect-web/badge.png)](https://coveralls.io/r/ldavin/hei-connect-web)
 [![Build Status](https://travis-ci.org/ldavin/hei-connect-web.png?branch=master)](https://travis-ci.org/ldavin/hei-connect-web)
 [![PullReview stats](https://www.pullreview.com/github/ldavin/hei-connect-web/badges/master.svg?)](https://www.pullreview.com/github/ldavin/hei-connect-web/reviews/master)
+[![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/StanBoyet/hei-connect)
 
 ## Description
 ### En bref
