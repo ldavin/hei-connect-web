@@ -3,17 +3,17 @@ source 'https://rubygems.org'
 ruby '2.1.4'
 
 # Regular gems
-gem 'rails', '~> 3.2'
+gem 'rails', '~> 4.0'
 gem 'rack', '~> 1.4'
 gem 'puma', '~> 2.9'
 gem 'rack-timeout', '~> 0.0.4'
 
 group :assets do
-  gem 'coffee-rails', '~> 3.2'
-  gem 'sass-rails', '~> 3.2'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'sass-rails', '~> 4.0'
   gem 'compass-rails', '~> 2.0'
   gem 'uglifier', '~> 2.5'
-  gem 'turbo-sprockets-rails3', '~> 0.3'
+  # gem 'turbo-sprockets-rails3', '~> 0.3'
 end
 
 group :development do
@@ -57,8 +57,8 @@ gem 'newrelic_rpm', '~> 3.9.0.229'
 gem 'rocket_pants', '~> 1.10.0'
 gem 'redcarpet', '~> 3.1.2'
 gem 'bcrypt-ruby', '~> 3.1.5'
-gem 'simple_form', '~> 2.1.1'
-gem 'activeadmin', '~> 0.6.3'
+gem 'simple_form', '~> 3.1'
+gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'bugsnag', '~> 2.1.0'
 gem 'delayed_job_active_record', '~> 4.0.1'
 gem 'daemons', '~> 1.1.9'
