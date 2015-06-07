@@ -77,5 +77,8 @@ module HeiConnectWeb
                        :request_specs => true
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
+
+    config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/deploy"
+
   end
 end

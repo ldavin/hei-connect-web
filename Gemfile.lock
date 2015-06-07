@@ -10,6 +10,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-page_caching (1.0.2)
+      actionpack (>= 4.0.0, < 5)
     activeadmin (1.0.0.pre1)
       arbre (~> 1.0, >= 1.0.2)
       bourbon
@@ -346,6 +348,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-page_caching
   activeadmin (~> 1.0.0.pre1)
   annotate (~> 2.6)
   bcrypt-ruby (~> 3.1.5)

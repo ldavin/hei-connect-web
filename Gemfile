@@ -14,6 +14,7 @@ gem 'compass-rails', '~> 2.0'
 gem 'uglifier', '~> 2.5'
 gem 'protected_attributes', '~> 1.0.9'
 gem 'devise', '~> 3.5.1'
+gem 'actionpack-page_caching'
 
 group :development do
   gem 'sqlite3', '~> 1.3.9'
