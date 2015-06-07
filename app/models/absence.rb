@@ -31,9 +31,9 @@ class Absence < ActiveRecord::Base
 
   attr_accessible :date, :excused, :justification, :length, :section_id, :update_number, :user_session_id
 
-  scope :excused, where(excused: true)
-  scope :justified, where('excused = ? AND justification IS NOT NULL', false)
-  scope :nothing, where('excused = ? AND justification IS NULL', false)
+  scope :excused, -> { where(excused: true) }
+  scope :justified, -> { where('excused = ? AND justification IS NOT NULL', false) }
+  scope :nothing, -> { where('excused = ? AND justification IS NULL', false) }
 
   def type
     if excused
