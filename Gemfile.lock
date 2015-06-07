@@ -202,6 +202,8 @@ GEM
       websocket-driver (>= 0.2.0)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
+    protected_attributes (1.0.9)
+      activemodel (>= 4.0.1, < 5.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -361,6 +363,7 @@ DEPENDENCIES
   newrelic_rpm (~> 3.9.0.229)
   pg (~> 0.17.1)
   poltergeist (~> 1.5.0)
+  protected_attributes
   puma (~> 2.9)
   quiet_assets (~> 1.0)
   rack (~> 1.4)
