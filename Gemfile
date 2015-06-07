@@ -8,13 +8,10 @@ gem 'rack', '~> 1.4'
 gem 'puma', '~> 2.9'
 gem 'rack-timeout', '~> 0.0.4'
 
-group :assets do
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'sass-rails', '~> 4.0'
-  gem 'compass-rails', '~> 2.0'
-  gem 'uglifier', '~> 2.5'
-  # gem 'turbo-sprockets-rails3', '~> 0.3'
-end
+gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0'
+gem 'compass-rails', '~> 2.0'
+gem 'uglifier', '~> 2.5'
 
 group :development do
   gem 'sqlite3', '~> 1.3.9'
