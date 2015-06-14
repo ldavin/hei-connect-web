@@ -28,6 +28,7 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'factory_girl_rails', '~> 4.4'
+  gem 'minitest'
   gem 'shoulda-matchers', '~> 2.5'
   gem 'guard-rspec', '~> 4.2'
   gem 'spork-rails', '~> 4.0'
