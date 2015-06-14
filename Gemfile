@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.4'
 
 # Regular gems
-gem 'rails', '~> 4.0'
+gem 'rails', '~> 4.1.10'
 gem 'rack', '~> 1.4'
 gem 'puma', '~> 2.9'
 gem 'rack-timeout', '~> 0.0.4'
@@ -51,7 +51,7 @@ group :production do
 end
 
 gem 'jquery-rails', '~> 2.3.0'
-gem 'haml-rails', '~> 0.4'
+gem 'haml-rails', '~> 0.9.0'
 gem 'ri_cal', '~> 0.8.8'
 gem 'newrelic_rpm', '~> 3.9.0.229'
 gem 'rocket_pants', '~> 1.10.0'
