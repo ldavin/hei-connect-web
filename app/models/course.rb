@@ -37,9 +37,9 @@ class Course < ActiveRecord::Base
 
   attr_accessible :ecampus_id, :date, :length, :kind, :broken_name
 
-  scope :current_weeks, lambda { where("date >= ?", Time.zone.now.beginning_of_week).order("date ASC") }
-  scope :today, lambda { where("date(date) = DATE(?)", Time.zone.today).order("date ASC") }
-  scope :tomorrow, lambda { where("date(date) = DATE(?)", Time.zone.today + 1).order("date ASC") }
+  scope :current_weeks, -> { where("date >= ?", Time.zone.now.beginning_of_week).order("date ASC") }
+  scope :today, -> { where("date(date) = DATE(?)", Time.zone.today).order("date ASC") }
+  scope :tomorrow, -> { where("date(date) = DATE(?)", Time.zone.today + 1).order("date ASC") }
 
   def to_ical_event
     Rails.cache.fetch [self, 'ical_event'] do

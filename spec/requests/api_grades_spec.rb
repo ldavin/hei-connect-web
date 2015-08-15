@@ -15,7 +15,7 @@ describe 'API User fetches its grades' do
   describe 'when user has NO grades' do
     it 'returns an empty list' do
       parameters = {token: api_token}
-      get 'api/v1/grades.json', parameters
+      get '/api/v1/grades.json', parameters
 
       expect(response.response_code).to eq 200
       expect(response.body).to eq "{\"grades\":[],\"last_update\":{\"state\":\"#{user.grades_update(user_session.grades_session).state}\",\"updated_at\":#{user.grades_update(user_session.grades_session).updated_at.to_json}}}"
@@ -29,7 +29,7 @@ describe 'API User fetches its grades' do
 
     it 'returns the grades' do
       parameters = {token: api_token}
-      get 'api/v1/grades.json', parameters
+      get '/api/v1/grades.json', parameters
 
       expect(response.response_code).to eq 200
       expect(response.body).to eq "{\"grades\":[{\"id\":1,\"section_name\":\"Chimie\",\"exam_name\":\"The exam\",\"date\":#{Date.yesterday.to_json},\"unknown\":false,\"mark\":11.5,\"average\":0.0,\"average_count\":0}],\"last_update\":{\"state\":\"#{user.grades_update(user_session.grades_session).state}\",\"updated_at\":#{user.grades_update(user_session.grades_session).updated_at.to_json}}}"

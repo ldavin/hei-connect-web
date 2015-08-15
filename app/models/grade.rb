@@ -27,7 +27,7 @@ class Grade < ActiveRecord::Base
 
   attr_accessible :mark, :unknown, :update_number, :user_session_id, :exam_id
 
-  scope :known, where(unknown: false)
+  scope :known, -> { where(unknown: false) }
 
   def to_detailed_hash
     {

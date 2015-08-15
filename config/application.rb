@@ -3,10 +3,9 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  # Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  Bundler.require(:default, :assets, Rails.env)
+  # Require the gems listed in Gemfile, including any gems
+  # you've limited to :test, :development, or :production.
+  Bundler.require(*Rails.groups)
 end
 
 module HeiConnectWeb
@@ -78,5 +77,12 @@ module HeiConnectWeb
                        :request_specs => true
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
+
+    config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/deploy"
+
+    # Applications created before Rails 4.1 uses Marshal to serialize cookie values into the signed and encrypted cookie jars.
+    # If you want to use the new JSON-based format in your application, you can add an initializer file with the following content:
+    config.action_dispatch.cookies_serializer = :hybrid
+
   end
 end
