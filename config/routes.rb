@@ -4,12 +4,14 @@ HeiConnectWeb::Application.routes.draw do
 
   get 'ics/:key' => 'ics#show', as: :ics
 
-  get 'dashboard/:ecampus_id' => 'dashboard#index', as: :dashboard
-  get 'dashboard/:ecampus_id/courses' => 'dashboard#courses', as: :dashboard_courses
-  get 'dashboard/:ecampus_id/grades/:year/:try' => 'dashboard#grades', as: :dashboard_grades
-  put 'dashboard/:ecampus_id/grades/:year/:try' => 'dashboard#update_grades'
-  get 'dashboard/:ecampus_id/absences/:year/:try' => 'dashboard#absences', as: :dashboard_absences
-  put 'dashboard/:ecampus_id/absences/:year/:try' => 'dashboard#update_absences'
+  scope '/dashboard' do
+    get ':ecampus_id' => 'dashboard#index', as: :dashboard
+    get ':ecampus_id/courses' => 'dashboard#courses', as: :dashboard_courses
+    get ':ecampus_id/grades/:year/:try' => 'dashboard#grades', as: :dashboard_grades
+    put ':ecampus_id/grades/:year/:try' => 'dashboard#update_grades'
+    get ':ecampus_id/absences/:year/:try' => 'dashboard#absences', as: :dashboard_absences
+    put ':ecampus_id/absences/:year/:try' => 'dashboard#update_absences'
+  end
 
   resource :sessions, only: [:destroy]
   # Should be improved
